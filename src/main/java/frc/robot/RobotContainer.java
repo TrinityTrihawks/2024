@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.aouton.Autos;
+import frc.robot.commands.teleop.ArcadeDrive;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -62,6 +63,8 @@ public class RobotContainer {
         // pressed,
         // // cancelling on release.
         // m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+
+        drive.setDefaultCommand(new ArcadeDrive(drive, driverController::getLeftY, driverController::getLeftX));
     }
 
     /**
