@@ -51,5 +51,21 @@ public final class Constants {
 
     public static class Robot2024Constants {
 
+        public static class NotePathConstants {
+
+            public static final int kUpperIntakeId = 15;
+            public static final int kLowerIntakeId = 16;
+            public static final int kFeederId = 17;
+            public static final int kLowerShooterId = 18;
+            public static final int kUpperShooterId = 19;
+            public static final double kUpperIntakeSpeed = .7;
+            public static final double kLowerIntakeSpeed = .7;
+            public static final double kFeederSpeed = .3;
+            public static final double kUpperShooterSpeed = 1;
+            public static final double kLowerShooterSpeed = -1;
+            public static final double kShooterWarmupTime = 3; // seconds
+        
+        }
+
     }
 }
