@@ -7,15 +7,15 @@ package frc.robot.commands.aouton;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.Robot2024Constants.NotePathConstants;
-import frc.robot.subsystems.robot2024.NotePath;
+import frc.robot.subsystems.RobotSubsystem;
 
 public class Shoot extends Command {
 
-    private final NotePath subsys;
+    private final RobotSubsystem subsys;
     private final Timer feedTimer = new Timer();
 
     /** Creates a new Shoot. */
-    public Shoot(NotePath s) {
+    public Shoot(RobotSubsystem s) {
         addRequirements(subsys = s);
     }
 
@@ -37,6 +37,7 @@ public class Shoot extends Command {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        subsys.stopShooter();
     }
 
     // Returns true when the command should end.

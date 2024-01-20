@@ -28,7 +28,7 @@ class DriveAMeter extends Command {
     @Override
     public void execute() {
         drive.drive(0.5, 0);
-        System.out.println(this + ": driving forward @ " + drive.getEncoderDistanceLeft());
+        //System.out.println(this + ": driving forward @ " + drive.getEncoderDistanceLeft());
     }
 
     // Called once the command ends or is interrupted.

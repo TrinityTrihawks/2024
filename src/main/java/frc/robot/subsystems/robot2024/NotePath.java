@@ -69,4 +69,5 @@ public class NotePath extends SubsystemBase implements RobotSubsystem {
     public void shoot() {
         feederMotor.set(NotePathConstants.kFeederSpeed);
     }
+
 }
