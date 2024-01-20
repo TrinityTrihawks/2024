@@ -63,7 +63,7 @@ public class Robot extends TimedRobot {
     public void disabledInit() {
         BotSwitcher.getSubsystem().stopIntake();
         BotSwitcher.getSubsystem().stopShooter();
-
+        CommandScheduler.getInstance().cancelAll();
     }
 
     @Override
