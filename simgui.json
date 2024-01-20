@@ -8,12 +8,16 @@
   },
   "NTProvider": {
     "types": {
-      "/FMSInfo": "FMSInfo"
+      "/FMSInfo": "FMSInfo",
+      "/SmartDashboard/Advance Test": "Command"
     }
   },
   "NetworkTables": {
     "transitory": {
       "SmartDashboard": {
+        "Advance Test": {
+          "open": true
+        },
         "open": true
       }
     }

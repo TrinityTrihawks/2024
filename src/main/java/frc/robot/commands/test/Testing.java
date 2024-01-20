@@ -14,7 +14,8 @@ public class Testing {
     public static Command preFlight(TestArgs args) {
         return Commands.sequence(
             testDriverControls(args),
-            testAutos(args)
+            testAutos(args),
+            Commands.print("preflight checklist complete!")
         );
     }
     
