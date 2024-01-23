@@ -76,7 +76,7 @@ public class Drivetrain extends SubsystemBase implements Drive {
 
     @Override
     public void drive(double x, double z) {
-        drive.arcadeDrive(speedLimiter.calculate(x), twistLimiter.calculate(z));
+        drive.arcadeDrive(-speedLimiter.calculate(x), twistLimiter.calculate(z));
     }
 
     @Override
