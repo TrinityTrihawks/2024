@@ -18,7 +18,10 @@
         "Advance Test": {
           "open": true
         },
-        "open": true
+        "open": true,
+        "string[]##v_/SmartDashboard/Teleop Tests": {
+          "open": true
+        }
       }
     }
   },
