@@ -8,6 +8,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.IntakeInBackground;
 import frc.robot.commands.aouton.Autos;
 import frc.robot.commands.teleop.ArcadeDrive;
+import frc.robot.commands.teleop.Teleop;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.RobotSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -31,6 +32,8 @@ public class RobotContainer {
     // Replace with CommandPS4Controller or CommandJoystick if needed
     private final CommandXboxController driverController = new CommandXboxController(
             OperatorConstants.kDriverControllerPort);
+    private final CommandXboxController subsysController = new CommandXboxController(
+            OperatorConstants.kSubsysControllerPort);
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -68,6 +71,10 @@ public class RobotContainer {
 
         subsys.setDefaultCommand(new IntakeInBackground(subsys));
         drive.setDefaultCommand(new ArcadeDrive(drive, driverController::getLeftY, driverController::getLeftX));
+
+        subsysController.x().onTrue(Teleop.pushToShoot(subsys));
+        subsysController.leftBumper().whileTrue(Teleop.warmShooter(subsys));
+        subsysController.y().whileTrue(Teleop.shoot(subsys));
     }
 
     /**

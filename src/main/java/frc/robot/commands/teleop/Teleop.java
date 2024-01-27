@@ -15,14 +15,27 @@ public class Teleop {
         return new ArcadeDrive(drive, forward, twist);
     }
 
+    /**
+     * porcelain command to run the basic shoot sequence
+     */
     public static Command pushToShoot(RobotSubsystem subsys) {
         return new Shoot(subsys);
     }
 
+    /**
+     * use this in conjunction with Teleop.warmShooter(). 
+     * it spins up the feeder wheel on start and stops
+     * all wheels on end.
+     */
     public static Command shoot(RobotSubsystem subsys) {
         return new StartEndCommand(() -> subsys.shoot(), () -> subsys.stopShooter(), subsys);
     }
 
+    /**
+     * one-shot starts the shooter wheel starting
+     * not the *most* motor-safe thing ever... but it's
+     * ok
+     */
     public static Command warmShooter(RobotSubsystem subsys) {
         return Commands.runOnce(() -> subsys.runShooter(), subsys);
     }

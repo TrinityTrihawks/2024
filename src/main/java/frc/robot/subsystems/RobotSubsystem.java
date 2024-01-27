@@ -10,6 +10,9 @@ public interface RobotSubsystem extends Subsystem {
 
     public void runShooter();
 
+    /**
+     * stop feeder and shooter wheels
+     */
     public void stopShooter();
 
     public void shoot();
