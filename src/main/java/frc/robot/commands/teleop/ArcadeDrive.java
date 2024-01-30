@@ -29,7 +29,7 @@ public class ArcadeDrive extends Command {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        drive.drive(x.getAsDouble(), z.getAsDouble());
+        drive.drive(x.getAsDouble() * .5, z.getAsDouble() * .5); //TODO full power on comp
     }
 
     // Called once the command ends or is interrupted.

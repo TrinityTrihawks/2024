@@ -49,14 +49,14 @@ public class Drivetrain extends SubsystemBase implements Drive {
     }
 
     private Drivetrain() {
-        leftLeader.setInverted(true);
+        rightLeader.setInverted(true);
+        leftLeader.setInverted(false);
         leftFollower.follow(leftLeader);
         rightFollower.follow(rightLeader);
         for (CANSparkMax spark : sparks) {
             spark.clearFaults();
         }
 
-        leftEncoder.setInverted(true);
         leftEncoder.setPositionConversionFactor(DriveConstants.kMotorRotationsToMeters);
         rightEncoder.setPositionConversionFactor(DriveConstants.kMotorRotationsToMeters);
 
@@ -72,7 +72,7 @@ public class Drivetrain extends SubsystemBase implements Drive {
 
     @Override
     public void drive(double x, double z) {
-        drive.arcadeDrive(speedLimiter.calculate(x), twistLimiter.calculate(z));
+        drive.arcadeDrive(speedLimiter.calculate(x), -twistLimiter.calculate(z));
     }
 
     @Override
