@@ -39,6 +39,10 @@ public class Teleop {
     public static Command warmShooter(RobotSubsystem subsys) {
         return Commands.runOnce(() -> subsys.runShooter(), subsys);
     }
+    
+    public static Command runIntake(RobotSubsystem subsys) {
+        return new StartEndCommand(() -> subsys.intake(), () -> subsys.stopIntake(), subsys);
+    }
 
     private Teleop() {
         throw new UnsupportedOperationException("utility class");

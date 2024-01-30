@@ -69,12 +69,13 @@ public class RobotContainer {
         // // cancelling on release.
         // m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
-        subsys.setDefaultCommand(new IntakeInBackground(subsys));
+        // subsys.setDefaultCommand(new IntakeInBackground(subsys));
         drive.setDefaultCommand(new ArcadeDrive(drive, driverController::getLeftY, driverController::getLeftX));
 
         subsysController.x().onTrue(Teleop.pushToShoot(subsys));
         subsysController.leftBumper().whileTrue(Teleop.warmShooter(subsys));
         subsysController.y().whileTrue(Teleop.shoot(subsys));
+        subsysController.a().whileTrue(Teleop.runIntake(subsys));
     }
 
     /**
