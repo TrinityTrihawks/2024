@@ -62,11 +62,15 @@ public class Robot extends TimedRobot {
     public void disabledInit() {
         BotSwitcher.getSubsystem().stopIntake();
         BotSwitcher.getSubsystem().stopShooter();
+        BotSwitcher.getDrive().brakeIdle();
 
     }
 
     @Override
     public void disabledPeriodic() {
+        if (Math.abs(BotSwitcher.getDrive().getEncoderVelocityLeft()) < Constants.kDrivetrainStopDeadzone) {
+            BotSwitcher.getDrive().noBrakeIdle();
+        }
     }
 
     /**

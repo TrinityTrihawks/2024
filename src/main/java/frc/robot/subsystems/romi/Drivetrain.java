@@ -116,4 +116,16 @@ public class Drivetrain extends SubsystemBase implements Drive {
     @Override
     public void noBrakeIdle() {
     }
+
+    @Override
+    public double getEncoderVelocityLeft() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getEncoderVelocityLeft'");
+    }
+
+    @Override
+    public double getEncoderVelocityRight() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getEncoderVelocityRight'");
+    }
 }
