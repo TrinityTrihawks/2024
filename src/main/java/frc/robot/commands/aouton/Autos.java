@@ -18,6 +18,10 @@ public final class Autos {
     return new DriveAMeter(drive);
   }
 
+  public static Command driveXMeters(Drive drive , double meters) {
+    return new DriveXMeters(drive, meters);
+  }
+
   public static Command printEnc(Drive drive) {
     return new PrintEnc(drive);
   }
