@@ -59,6 +59,8 @@ public class Drivetrain extends SubsystemBase implements Drive {
 
         leftEncoder.setPositionConversionFactor(DriveConstants.kMotorRotationsToMeters);
         rightEncoder.setPositionConversionFactor(DriveConstants.kMotorRotationsToMeters);
+        leftEncoder.setVelocityConversionFactor(DriveConstants.kMotorRotationsToMeters / 60.0);
+        rightEncoder.setVelocityConversionFactor(DriveConstants.kMotorRotationsToMeters / 60.0);
 
         drive = new DifferentialDrive(leftLeader, rightLeader);
 
@@ -125,5 +127,15 @@ public class Drivetrain extends SubsystemBase implements Drive {
     public void resetEncoders() {
         leftEncoder.setPosition(0);
         rightEncoder.setPosition(0);
+    }
+
+    @Override
+    public double getEncoderVelocityLeft() {
+        return leftEncoder.getVelocity();
+    }
+
+    @Override
+    public double getEncoderVelocityRight() {
+        return rightEncoder.getVelocity();
     }
 }
