@@ -9,7 +9,7 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Drive;
 
-public class ArcadeDrive extends Command {
+class ArcadeDrive extends Command {
 
     private final Drive drive;
     private final DoubleSupplier x;
@@ -29,7 +29,7 @@ public class ArcadeDrive extends Command {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        drive.drive(x.getAsDouble() * .5, z.getAsDouble() * .5); //TODO full power on comp
+        drive.drive(x.getAsDouble(), z.getAsDouble());
     }
 
     // Called once the command ends or is interrupted.
