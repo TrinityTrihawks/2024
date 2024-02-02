@@ -63,8 +63,8 @@ public class Drivetrain extends SubsystemBase implements Drive {
 
         leftEncoder.setPositionConversionFactor(DriveConstants.kRotationsToMeters);
         rightEncoder.setPositionConversionFactor(DriveConstants.kRotationsToMeters);
-        leftEncoder.setVelocityConversionFactor(DriveConstants.kRotationsToMeters / 60.0);
-        rightEncoder.setVelocityConversionFactor(DriveConstants.kRotationsToMeters / 60.0);
+        leftEncoder.setVelocityConversionFactor(DriveConstants.kRPMToMetersPerSecond);
+        rightEncoder.setVelocityConversionFactor(DriveConstants.kRPMToMetersPerSecond);
 
 
         drive = new DifferentialDrive(leftLeader, rightLeader);
