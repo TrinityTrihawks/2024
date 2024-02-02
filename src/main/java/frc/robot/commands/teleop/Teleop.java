@@ -3,6 +3,7 @@ package frc.robot.commands.teleop;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import frc.robot.commands.aouton.Shoot;
 import frc.robot.subsystems.Drive;
@@ -30,6 +31,15 @@ public class Teleop {
         return new StartEndCommand(() -> subsys.shoot(), () -> subsys.stopShooter(), subsys);
     }
 
+    /**
+     * one-shot starts the shooter wheel starting
+     * not the *most* motor-safe thing ever... but it's
+     * ok
+     */
+    public static Command warmShooter(RobotSubsystem subsys) {
+        return Commands.runOnce(() -> subsys.runShooter(), subsys);
+    }
+    
     public static Command runIntake(RobotSubsystem subsys) {
         return new StartEndCommand(() -> subsys.intake(), () -> subsys.stopIntake(), subsys);
     }
