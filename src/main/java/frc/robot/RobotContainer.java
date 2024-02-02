@@ -42,7 +42,6 @@ public class RobotContainer {
         subsys = BotSwitcher.getSubsystem();
         // Configure the trigger bindings
         configureBindings();
-        SmartDashboard.putNumber("distance", 0);
     }
 
     /**
@@ -82,6 +81,6 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
         // An example command will be run in autonomous
-        return Autos.driveXMeters(drive, SmartDashboard.getNumber("distance", 0));
+        return Autos.driveXMeters(drive, 2);
     }
 }
