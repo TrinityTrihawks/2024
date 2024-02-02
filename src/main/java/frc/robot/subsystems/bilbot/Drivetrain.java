@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems.bilbot;
 
+import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkRelativeEncoder;
@@ -12,6 +13,8 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.ADIS16470_IMU.IMUAxis;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -39,7 +42,7 @@ public class Drivetrain extends SubsystemBase implements Drive {
     private final RelativeEncoder rightEncoder = rightLeader.getEncoder(SparkRelativeEncoder.Type.kHallSensor,
             DriveConstants.kEncoderCPR);
 
-    private final ADIS16470_IMU gyro = new ADIS16470_IMU();
+    private final AHRS gyro = new AHRS(SPI.Port.kMXP);
 
     private SlewRateLimiter speedLimiter = new SlewRateLimiter(DriveConstants.kSlewValue);
     private SlewRateLimiter twistLimiter = new SlewRateLimiter(DriveConstants.kSlewValue);
@@ -86,17 +89,35 @@ public class Drivetrain extends SubsystemBase implements Drive {
 
     @Override
     public double getGyroX() {
-        return gyro.getAngle(IMUAxis.kX);
+
+        if (gyro.isCalibrating()) {
+            DriverStation.reportError("read attempt on uncalibrated navx2!", false);
+            return 0;
+        }
+
+        return gyro.getRoll();
     }
 
     @Override
     public double getGyroY() {
-        return gyro.getAngle(IMUAxis.kY);
+
+        if (gyro.isCalibrating()) {
+            DriverStation.reportError("read attempt on uncalibrated navx2!", false);
+            return 0;
+        }
+
+        return gyro.getPitch();
     }
 
     @Override
     public double getGyroZ() {
-        return gyro.getAngle(IMUAxis.kZ);
+
+        if (gyro.isCalibrating()) {
+            DriverStation.reportError("read attempt on uncalibrated navx2!", false);
+            return 0;
+        }
+
+        return gyro.getYaw();
     }
 
     @Override
