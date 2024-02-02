@@ -36,14 +36,10 @@ public final class Constants {
             public static final int kEncoderCPR = 42;
             public static final double kSlewValue = 2.5;
 
-            private static final double kPerMinuteToPerSecond = 1.0 / 60.0;
             private static final double kGearboxRatio = 1 / 12.75;
             private static final double kWheelDiameterInches = 6;
             private static final double kMetersPerInch = 2.54 / 100.0;
             private static final double kFudgeFactor = 1.8;
-            private static final double kMotorRPMToMetersPerSecond = (Math.PI * kWheelDiameterInches * kMetersPerInch)
-                    * kPerMinuteToPerSecond
-                    * kGearboxRatio;
             public static final double kRotationsToMeters = kGearboxRatio * (Math.PI * kWheelDiameterInches * kMetersPerInch) * kFudgeFactor;
 
         }
