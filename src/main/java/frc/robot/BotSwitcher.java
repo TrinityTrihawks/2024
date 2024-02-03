@@ -49,6 +49,11 @@ public final class BotSwitcher {
         }
 
         @Override
+        public void reverseIntake() {
+            SmartDashboard.putBoolean("reverse intake running", true);
+        }
+
+        @Override
         public void runShooter() {
             SmartDashboard.putBoolean("shooter running", true);
         }

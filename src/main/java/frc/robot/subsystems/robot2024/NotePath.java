@@ -70,4 +70,10 @@ public class NotePath extends SubsystemBase implements RobotSubsystem {
         feederMotor.set(NotePathConstants.kFeederSpeed);
     }
 
+    @Override
+    public void reverseIntake() {
+        upperIntakeMotor.set(NotePathConstants.kUpperIntakeReverseSpeed);
+        lowerIntakeMotor.set(NotePathConstants.kLowerIntakeReverseSpeed);
+    }
+
 }

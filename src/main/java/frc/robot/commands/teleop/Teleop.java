@@ -43,6 +43,9 @@ public class Teleop {
     public static Command runIntake(RobotSubsystem subsys) {
         return new StartEndCommand(() -> subsys.intake(), () -> subsys.stopIntake(), subsys);
     }
+    public static Command runReverseIntake(RobotSubsystem subsys) {
+        return new StartEndCommand(() -> subsys.reverseIntake(), () -> subsys.stopIntake(), subsys);
+    }
 
     private Teleop() {
         throw new UnsupportedOperationException("utility class");
