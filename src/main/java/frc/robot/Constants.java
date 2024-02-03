@@ -40,7 +40,8 @@ public final class Constants {
             private static final double kWheelDiameterInches = 6;
             private static final double kMetersPerInch = 2.54 / 100.0;
             private static final double kFudgeFactor = 1.8;
-            public static final double kRotationsToMeters = kGearboxRatio * (Math.PI * kWheelDiameterInches * kMetersPerInch) * kFudgeFactor;
+            public static final double kRotationsToMeters = kGearboxRatio
+                    * (Math.PI * kWheelDiameterInches * kMetersPerInch) * kFudgeFactor;
 
         }
     }
@@ -58,9 +59,9 @@ public final class Constants {
             public static final double kGearBoxRatio = 12.75; // TODO ?
             public static final double kWheelDiameterInches = 8; // TODO ish
             public static final double kMetersPerInch = 1.0 / 100.0 * 2.54;
-            public static final double kMotorRotationsToMeters = kGearBoxRatio * Math.PI * kWheelDiameterInches * kMetersPerInch;
-        
-            
+            public static final double kMotorRotationsToMeters = kGearBoxRatio * Math.PI * kWheelDiameterInches
+                    * kMetersPerInch;
+
         }
 
         public static class NotePathConstants {
@@ -72,11 +73,11 @@ public final class Constants {
             public static final int kUpperShooterId = 19;
             public static final double kUpperIntakeSpeed = 1;
             public static final double kLowerIntakeSpeed = 1;
-            public static final double kFeederSpeed = .3;
+            public static final double kFeederSpeed = -.5;
             public static final double kUpperShooterSpeed = 1;
             public static final double kLowerShooterSpeed = -1;
             public static final double kShooterWarmupTime = 3; // seconds
-        
+
         }
 
     }
