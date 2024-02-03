@@ -30,5 +30,13 @@ public interface Drive extends Subsystem {
      * @return meters
      */
     public double getEncoderDistanceRight();
+    /**
+     * @return meters / sec
+     */
+    public double getEncoderVelocityLeft();
+    /**
+     * @return meters / sec
+     */
+    public double getEncoderVelocityRight();
 
 }

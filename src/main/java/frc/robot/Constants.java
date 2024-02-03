@@ -17,6 +17,9 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+    public static final double kDrivetrainStopDeadzone = 0.1;
+
     public static class OperatorConstants {
         public static final int kDriverControllerPort = 0;
 
@@ -43,9 +46,12 @@ public final class Constants {
             private static final double kGearboxRatio = 1 / 12.75;
             private static final double kWheelDiameterInches = 6;
             private static final double kMetersPerInch = 2.54 / 100.0;
-            private static final double kFudgeFactor = 1.8;
+            private static final double kFudgeFactor = 1.8;<<<<<<<HEAD
+            public static final double kRotationsToMeters = kGearboxRatio
+                    * (Math.PI * kWheelDiameterInches * kMetersPerInch) * kFudgeFactor;=======
             public static final double kRotationsToMeters = kGearboxRatio
                     * (Math.PI * kWheelDiameterInches * kMetersPerInch) * kFudgeFactor;
+            public static final double kRPMToMetersPerSecond = kRotationsToMeters / 60.0;>>>>>>>origin/master
 
         }
     }
@@ -65,6 +71,7 @@ public final class Constants {
             public static final double kMetersPerInch = 1.0 / 100.0 * 2.54;
             public static final double kMotorRotationsToMeters = kGearBoxRatio * Math.PI * kWheelDiameterInches
                     * kMetersPerInch;
+            public static final double kMotorRPMToMetersPerSecond = kMotorRotationsToMeters / 60.0;
 
         }
 
