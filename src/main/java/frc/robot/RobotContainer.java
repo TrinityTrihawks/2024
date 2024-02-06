@@ -9,7 +9,6 @@ import frc.robot.commands.aouton.Autos;
 import frc.robot.commands.teleop.Teleop;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.RobotSubsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
