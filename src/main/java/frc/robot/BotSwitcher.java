@@ -23,8 +23,8 @@ public final class BotSwitcher {
     }
 
     /**
-     * Returns a shooter for the current robot. No-ops if the current robot
-     * is not Tritone
+     * Returns a shooter for the current robot. Returns a no-op dummy
+     * if the current robot is not Tritone
      */
     public static frc.robot.subsystems.Shooter getShooter() {
 
@@ -38,8 +38,8 @@ public final class BotSwitcher {
     }
 
     /**
-     * Returns a intake for the current robot. No-ops if the current robot
-     * is not Tritone
+     * Returns an intake for the current robot. Returns a no-op dummy
+     * if the current robot is not Tritone
      */
     public static frc.robot.subsystems.Intake getIntake() {
         switch (Robot.getRuntimeType()) {
