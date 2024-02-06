@@ -5,15 +5,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.RobotSubsystem;
+import frc.robot.subsystems.robot2024.Intake;
 
 public class IntakeInBackground extends Command {
 
-    private final RobotSubsystem subsys;
+    private final Intake intake;
 
     /** Creates a new IntakeInBackground. */
-    public IntakeInBackground(RobotSubsystem s) {
-        addRequirements(subsys = s);
+    public IntakeInBackground(Intake s) {
+        addRequirements(intake = s);
     }
 
     // Called when the command is initially scheduled.
@@ -24,7 +24,7 @@ public class IntakeInBackground extends Command {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        subsys.intake();
+        intake.run();
     }
 
     // Called once the command ends or is interrupted.

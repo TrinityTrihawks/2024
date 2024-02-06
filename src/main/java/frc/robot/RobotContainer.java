@@ -8,7 +8,8 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.aouton.Autos;
 import frc.robot.commands.teleop.Teleop;
 import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.RobotSubsystem;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -26,7 +27,8 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
     // The robot's subsystems and commands are defined here...
     private final Drive drive;
-    private final RobotSubsystem subsys;
+    private final Shooter shooter;
+    private final Intake intake;
 
     // Replace with CommandPS4Controller or CommandJoystick if needed
     private final CommandXboxController driverController = new CommandXboxController(
@@ -39,7 +41,8 @@ public class RobotContainer {
      */
     public RobotContainer() {
         drive = BotSwitcher.getDrive();
-        subsys = BotSwitcher.getSubsystem();
+        shooter = BotSwitcher.getShooter();
+        intake = BotSwitcher.getIntake();
         // Configure the trigger bindings
         configureBindings();
     }
@@ -71,10 +74,10 @@ public class RobotContainer {
         // subsys.setDefaultCommand(new IntakeInBackground(subsys));
         drive.setDefaultCommand(Teleop.arcadeDrive(drive, driverController::getLeftY, driverController::getLeftX));
 
-        subsysController.x().onTrue(Teleop.pushToShoot(subsys));
-        subsysController.leftBumper().whileTrue(Teleop.warmShooter(subsys));
-        subsysController.y().whileTrue(Teleop.shoot(subsys));
-        subsysController.a().whileTrue(Teleop.runIntake(subsys));
+        subsysController.x().onTrue(Teleop.pushToShoot(shooter));
+        subsysController.leftBumper().whileTrue(Teleop.warmShooter(shooter));
+        subsysController.y().whileTrue(Teleop.shoot(shooter));
+        subsysController.a().whileTrue(Teleop.runIntake(intake));
     }
 
     /**
@@ -83,7 +86,6 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        // An example command will be run in autonomous
         return Autos.driveXMeters(drive, 2);
     }
 }
