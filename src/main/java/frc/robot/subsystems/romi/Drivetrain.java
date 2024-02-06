@@ -83,21 +83,20 @@ public class Drivetrain extends SubsystemBase implements Drive {
     @Override
     public double getGyroX() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getGyroX'");
+        return 0;
     }
 
     @Override
     public double getGyroY() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getGyroY'");
+        return 0;
     }
 
     @Override
     public double getGyroZ() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getGyroZ'");
+        return 0;
     }
-
 
     @Override
     public double getEncoderDistanceLeft() {
@@ -119,13 +118,13 @@ public class Drivetrain extends SubsystemBase implements Drive {
 
     @Override
     public double getEncoderVelocityLeft() {
+        return 0;
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEncoderVelocityLeft'");
     }
 
     @Override
     public double getEncoderVelocityRight() {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getEncoderVelocityRight'");
+        return 0;
     }
 }

@@ -57,14 +57,17 @@ class DummyShooter implements frc.robot.subsystems.Shooter {
 
     @Override
     public void run() {
+        System.out.println("dummy shooter running...");
     }
 
     @Override
     public void feed() {
+        System.out.println("dummy shooter shooting...");
     }
 
     @Override
     public void stop() {
+        System.out.println("dummy shooter stopping...");
     }
 
 }
@@ -73,10 +76,12 @@ class DummyIntake implements frc.robot.subsystems.Intake {
 
     @Override
     public void run() {
+        System.out.println("dummy intake running...");
     }
 
     @Override
     public void stop() {
+        System.out.println("dummy intake stopping...");
     }
 
 }
