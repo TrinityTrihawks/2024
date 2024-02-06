@@ -46,12 +46,10 @@ public final class Constants {
             private static final double kGearboxRatio = 1 / 12.75;
             private static final double kWheelDiameterInches = 6;
             private static final double kMetersPerInch = 2.54 / 100.0;
-            private static final double kFudgeFactor = 1.8;<<<<<<<HEAD
-            public static final double kRotationsToMeters = kGearboxRatio
-                    * (Math.PI * kWheelDiameterInches * kMetersPerInch) * kFudgeFactor;=======
+            private static final double kFudgeFactor = 1.8;
             public static final double kRotationsToMeters = kGearboxRatio
                     * (Math.PI * kWheelDiameterInches * kMetersPerInch) * kFudgeFactor;
-            public static final double kRPMToMetersPerSecond = kRotationsToMeters / 60.0;>>>>>>>origin/master
+            public static final double kRPMToMetersPerSecond = kRotationsToMeters / 60.0;
 
         }
     }
