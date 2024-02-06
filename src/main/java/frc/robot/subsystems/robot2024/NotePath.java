@@ -36,8 +36,9 @@ public class NotePath extends SubsystemBase implements RobotSubsystem {
     }
 
     private NotePath() {
-        upperShooterMotor.setInverted(true);
-        lowerShooterMotor.setInverted(false); // maybe switch
+        upperShooterMotor.setInverted(false);
+        lowerShooterMotor.setInverted(true);
+        feederMotor.setInverted(true);
     }
 
     @Override

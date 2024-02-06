@@ -43,6 +43,6 @@ public class Shoot extends Command {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return false;
+        return feedTimer.hasElapsed(NotePathConstants.kShooterWarmupTime+1);
     }
 }

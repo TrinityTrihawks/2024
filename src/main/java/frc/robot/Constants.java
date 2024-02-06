@@ -46,12 +46,10 @@ public final class Constants {
             private static final double kGearboxRatio = 1 / 12.75;
             private static final double kWheelDiameterInches = 6;
             private static final double kMetersPerInch = 2.54 / 100.0;
-            private static final double kFudgeFactor = 1.8;//<<<<<<<HEAD
+            private static final double kFudgeFactor = 1.8;
             public static final double kRotationsToMeters = kGearboxRatio
-                    * (Math.PI * kWheelDiameterInches * kMetersPerInch) * kFudgeFactor;//=======
-            //public static final double kRotationsToMeters = kGearboxRatio
-                    //* (Math.PI * kWheelDiameterInches * kMetersPerInch) * kFudgeFactor;
-            public static final double kRPMToMetersPerSecond = kRotationsToMeters / 60.0;//>>>>>>>origin/master
+                    * (Math.PI * kWheelDiameterInches * kMetersPerInch) * kFudgeFactor;
+            public static final double kRPMToMetersPerSecond = kRotationsToMeters / 60.0;
 
         }
     }
@@ -86,10 +84,10 @@ public final class Constants {
             public static final int kUpperShooterId = 19;
             public static final double kUpperIntakeSpeed = 1;
             public static final double kLowerIntakeSpeed = 1;
-            public static final double kFeederSpeed = -.5;
-            public static final double kUpperShooterSpeed = 1;
-            public static final double kLowerShooterSpeed = -1;
-            public static final double kShooterWarmupTime = 3; // seconds
+            public static final double kFeederSpeed = .5;
+            public static final double kUpperShooterSpeed = .8;
+            public static final double kLowerShooterSpeed = .8;
+            public static final double kShooterWarmupTime = .5; // seconds
 
         }
 
