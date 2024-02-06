@@ -33,14 +33,15 @@ public class Limelight extends Command {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableEntry tx = table.getEntry("tx");
         NetworkTableEntry ty = table.getEntry("ty");
-        NetworkTableEntry ta = table.getEntry("ta");
+        NetworkTableEntry ta0 = table.getEntry("ta0");
         NetworkTableEntry tv = table.getEntry("tv");
         NetworkTableEntry tid = table.getEntry("tid");
+        
 
          boolean hasTarget = tv.getBoolean(false);
         double x = tx.getDouble(0.0);
         double y = ty.getDouble(0.0);
-        double area = ta.getDouble(0.0);
+        double area = ta0.getDouble(0.0);
         double id = tid.getDouble(0.0);
 
         SmartDashboard.putNumber("LimelightX", x);
@@ -50,13 +51,17 @@ public class Limelight extends Command {
         SmartDashboard.putBoolean("has target", hasTarget);
 
         //double fwdSpeed = (10 - area) / 21;
-        double rotSpeed = x / 0;
+        double rotSpeed = x / 70;
         SmartDashboard.putNumber("rotSpeed", rotSpeed);
         //SmartDashboard.putNumber("fwdSpeed", fwdSpeed);
 
-        //if(hasTarget){
+        //if(hasTarget){}
+        /**if(area > 1){
+        if ((rotSpeed < -0.1) || (rotSpeed > 0.1)) {
           drive.drive(0 , rotSpeed);
-        //}
+        }else if (area < 50){
+          drive.drive(0.3, 0);
+        }}*/
   }
 
   // Called once the command ends or is interrupted.
