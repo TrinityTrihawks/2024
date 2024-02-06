@@ -22,6 +22,10 @@ public final class BotSwitcher {
         }
     }
 
+    /**
+     * Returns a shooter for the current robot. No-ops if the current robot
+     * is not Tritone
+     */
     public static frc.robot.subsystems.Shooter getShooter() {
 
         switch (Robot.getRuntimeType()) {
@@ -33,6 +37,10 @@ public final class BotSwitcher {
         }
     }
 
+    /**
+     * Returns a intake for the current robot. No-ops if the current robot
+     * is not Tritone
+     */
     public static frc.robot.subsystems.Intake getIntake() {
         switch (Robot.getRuntimeType()) {
             case kRoboRIO2:
