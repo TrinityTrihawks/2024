@@ -14,7 +14,7 @@ import frc.robot.subsystems.Drive;
 public class Limelight extends Command {
   
   private final Drive drive;
-
+  boolean hasTarget;
   /** Creates a new Limelight. */
   public Limelight(Drive drive) {
     this.drive = drive;
@@ -33,15 +33,15 @@ public class Limelight extends Command {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableEntry tx = table.getEntry("tx");
         NetworkTableEntry ty = table.getEntry("ty");
-        NetworkTableEntry ta0 = table.getEntry("ta0");
+        NetworkTableEntry ta = table.getEntry("ta");
         NetworkTableEntry tv = table.getEntry("tv");
         NetworkTableEntry tid = table.getEntry("tid");
         
 
-         boolean hasTarget = tv.getBoolean(false);
+        hasTarget = tv.getBoolean(false);
         double x = tx.getDouble(0.0);
         double y = ty.getDouble(0.0);
-        double area = ta0.getDouble(0.0);
+        double area = ta.getDouble(0.0);
         double id = tid.getDouble(0.0);
 
         SmartDashboard.putNumber("LimelightX", x);
@@ -55,13 +55,14 @@ public class Limelight extends Command {
         SmartDashboard.putNumber("rotSpeed", rotSpeed);
         //SmartDashboard.putNumber("fwdSpeed", fwdSpeed);
 
-        //if(hasTarget){}
-        /**if(area > 1){
+        if(hasTarget){}
+        if(area > 1){}
         if ((rotSpeed < -0.1) || (rotSpeed > 0.1)) {
           drive.drive(0 , rotSpeed);
-        }else if (area < 50){
-          drive.drive(0.3, 0);
-        }}*/
+        }else{
+          //drive.drive(0.3, 0);
+          SmartDashboard.putBoolean("isDriving", true);
+        }
   }
 
   // Called once the command ends or is interrupted.
@@ -71,6 +72,7 @@ public class Limelight extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    //hasTarget == false;
+      return false;
   }
 }
