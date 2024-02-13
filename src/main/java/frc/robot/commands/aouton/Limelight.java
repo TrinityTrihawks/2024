@@ -4,9 +4,12 @@
 
 package frc.robot.commands.aouton;
 
+import edu.wpi.first.math.filter.Debouncer;
+import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Drive;
@@ -15,11 +18,15 @@ public class Limelight extends Command {
   
   private final Drive drive;
   double area;
+  DigitalInput input = new DigitalInput(0);
+
+  Debouncer debouncer = new Debouncer(0.1, DebounceType.kBoth);
   /** Creates a new Limelight. */
   public Limelight(Drive drive) {
     this.drive = drive;
     addRequirements(drive);
   }
+
 
   // Called when the command is initially scheduled.
   @Override
@@ -38,11 +45,19 @@ public class Limelight extends Command {
         NetworkTableEntry tid = table.getEntry("tid");
         
 
-        boolean hasTarget = tv.getBoolean(false);
+        boolean hasTarget;
         double x = tx.getDouble(0.0);
         double y = ty.getDouble(0.0);
          area = ta.getDouble(0.0);
         double id = tid.getDouble(0.0);
+
+      if (area != 0){
+        hasTarget = true;
+      } else {
+        hasTarget = false;
+      } 
+      
+    
 
         SmartDashboard.putNumber("LimelightX", x);
         SmartDashboard.putNumber("LimelightY", y);
@@ -61,6 +76,7 @@ public class Limelight extends Command {
           drive.drive(0 , rotSpeed);
         }else{
           drive.drive(0.3, 0);
+          subsys.intake();
         }
   }
 
