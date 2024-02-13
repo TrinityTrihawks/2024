@@ -22,11 +22,13 @@ public final class Constants {
 
     public static class OperatorConstants {
         public static final int kDriverControllerPort = 0;
+        public static final int kSubsysControllerPort = 1;
 
         public static final boolean kSquareForwardInput = false;
         public static final boolean kSquareTwistInput = true;
 
-        public static final int kSubsysControllerPort = 1;
+        public static final double kForwardThrottle = .45;
+        public static final double kTwistThrottle = .25;
     }
 
     public static class RomiConstants {

@@ -23,18 +23,27 @@ public class Parameters {
     public static class OperatorParameters {
 
         private static void init() {
+
             SmartDashboard.putBoolean("squareForwardInput", squareForwardInput);
             SmartDashboard.putBoolean("squareTwistInput", squareTwistInput);
+            SmartDashboard.putNumber("forwardThrottle", forwardThrottle);
+            SmartDashboard.putNumber("twistThrottle", twistThrottle);
+
         }
 
         private static void update() {
 
             squareForwardInput = SmartDashboard.getBoolean("squareForwardInput", squareForwardInput);
             squareTwistInput = SmartDashboard.getBoolean("squareTwistInput", squareTwistInput);
+            forwardThrottle = SmartDashboard.getNumber("forwardThrottle", forwardThrottle);
+            twistThrottle = SmartDashboard.getNumber("twistThrottle", twistThrottle);
         }
 
         public static boolean squareForwardInput = OperatorConstants.kSquareForwardInput;
         public static boolean squareTwistInput = OperatorConstants.kSquareTwistInput;
+
+        public static double forwardThrottle = .45;
+        public static double twistThrottle = .25;
     }
 
     public static class Robot2024Parameters {
