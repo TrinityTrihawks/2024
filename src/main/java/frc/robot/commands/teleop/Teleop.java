@@ -28,8 +28,15 @@ public class Teleop {
      * it spins up the feeder wheel on start and stops
      * all wheels on end.
      */
-    public static Command shoot(Shooter shooter) {
-        return new StartEndCommand(() -> shooter.feed(), () -> shooter.stop(), shooter);
+    public static Command shoot(Shooter shooter, Intake intake) {
+        return new StartEndCommand(
+                () -> {
+                    shooter.feed();
+                    intake.run();
+                }, () -> {
+                    shooter.stop();
+                    intake.stop();
+                }, shooter, intake);
     }
 
     /**
