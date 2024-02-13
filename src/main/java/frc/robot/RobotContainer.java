@@ -76,7 +76,7 @@ public class RobotContainer {
 
                 subsysController.x().onTrue(Teleop.pushToShoot(shooter));
                 subsysController.leftBumper().whileTrue(Teleop.warmShooter(shooter));
-                subsysController.y().whileTrue(Teleop.shoot(shooter));
+                subsysController.y().whileTrue(Teleop.shoot(shooter, intake));
                 subsysController.a().whileTrue(Teleop.runIntake(intake));
                 subsysController.b().whileTrue(Teleop.runReverseIntakeAndShooter(intake, shooter));
         }
