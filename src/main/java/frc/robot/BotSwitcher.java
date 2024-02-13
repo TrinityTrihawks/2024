@@ -1,9 +1,6 @@
 package frc.robot;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.RobotSubsystem;
-import frc.robot.subsystems.robot2024.NotePath;
 
 public final class BotSwitcher {
 
@@ -25,56 +22,76 @@ public final class BotSwitcher {
         }
     }
 
-    public static RobotSubsystem getSubsystem() {
+    /**
+     * Returns a shooter for the current robot. Returns a no-op dummy
+     * if the current robot is not Tritone
+     */
+    public static frc.robot.subsystems.Shooter getShooter() {
 
         switch (Robot.getRuntimeType()) {
             case kRoboRIO2:
-                return NotePath.getInstance();
+                return frc.robot.subsystems.robot2024.Shooter.getInstance();
 
             default:
-                return new DummySubsystem();
+                return new DummyShooter();
         }
     }
 
-    public static class DummySubsystem implements RobotSubsystem {
+    /**
+     * Returns an intake for the current robot. Returns a no-op dummy
+     * if the current robot is not Tritone
+     */
+    public static frc.robot.subsystems.Intake getIntake() {
+        switch (Robot.getRuntimeType()) {
+            case kRoboRIO2:
+                return frc.robot.subsystems.robot2024.Intake.getInstance();
 
-        @Override
-        public void intake() {
-            SmartDashboard.putBoolean("intake running", true);
+            default:
+                return new DummyIntake();
         }
-
-        @Override
-        public void stopIntake() {
-            SmartDashboard.putBoolean("intake running", false);
-        }
-
-        @Override
-        public void reverseIntake() {
-            SmartDashboard.putBoolean("reverse intake running", true);
-        }
-
-        @Override
-        public void runShooter() {
-            SmartDashboard.putBoolean("shooter running", true);
-        }
-
-        @Override
-        public void stopShooter() {
-            SmartDashboard.putBoolean("shooter running", false);
-            SmartDashboard.putBoolean("feeder running", false);
-
-        }
-
-        @Override
-        public void shoot() {
-            SmartDashboard.putBoolean("feeder running", true);
-        }
-
-        public DummySubsystem() {
-            SmartDashboard.putBoolean("intake running", false);
-            SmartDashboard.putBoolean("shooter running", false);
-            SmartDashboard.putBoolean("feeder running", false);
-        }
-
     }
+
+}
+
+class DummyShooter implements frc.robot.subsystems.Shooter {
+
+    @Override
+    public void run() {
+        System.out.println("dummy shooter running...");
+    }
+
+    @Override
+    public void feed() {
+        System.out.println("dummy shooter shooting...");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("dummy shooter stopping...");
+    }
+
+    @Override
+    public void reverse() {
+        System.out.println("dummy shooter reversing...");
+    }
+
+}
+
+class DummyIntake implements frc.robot.subsystems.Intake {
+
+    @Override
+    public void run() {
+        System.out.println("dummy intake running...");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("dummy intake stopping...");
+    }
+
+    @Override
+    public void reverse() {
+        System.out.println("dummy intake reversing...");
+    }
+
 }

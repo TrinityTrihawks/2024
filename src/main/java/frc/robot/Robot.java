@@ -60,8 +60,8 @@ public class Robot extends TimedRobot {
     /** This function is called once each time the robot enters Disabled mode. */
     @Override
     public void disabledInit() {
-        BotSwitcher.getSubsystem().stopIntake();
-        BotSwitcher.getSubsystem().stopShooter();
+        BotSwitcher.getIntake().stop();
+        BotSwitcher.getShooter().stop();
         BotSwitcher.getDrive().brakeIdle();
 
     }
