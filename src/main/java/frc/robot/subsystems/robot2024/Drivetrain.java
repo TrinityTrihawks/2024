@@ -37,8 +37,8 @@ public class Drivetrain extends SubsystemBase implements Drive {
 
     private final ADIS16470_IMU gyro = new ADIS16470_IMU();
 
-    private SlewRateLimiter speedLimiter = new SlewRateLimiter(DriveConstants.kSlewValue);
-    private SlewRateLimiter twistLimiter = new SlewRateLimiter(DriveConstants.kSlewValue);
+    private SlewRateLimiter speedLimiter = new SlewRateLimiter(1.75);
+    private SlewRateLimiter twistLimiter = new SlewRateLimiter(1.75);
 
     private final DifferentialDrive drive;
     

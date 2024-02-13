@@ -24,7 +24,7 @@ public final class Constants {
         public static final int kDriverControllerPort = 0;
 
         public static final boolean kSquareForwardInput = false;
-        public static final boolean kSquareTwistInput = true;
+        public static final boolean kSquareTwistInput = false;
 
         public static final int kSubsysControllerPort = 1;
     }
