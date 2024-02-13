@@ -78,11 +78,12 @@ public final class Constants {
             public static final int kFeederId = 17;
             public static final int kLowerShooterId = 18;
             public static final int kUpperShooterId = 19;
-
-            public static final double kFeederSpeed = -.5;
-            public static final double kUpperShooterSpeed = 1;
-            public static final double kLowerShooterSpeed = -1;
-            public static final double kShooterWarmupTime = 1.5; // seconds
+            public static final double kFeederSpeed = .5;
+            public static final double kUpperShooterSpeed = .8;
+            public static final double kLowerShooterSpeed = .8;
+            public static final double kShooterWarmupTime = .5; // seconds
+            public static final double kUpperShooterReverseSpeed = .4;
+            public static final double kLowerShooterReverseSpeed = .4;
 
         }
 
@@ -92,6 +93,8 @@ public final class Constants {
             public static final int kLowerIntakeId = 16;
             public static final double kUpperIntakeSpeed = 1;
             public static final double kLowerIntakeSpeed = 1;
+            public static final int kUpperIntakeReverseSpeed = 1;
+            public static final int kLowerIntakeReverseSpeed = 1;
 
         }
 

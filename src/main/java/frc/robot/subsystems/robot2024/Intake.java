@@ -43,4 +43,10 @@ public class Intake extends SubsystemBase implements frc.robot.subsystems.Intake
         lowerIntakeMotor.set(0);
     }
 
+    @Override
+    public void reverse() {
+        upperIntakeMotor.set(-IntakeConstants.kUpperIntakeReverseSpeed);
+        lowerIntakeMotor.set(-IntakeConstants.kLowerIntakeReverseSpeed);
+    }
+
 }
