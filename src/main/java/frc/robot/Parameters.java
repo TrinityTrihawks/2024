@@ -47,8 +47,8 @@ public class Parameters {
         public static boolean squareForwardInput = OperatorConstants.kSquareForwardInput;
         public static boolean squareTwistInput = OperatorConstants.kSquareTwistInput;
 
-        public static double forwardThrottle = .45;
-        public static double twistThrottle = .25;
+        public static double forwardThrottle = OperatorConstants.kForwardThrottle;
+        public static double twistThrottle = OperatorConstants.kTwistThrottle;
     }
 
     public static class Robot2024Parameters {
