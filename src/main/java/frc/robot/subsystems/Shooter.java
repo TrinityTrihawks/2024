@@ -10,4 +10,6 @@ public interface Shooter extends Subsystem {
 
     public void stop();
 
+    public void reverse();
+
 }

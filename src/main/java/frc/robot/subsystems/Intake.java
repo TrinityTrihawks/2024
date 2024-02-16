@@ -8,4 +8,6 @@ public interface Intake extends Subsystem {
 
     public void stop();
 
+    public void reverse();
+
 }

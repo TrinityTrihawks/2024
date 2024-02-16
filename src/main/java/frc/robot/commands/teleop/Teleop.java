@@ -45,6 +45,19 @@ public class Teleop {
         return new StartEndCommand(() -> intake.run(), () -> intake.stop(), intake);
     }
 
+    public static Command runReverseIntakeAndShooter(Intake intake, Shooter shooter) {
+        return new StartEndCommand(
+                () -> {
+                    shooter.reverse();
+                    intake.reverse();
+                },
+                () -> {
+                    intake.stop();
+                    shooter.stop();
+                },
+                intake);
+    }
+
     private Teleop() {
         throw new UnsupportedOperationException("utility class");
     }

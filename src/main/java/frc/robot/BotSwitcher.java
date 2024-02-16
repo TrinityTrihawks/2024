@@ -70,6 +70,11 @@ class DummyShooter implements frc.robot.subsystems.Shooter {
         System.out.println("dummy shooter stopping...");
     }
 
+    @Override
+    public void reverse() {
+        System.out.println("dummy shooter reversing...");
+    }
+
 }
 
 class DummyIntake implements frc.robot.subsystems.Intake {
@@ -82,6 +87,11 @@ class DummyIntake implements frc.robot.subsystems.Intake {
     @Override
     public void stop() {
         System.out.println("dummy intake stopping...");
+    }
+
+    @Override
+    public void reverse() {
+        System.out.println("dummy intake reversing...");
     }
 
 }
