@@ -62,7 +62,7 @@ public class Teleop {
                     intake.stop();
                     shooter.stop();
                 },
-                intake);
+                intake, shooter);
     }
 
     private Teleop() {
