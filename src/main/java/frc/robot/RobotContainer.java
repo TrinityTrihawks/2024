@@ -26,28 +26,29 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-    // The robot's subsystems and commands are defined here...
-    private final Drive drive;
-    private final Shooter shooter;
-    private final Intake intake;
+        // The robot's subsystems and commands are defined here...
+        private final Drive drive;
+        private final Shooter shooter;
+        private final Intake intake;
 
-    // Replace with CommandPS4Controller or CommandJoystick if needed
-    private final CommandXboxController driverController = new CommandXboxController(
-            OperatorConstants.kDriverControllerPort);
-    private final CommandXboxController subsysController = new CommandXboxController(
-            OperatorConstants.kSubsysControllerPort);
-    private final SendableChooser<Command> autonSwitch = new SendableChooser<>();
-    /**
-     * The container for the robot. Contains subsystems, OI devices, and commands.
-     */
-    public RobotContainer() {
-        drive = BotSwitcher.getDrive();
-        shooter = BotSwitcher.getShooter();
-        intake = BotSwitcher.getIntake();
-        configureAutonomoi();
-        // Configure the trigger bindings
-        configureBindings();
-    }
+        // Replace with CommandPS4Controller or CommandJoystick if needed
+        private final CommandXboxController driverController = new CommandXboxController(
+                        OperatorConstants.kDriverControllerPort);
+        private final CommandXboxController subsysController = new CommandXboxController(
+                        OperatorConstants.kSubsysControllerPort);
+        private final SendableChooser<Command> autonSwitch = new SendableChooser<>();
+
+        /**
+         * The container for the robot. Contains subsystems, OI devices, and commands.
+         */
+        public RobotContainer() {
+                drive = BotSwitcher.getDrive();
+                shooter = BotSwitcher.getShooter();
+                intake = BotSwitcher.getIntake();
+                configureAutonomoi();
+                // Configure the trigger bindings
+                configureBindings();
+        }
 
         /**
          * Use this method to define your trigger->command mappings. Triggers can be
@@ -79,29 +80,29 @@ public class RobotContainer {
 
                 subsysController.x().onTrue(Teleop.pushToShoot(shooter));
                 subsysController.leftBumper().whileTrue(Teleop.warmShooter(shooter));
-                subsysController.y().whileTrue(Teleop.shoot(shooter));
+                subsysController.y().whileTrue(Teleop.shoot(shooter, intake));
                 subsysController.a().whileTrue(Teleop.runIntake(intake));
                 subsysController.b().whileTrue(Teleop.runReverseIntakeAndShooter(intake, shooter));
         }
 
-    private void configureAutonomoi() {
-        autonSwitch.setDefaultOption(
-            "(2 pts) basic leave command",
-          Autos.leave(drive)  
-        );
-        autonSwitch.addOption(
-            "(7 pts) leave and score a note",
-             Autos.full(shooter, drive));
-        SmartDashboard.putData("Autonomoi", autonSwitch);
-        SmartDashboard.putNumber(Constants.AutonConstants.kAutonStartDelayKey, 0.0);
-    }
-    /**
-     * Use this to pass the autonomous command to the main {@link Robot} class.
-     *
-     * @return the command to run in autonomous
-     */
-    public Command getAutonomousCommand() {
-        
-        return autonSwitch.getSelected();
-    }
+        private void configureAutonomoi() {
+                autonSwitch.setDefaultOption(
+                                "(2 pts) basic leave command",
+                                Autos.leave(drive));
+                autonSwitch.addOption(
+                                "(7 pts) leave and score a note",
+                                Autos.full(shooter, drive));
+                SmartDashboard.putData("Autonomoi", autonSwitch);
+                SmartDashboard.putNumber(Constants.AutonConstants.kAutonStartDelayKey, 0.0);
+        }
+
+        /**
+         * Use this to pass the autonomous command to the main {@link Robot} class.
+         *
+         * @return the command to run in autonomous
+         */
+        public Command getAutonomousCommand() {
+
+                return autonSwitch.getSelected();
+        }
 }

@@ -25,7 +25,7 @@ public final class Constants {
         public static final int kSubsysControllerPort = 1;
 
         public static final boolean kSquareForwardInput = false;
-        public static final boolean kSquareTwistInput = true;
+        public static final boolean kSquareTwistInput = false;
 
         public static final double kForwardThrottle = .45;
         public static final double kTwistThrottle = .25;
