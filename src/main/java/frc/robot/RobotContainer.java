@@ -85,12 +85,14 @@ public class RobotContainer {
 
     private void configureAutonomoi() {
         autonSwitch.setDefaultOption(
-            "basic leave command",
-          Autos.leave(delay, drive)  
+            "(2 pts) basic leave command",
+          Autos.leave(drive)  
         );
-        autonSwitch.addOption("full auto leave", Autos.full(delay,shooter,drive));
+        autonSwitch.addOption(
+            "(7 pts) leave and score a note",
+             Autos.full(shooter, drive));
         SmartDashboard.putData("Autonomoi", autonSwitch);
-         delay = SmartDashboard.getNumber("delay", 0.0);
+        SmartDashboard.putNumber(Constants.AutonConstants.kAutonStartDelayKey, 0.0);
     }
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.

@@ -29,6 +29,11 @@ public final class Constants {
         public static final int kSubsysControllerPort = 1;
     }
 
+    public static class AutonConstants {
+        public static final double kLEAVEDistance = 2;
+        public static final String kAutonStartDelayKey = "Auton Start Delay";
+    }
+
     public static class RomiConstants {
 
     }
