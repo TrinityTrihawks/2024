@@ -20,7 +20,7 @@ public class Teleop {
      * porcelain command to run the basic shoot sequence
      */
     public static Command pushToShoot(Shooter shooter) {
-        return new Shoot(shooter);
+        return Commands.deferredProxy(() -> new Shoot(shooter));
     }
 
     /**
