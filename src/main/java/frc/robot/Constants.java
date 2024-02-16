@@ -22,11 +22,18 @@ public final class Constants {
 
     public static class OperatorConstants {
         public static final int kDriverControllerPort = 0;
+        public static final int kSubsysControllerPort = 1;
 
         public static final boolean kSquareForwardInput = false;
         public static final boolean kSquareTwistInput = false;
 
-        public static final int kSubsysControllerPort = 1;
+        public static final double kForwardThrottle = .45;
+        public static final double kTwistThrottle = .25;
+    }
+
+    public static class AutonConstants {
+        public static final double kLEAVEDistance = 4;
+        public static final String kAutonStartDelayKey = "Auton Start Delay";
     }
 
     public static class RomiConstants {
@@ -63,7 +70,9 @@ public final class Constants {
             public static final int kRightLeaderId = 12;
             public static final int kRightFollowerId = 14;
             public static final int kEncoderCPR = 42;
-            public static final double kSlewValue = 2;
+            public static final double kAheadSlewValue = 1.75;
+            public static final double kRotateSlewValue = 2.5;
+
             public static final double kGearBoxRatio = 12.75; // TODO ?
             public static final double kWheelDiameterInches = 8; // TODO ish
             public static final double kMetersPerInch = 1.0 / 100.0 * 2.54;

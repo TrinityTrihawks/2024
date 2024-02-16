@@ -10,6 +10,8 @@ import frc.robot.commands.teleop.Teleop;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -24,27 +26,28 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-        // The robot's subsystems and commands are defined here...
-        private final Drive drive;
-        private final Shooter shooter;
-        private final Intake intake;
+    // The robot's subsystems and commands are defined here...
+    private final Drive drive;
+    private final Shooter shooter;
+    private final Intake intake;
 
-        // Replace with CommandPS4Controller or CommandJoystick if needed
-        private final CommandXboxController driverController = new CommandXboxController(
-                        OperatorConstants.kDriverControllerPort);
-        private final CommandXboxController subsysController = new CommandXboxController(
-                        OperatorConstants.kSubsysControllerPort);
-
-        /**
-         * The container for the robot. Contains subsystems, OI devices, and commands.
-         */
-        public RobotContainer() {
-                drive = BotSwitcher.getDrive();
-                shooter = BotSwitcher.getShooter();
-                intake = BotSwitcher.getIntake();
-                // Configure the trigger bindings
-                configureBindings();
-        }
+    // Replace with CommandPS4Controller or CommandJoystick if needed
+    private final CommandXboxController driverController = new CommandXboxController(
+            OperatorConstants.kDriverControllerPort);
+    private final CommandXboxController subsysController = new CommandXboxController(
+            OperatorConstants.kSubsysControllerPort);
+    private final SendableChooser<Command> autonSwitch = new SendableChooser<>();
+    /**
+     * The container for the robot. Contains subsystems, OI devices, and commands.
+     */
+    public RobotContainer() {
+        drive = BotSwitcher.getDrive();
+        shooter = BotSwitcher.getShooter();
+        intake = BotSwitcher.getIntake();
+        configureAutonomoi();
+        // Configure the trigger bindings
+        configureBindings();
+    }
 
         /**
          * Use this method to define your trigger->command mappings. Triggers can be
@@ -81,12 +84,24 @@ public class RobotContainer {
                 subsysController.b().whileTrue(Teleop.runReverseIntakeAndShooter(intake, shooter));
         }
 
-        /**
-         * Use this to pass the autonomous command to the main {@link Robot} class.
-         *
-         * @return the command to run in autonomous
-         */
-        public Command getAutonomousCommand() {
-                return Autos.driveXMeters(drive, 2);
-        }
+    private void configureAutonomoi() {
+        autonSwitch.setDefaultOption(
+            "(2 pts) basic leave command",
+          Autos.leave(drive)  
+        );
+        autonSwitch.addOption(
+            "(7 pts) leave and score a note",
+             Autos.full(shooter, drive));
+        SmartDashboard.putData("Autonomoi", autonSwitch);
+        SmartDashboard.putNumber(Constants.AutonConstants.kAutonStartDelayKey, 0.0);
+    }
+    /**
+     * Use this to pass the autonomous command to the main {@link Robot} class.
+     *
+     * @return the command to run in autonomous
+     */
+    public Command getAutonomousCommand() {
+        
+        return autonSwitch.getSelected();
+    }
 }

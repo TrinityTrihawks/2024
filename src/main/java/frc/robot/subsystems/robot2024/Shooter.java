@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.Robot2024Constants.ShooterConstants;
+import frc.robot.Parameters.Robot2024Parameters.ShooterParameters;
 
 public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shooter {
 
@@ -40,8 +41,8 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
     }
 
     public void run() {
-        upperShooterMotor.set(ShooterConstants.kUpperShooterSpeed);
-        lowerShooterMotor.set(ShooterConstants.kLowerShooterSpeed);
+        upperShooterMotor.set(ShooterParameters.upperShooterSpeed);
+        lowerShooterMotor.set(ShooterParameters.lowerShooterSpeed);
     }
 
     public void stop() {
@@ -51,13 +52,13 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
     }
 
     public void feed() {
-        feederMotor.set(ShooterConstants.kFeederSpeed);
+        feederMotor.set(ShooterParameters.feederSpeed);
     }
 
     @Override
     public void reverse() {
-        feederMotor.set(-ShooterConstants.kFeederSpeed);
-        upperShooterMotor.set(-ShooterConstants.kUpperShooterReverseSpeed);
-        lowerShooterMotor.set(-ShooterConstants.kLowerShooterReverseSpeed);
+        feederMotor.set(-ShooterParameters.feederSpeed);
+        upperShooterMotor.set(-ShooterParameters.upperShooterReverseSpeed);
+        lowerShooterMotor.set(-ShooterParameters.lowerShooterReverseSpeed);
     }
 }
