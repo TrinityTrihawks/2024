@@ -31,6 +31,11 @@ public final class Constants {
         public static final double kTwistThrottle = .25;
     }
 
+    public static class AutonConstants {
+        public static final double kLEAVEDistance = 4;
+        public static final String kAutonStartDelayKey = "Auton Start Delay";
+    }
+
     public static class RomiConstants {
 
     }
