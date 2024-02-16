@@ -30,7 +30,7 @@ public class RobotContainer {
         private final Drive drive;
         private final Shooter shooter;
         private final Intake intake;
-        private double delay;
+
         // Replace with CommandPS4Controller or CommandJoystick if needed
         private final CommandXboxController driverController = new CommandXboxController(
                         OperatorConstants.kDriverControllerPort);
