@@ -6,7 +6,9 @@ package frc.robot.commands.aouton;
 
 import frc.robot.commands.test.PrintEnc;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.RobotSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 
 public final class Autos {
   // /** Example static factory for an autonomous command. */
@@ -18,11 +20,11 @@ public final class Autos {
     //return new DriveAMeter(drive);
   //}
 
-  //public static Command driveXMeters(Drive drive , double meters) {
-    //return new DriveXMeters(drive, meters);
-  //}
-  public static Command limelight(Drive drive){
-    return new Limelight(drive);
+  public static Command driveXMeters(Drive drive , double meters) {
+    return new DriveXMeters(drive, meters);
+  }
+  public static Command limelight(Drive drive , RobotSubsystem subsys){
+    return new Limelight(drive , subsys);
   }
   public static Command printEnc(Drive drive) {
     return new PrintEnc(drive);

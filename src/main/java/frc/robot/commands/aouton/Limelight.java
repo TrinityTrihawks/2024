@@ -13,17 +13,22 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.RobotSubsystem;
 
 public class Limelight extends Command {
   
   private final Drive drive;
   double area;
+  boolean hasTarget;
+  RobotSubsystem subsys;
+
   DigitalInput input = new DigitalInput(0);
 
   Debouncer debouncer = new Debouncer(0.1, DebounceType.kBoth);
   /** Creates a new Limelight. */
-  public Limelight(Drive drive) {
+  public Limelight(Drive drive , RobotSubsystem subsys) {
     this.drive = drive;
+    this.subsys = subsys;
     addRequirements(drive);
   }
 
@@ -45,18 +50,18 @@ public class Limelight extends Command {
         NetworkTableEntry tid = table.getEntry("tid");
         
 
-        boolean hasTarget;
+        
         double x = tx.getDouble(0.0);
         double y = ty.getDouble(0.0);
-         area = ta.getDouble(0.0);
+        area = ta.getDouble(0.0);
         double id = tid.getDouble(0.0);
-
+        
       if (area != 0){
         hasTarget = true;
       } else {
         hasTarget = false;
       } 
-      
+      debouncer.calculate(hasTarget);
     
 
         SmartDashboard.putNumber("LimelightX", x);
@@ -87,10 +92,6 @@ public class Limelight extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (area == 0){
-      return true;
-    } else{
-      return false;
-      }
+    return hasTarget;
   }
 }
