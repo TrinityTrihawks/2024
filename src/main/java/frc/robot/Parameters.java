@@ -37,6 +37,11 @@ public class Parameters {
             squareTwistInput = SmartDashboard.getBoolean("squareTwistInput", squareTwistInput);
             forwardThrottle = SmartDashboard.getNumber("forwardThrottle", forwardThrottle);
             twistThrottle = SmartDashboard.getNumber("twistThrottle", twistThrottle);
+
+            SmartDashboard.putBoolean("echo: squareForwardInput", squareForwardInput);
+            SmartDashboard.putBoolean("echo: squareTwistInput", squareTwistInput);
+            SmartDashboard.putNumber("echo: forwardThrottle", forwardThrottle);
+            SmartDashboard.putNumber("echo: twistThrottle", twistThrottle);
         }
 
         public static boolean squareForwardInput = OperatorConstants.kSquareForwardInput;
@@ -70,6 +75,9 @@ public class Parameters {
 
                 aheadSlewValue = SmartDashboard.getNumber("aheadSlewValue", aheadSlewValue);
                 rotateSlewValue = SmartDashboard.getNumber("rotateSlewValue", rotateSlewValue);
+
+                SmartDashboard.putNumber("echo: aheadSlewValue", aheadSlewValue);
+                SmartDashboard.putNumber("echo: rotateSlewValue", rotateSlewValue);
             }
 
             public static double aheadSlewValue = Robot2024Constants.DriveConstants.kAheadSlewValue;
@@ -99,6 +107,13 @@ public class Parameters {
                         upperShooterReverseSpeed);
                 lowerShooterReverseSpeed = SmartDashboard.getNumber("lowerShooterReverseSpeed",
                         lowerShooterReverseSpeed);
+
+                SmartDashboard.putNumber("echo: feederSpeed", feederSpeed);
+                SmartDashboard.putNumber("echo: upperShooterSpeed", upperShooterSpeed);
+                SmartDashboard.putNumber("echo: lowerShooterSpeed", lowerShooterSpeed);
+                SmartDashboard.putNumber("echo: shooterWarmupTime", shooterWarmupTime);
+                SmartDashboard.putNumber("echo: upperShooterReverseSpeed", upperShooterReverseSpeed);
+                SmartDashboard.putNumber("echo: lowerShooterReverseSpeed", lowerShooterReverseSpeed);
 
             }
 
