@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.Drive;
 import frc.robot.Constants.Robot2024Constants.DriveConstants;
+import frc.robot.Parameters.Robot2024Parameters.DriveParameters;
 
 public class Drivetrain extends SubsystemBase implements Drive {
 
@@ -37,11 +38,11 @@ public class Drivetrain extends SubsystemBase implements Drive {
 
     private final ADIS16470_IMU gyro = new ADIS16470_IMU();
 
-    private SlewRateLimiter speedLimiter = new SlewRateLimiter(DriveConstants.kSlewValue);
-    private SlewRateLimiter twistLimiter = new SlewRateLimiter(DriveConstants.kSlewValue);
+    private SlewRateLimiter speedLimiter = new SlewRateLimiter(DriveParameters.aheadSlewValue);
+    private SlewRateLimiter twistLimiter = new SlewRateLimiter(DriveParameters.rotateSlewValue);
 
     private final DifferentialDrive drive;
-    
+
     private static Drivetrain instance;
 
     public static Drivetrain getInstance() {

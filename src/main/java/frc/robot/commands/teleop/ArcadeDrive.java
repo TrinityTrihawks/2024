@@ -7,7 +7,7 @@ package frc.robot.commands.teleop;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.Constants.OperatorConstants;
+import frc.robot.Parameters.OperatorParameters;
 import frc.robot.subsystems.Drive;
 
 class ArcadeDrive extends Command {
@@ -18,11 +18,11 @@ class ArcadeDrive extends Command {
 
     public ArcadeDrive(Drive d, DoubleSupplier forward, DoubleSupplier twist) {
         addRequirements(drive = d);
-        x = OperatorConstants.kSquareForwardInput ? () -> {
+        x = OperatorParameters.squareForwardInput ? () -> {
             double x = forward.getAsDouble();
             return x * x * Math.signum(x);
         } : forward;
-        z = OperatorConstants.kSquareForwardInput ? () -> {
+        z = OperatorParameters.squareForwardInput ? () -> {
             double z = twist.getAsDouble();
             return z * z * Math.signum(z);
         } : twist;
@@ -36,7 +36,9 @@ class ArcadeDrive extends Command {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        drive.drive(x.getAsDouble(), z.getAsDouble());
+        drive.drive(
+                x.getAsDouble() * OperatorParameters.forwardThrottle,
+                z.getAsDouble() * OperatorParameters.twistThrottle);
     }
 
     // Called once the command ends or is interrupted.
