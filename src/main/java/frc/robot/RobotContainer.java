@@ -88,7 +88,7 @@ public class RobotContainer {
             "basic leave command",
           Autos.leave(delay, drive)  
         );
-        autonSwitch.addOption("full auto leave", Autos.full(0,shooter,drive));
+        autonSwitch.addOption("full auto leave", Autos.full(delay,shooter,drive));
         SmartDashboard.putData("Autonomoi", autonSwitch);
          delay = SmartDashboard.getNumber("delay", 0.0);
     }
