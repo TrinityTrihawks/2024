@@ -8,7 +8,6 @@ import frc.robot.Constants;
 import frc.robot.commands.test.PrintEnc;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Shooter;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 
@@ -30,6 +29,16 @@ public final class Autos {
         return new DriveXMeters(drive, meters);
     }
 
+    public static Command driveTime(Drive drive, double seconds) {
+        return Commands.deadline(
+            Commands.waitSeconds(Math.abs(seconds)), 
+            Commands.runEnd(
+                () -> drive.drive(.5 * Math.signum(seconds), 0), 
+                () -> drive.stop(),
+                drive
+            ));
+    }
+
     public static Command printEnc(Drive drive) {
         return new PrintEnc(drive);
     }
@@ -40,7 +49,7 @@ public final class Autos {
                         new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
                         Commands.run(() -> drive.drive(0, 0), drive)),
                 Autos.shoot(shooter),
-                Autos.driveXMeters(drive, Constants.AutonConstants.kLEAVEDistance));
+                Autos.driveTime(drive, 1.7));
     }
 
     public static Command leave(Drive drive) {
@@ -48,7 +57,7 @@ public final class Autos {
                 Commands.deadline(
                         new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
                         Commands.run(() -> drive.drive(0, 0), drive)),
-                Autos.driveXMeters(drive, Constants.AutonConstants.kLEAVEDistance));
+                Autos.driveTime(drive, 1.7));
     }
 
     private Autos() {

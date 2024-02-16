@@ -32,7 +32,7 @@ public final class Constants {
     }
 
     public static class AutonConstants {
-        public static final double kLEAVEDistance = 4;
+        public static final double kLEAVEDistance = -4;
         public static final String kAutonStartDelayKey = "Auton Start Delay";
     }
 

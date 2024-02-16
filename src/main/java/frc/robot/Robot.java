@@ -81,6 +81,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
+        BotSwitcher.getDrive().brakeIdle();
         autonomousCommand = robotContainer.getAutonomousCommand();
 
         // schedule the autonomous command (example)

@@ -89,6 +89,7 @@ public class RobotContainer {
                 autonSwitch.setDefaultOption(
                                 "(2 pts) basic leave command",
                                 Autos.leave(drive));
+                
                 autonSwitch.addOption(
                                 "(7 pts) leave and score a note",
                                 Autos.full(shooter, drive));
