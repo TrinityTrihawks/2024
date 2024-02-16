@@ -10,6 +10,7 @@ import frc.robot.commands.teleop.Teleop;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -30,13 +31,13 @@ public class RobotContainer {
     private final Drive drive;
     private final Shooter shooter;
     private final Intake intake;
-
+    private double delay;
     // Replace with CommandPS4Controller or CommandJoystick if needed
     private final CommandXboxController driverController = new CommandXboxController(
             OperatorConstants.kDriverControllerPort);
     private final CommandXboxController subsysController = new CommandXboxController(
             OperatorConstants.kSubsysControllerPort);
-
+    private final SendableChooser<Command> autonSwitch = new SendableChooser<>();
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
@@ -44,6 +45,7 @@ public class RobotContainer {
         drive = BotSwitcher.getDrive();
         shooter = BotSwitcher.getShooter();
         intake = BotSwitcher.getIntake();
+        configureAutonomoi();
         // Configure the trigger bindings
         configureBindings();
     }
@@ -81,13 +83,22 @@ public class RobotContainer {
         subsysController.a().whileTrue(Teleop.runIntake(intake));
     }
 
+    private void configureAutonomoi() {
+        autonSwitch.setDefaultOption(
+            "basic leave command",
+          Autos.leave(delay, drive)  
+        );
+        autonSwitch.addOption("full auto leave", Autos.full(0,shooter,drive));
+        SmartDashboard.putData("Autonomoi", autonSwitch);
+         delay = SmartDashboard.getNumber("delay", 0.0);
+    }
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.
      *
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        //return Autos.shoot(shooter);
-        return Autos.autoRoutine(SmartDashboard.getNumber("Auton delay", 0) ,shooter, drive);
+        
+        return autonSwitch.getSelected();
     }
 }

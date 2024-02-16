@@ -32,10 +32,16 @@ public final class Autos {
     return new PrintEnc(drive);
   }
 
-  public static Command autoRoutine(double delay, Shooter shooter, Drive drive) {
+  public static Command full(double delay, Shooter shooter, Drive drive) {
     return Commands.sequence(
         Commands.waitSeconds(delay),
         Autos.shoot(shooter),
+        Autos.driveXMeters(drive, -2));
+  }
+
+  public static Command leave(double delay, Drive drive) {
+    return Commands.sequence(
+        Commands.waitSeconds(delay),
         Autos.driveXMeters(drive, -2));
   }
 
