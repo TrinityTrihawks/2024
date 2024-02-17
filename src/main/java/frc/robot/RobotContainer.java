@@ -78,7 +78,7 @@ public class RobotContainer {
                 drive.setDefaultCommand(
                                 Teleop.arcadeDrive(drive, driverController::getLeftY, driverController::getLeftX));
 
-                subsysController.x().onTrue(Teleop.pushToShoot(shooter));
+                subsysController.x().onTrue(Teleop.pushToShoot(shooter, intake));
                 subsysController.leftBumper().whileTrue(Teleop.warmShooter(shooter));
                 subsysController.y().whileTrue(Teleop.shoot(shooter, intake));
                 subsysController.a().whileTrue(Teleop.runIntake(intake));
@@ -89,10 +89,10 @@ public class RobotContainer {
                 autonSwitch.setDefaultOption(
                                 "(2 pts) basic leave command",
                                 Autos.leave(drive));
-                
+
                 autonSwitch.addOption(
                                 "(7 pts) leave and score a note",
-                                Autos.full(shooter, drive));
+                                Autos.full(shooter, intake, drive));
                 SmartDashboard.putData("Autonomoi", autonSwitch);
                 SmartDashboard.putNumber(Constants.AutonConstants.kAutonStartDelayKey, 0.0);
         }
