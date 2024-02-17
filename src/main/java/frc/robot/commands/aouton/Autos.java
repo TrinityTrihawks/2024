@@ -5,6 +5,7 @@
 package frc.robot.commands.aouton;
 
 import frc.robot.Constants;
+import frc.robot.Constants.AutonConstants;
 import frc.robot.commands.test.PrintEnc;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
@@ -43,14 +44,26 @@ public final class Autos {
         return new PrintEnc(drive);
     }
 
-    public static Command full(Shooter shooter, Intake intake, Drive drive) {
+    public static Command spkr2Leave(Shooter shooter, Intake intake, Drive drive) {
+        return Commands.sequence(
+                spkr1Leave(shooter, intake, drive),
+                Autos.driveXMeters(drive, -AutonConstants.kLEAVEDistance),
+                Commands.deadline(
+                        Autos.shoot(shooter, intake),
+                        Commands.runEnd(
+                                () -> drive.drive(-.5, 0),
+                                () -> drive.stop(),
+                                drive)));
+    }
+
+    public static Command spkr1Leave(Shooter shooter, Intake intake, Drive drive) {
         return Commands.sequence(
                 Commands.deadline(
                         new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
                         Commands.run(() -> drive.drive(0, 0), drive)),
                 Autos.shoot(shooter, intake),
                 Commands.deadline(
-                        Autos.driveXMeters(drive, 2),
+                        Autos.driveXMeters(drive, AutonConstants.kLEAVEDistance),
                         Autos.intake(intake)));
     }
 
@@ -59,7 +72,7 @@ public final class Autos {
                 Commands.deadline(
                         new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
                         Commands.run(() -> drive.drive(0, 0), drive)),
-                Autos.driveXMeters(drive, 2));
+                Autos.driveXMeters(drive, AutonConstants.kLEAVEDistance));
     }
 
     public static Command intake(Intake intake) {
