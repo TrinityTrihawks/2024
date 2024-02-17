@@ -89,8 +89,8 @@ public final class Constants {
             public static final int kLowerShooterId = 18;
             public static final int kUpperShooterId = 19;
             public static final double kFeederSpeed = .5;
-            public static final double kUpperShooterSpeed = .8;
-            public static final double kLowerShooterSpeed = .8;
+            public static final double kUpperShooterSpeed = .9;
+            public static final double kLowerShooterSpeed = .9;
             public static final double kShooterWarmupTime = .5; // seconds
             public static final double kUpperShooterReverseSpeed = .4;
             public static final double kLowerShooterReverseSpeed = .4;
