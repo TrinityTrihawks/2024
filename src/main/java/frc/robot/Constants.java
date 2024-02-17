@@ -28,7 +28,7 @@ public final class Constants {
         public static final boolean kSquareTwistInput = false;
 
         public static final double kForwardThrottle = .6;
-        public static final double kTwistThrottle = .7;
+        public static final double kTwistThrottle = .5;
     }
 
     public static class AutonConstants {
@@ -72,7 +72,7 @@ public final class Constants {
             public static final int kEncoderCPR = 42;
 
             public static final double kAheadSlewValue = 2.5;
-            public static final double kRotateSlewValue = 1.7;
+            public static final double kRotateSlewValue = 2.7;
 
             public static final double kGearBoxRatio = 1.0 / 12.75;
             public static final double kWheelDiameterInches = 8; // TODO ish
