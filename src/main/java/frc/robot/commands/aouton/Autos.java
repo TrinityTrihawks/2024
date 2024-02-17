@@ -31,12 +31,11 @@ public final class Autos {
 
     public static Command driveTime(Drive drive, double seconds) {
         return Commands.deadline(
-            Commands.waitSeconds(Math.abs(seconds)), 
-            Commands.runEnd(
-                () -> drive.drive(.5 * Math.signum(seconds), 0), 
-                () -> drive.stop(),
-                drive
-            ));
+                Commands.waitSeconds(Math.abs(seconds)),
+                Commands.runEnd(
+                        () -> drive.drive(.5 * Math.signum(seconds), 0),
+                        () -> drive.stop(),
+                        drive));
     }
 
     public static Command printEnc(Drive drive) {
@@ -49,7 +48,7 @@ public final class Autos {
                         new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
                         Commands.run(() -> drive.drive(0, 0), drive)),
                 Autos.shoot(shooter),
-                Autos.driveTime(drive, 1.7));
+                Autos.driveXMeters(drive, 2));
     }
 
     public static Command leave(Drive drive) {
@@ -57,7 +56,7 @@ public final class Autos {
                 Commands.deadline(
                         new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
                         Commands.run(() -> drive.drive(0, 0), drive)),
-                Autos.driveTime(drive, 1.7));
+                Autos.driveXMeters(drive, 2));
     }
 
     private Autos() {
