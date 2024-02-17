@@ -70,8 +70,9 @@ public final class Constants {
             public static final int kRightLeaderId = 12;
             public static final int kRightFollowerId = 14;
             public static final int kEncoderCPR = 42;
-            public static final double kAheadSlewValue = 1.75;
-            public static final double kRotateSlewValue = 1;
+
+            public static final double kAheadSlewValue = 2.5;
+            public static final double kRotateSlewValue = 1.7;
 
             public static final double kGearBoxRatio = 1.0 / 12.75;
             public static final double kWheelDiameterInches = 8; // TODO ish
