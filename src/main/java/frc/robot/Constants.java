@@ -27,12 +27,12 @@ public final class Constants {
         public static final boolean kSquareForwardInput = false;
         public static final boolean kSquareTwistInput = false;
 
-        public static final double kForwardThrottle = .45;
-        public static final double kTwistThrottle = .25;
+        public static final double kForwardThrottle = .6;
+        public static final double kTwistThrottle = .5;
     }
 
     public static class AutonConstants {
-        public static final double kLEAVEDistance = 4;
+        public static final double kLEAVEDistance = 1.7;
         public static final String kAutonStartDelayKey = "Auton Start Delay";
     }
 
@@ -70,10 +70,11 @@ public final class Constants {
             public static final int kRightLeaderId = 12;
             public static final int kRightFollowerId = 14;
             public static final int kEncoderCPR = 42;
-            public static final double kAheadSlewValue = 1.75;
-            public static final double kRotateSlewValue = 2.5;
 
-            public static final double kGearBoxRatio = 12.75; // TODO ?
+            public static final double kAheadSlewValue = 2.5;
+            public static final double kRotateSlewValue = 2.7;
+
+            public static final double kGearBoxRatio = 1.0 / 12.75;
             public static final double kWheelDiameterInches = 8; // TODO ish
             public static final double kMetersPerInch = 1.0 / 100.0 * 2.54;
             public static final double kMotorRotationsToMeters = kGearBoxRatio * Math.PI * kWheelDiameterInches
@@ -88,8 +89,8 @@ public final class Constants {
             public static final int kLowerShooterId = 18;
             public static final int kUpperShooterId = 19;
             public static final double kFeederSpeed = .5;
-            public static final double kUpperShooterSpeed = .8;
-            public static final double kLowerShooterSpeed = .8;
+            public static final double kUpperShooterSpeed = .9;
+            public static final double kLowerShooterSpeed = .9;
             public static final double kShooterWarmupTime = .5; // seconds
             public static final double kUpperShooterReverseSpeed = .4;
             public static final double kLowerShooterReverseSpeed = .4;

@@ -7,15 +7,18 @@ package frc.robot.commands.aouton;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.Robot2024Constants.ShooterConstants;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 
 public class Shoot extends Command {
 
     private final Shooter shooter;
+    private final Intake intake;
     private final Timer feedTimer = new Timer();
 
-    public Shoot(Shooter s) {
+    public Shoot(Shooter s, Intake i) {
         addRequirements(shooter = s);
+        addRequirements(intake = i);
     }
 
     // Called when the command is initially scheduled.
@@ -29,6 +32,7 @@ public class Shoot extends Command {
     public void execute() {
         if (feedTimer.hasElapsed(ShooterConstants.kShooterWarmupTime)) {
             shooter.feed();
+            intake.run();
         }
         shooter.run();
     }
@@ -37,11 +41,12 @@ public class Shoot extends Command {
     @Override
     public void end(boolean interrupted) {
         shooter.stop();
+        intake.stop();
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return feedTimer.hasElapsed(ShooterConstants.kShooterWarmupTime + 1);
+        return feedTimer.hasElapsed(ShooterConstants.kShooterWarmupTime + 2);
     }
 }

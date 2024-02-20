@@ -13,7 +13,6 @@ class DriveXMeters extends Command {
     private Drive drive;
     private double meters;
 
-    /** Creates a new DriveAMeter. */
     public DriveXMeters(Drive drive, double meters) {
         this.meters = meters;
         this.drive = drive;
