@@ -95,6 +95,16 @@ public final class Constants {
             public static final double kUpperShooterReverseSpeed = .4;
             public static final double kLowerShooterReverseSpeed = .4;
 
+            public static final double kShooterWheelMaxRPM = 5500;
+
+            public static final double kUP = 6e-5;
+            public static final double kUI = 0;
+            public static final double kUFF = 0.000015;
+
+            public static final double kLP = 6e-5;
+            public static final double kLI = 0;
+            public static final double kLFF = 0.000015;
+
         }
 
         public static class IntakeConstants {

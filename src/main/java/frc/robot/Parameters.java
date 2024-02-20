@@ -95,6 +95,14 @@ public class Parameters {
                 SmartDashboard.putNumber("upperShooterReverseSpeed", upperShooterReverseSpeed);
                 SmartDashboard.putNumber("lowerShooterReverseSpeed", lowerShooterReverseSpeed);
 
+                SmartDashboard.putNumber("uP", uP);
+                SmartDashboard.putNumber("uI", uI);
+                SmartDashboard.putNumber("uFF", uFF);
+
+                SmartDashboard.putNumber("lP", lP);
+                SmartDashboard.putNumber("lI", lI);
+                SmartDashboard.putNumber("lFF", lFF);
+
             }
 
             private static void update() {
@@ -108,12 +116,28 @@ public class Parameters {
                 lowerShooterReverseSpeed = SmartDashboard.getNumber("lowerShooterReverseSpeed",
                         lowerShooterReverseSpeed);
 
+                uP = SmartDashboard.getNumber("uP", uP);
+                uI = SmartDashboard.getNumber("uI", uI);
+                uFF = SmartDashboard.getNumber("uFF", uFF);
+
+                lP = SmartDashboard.getNumber("lP", lP);
+                lI = SmartDashboard.getNumber("lI", lI);
+                lFF = SmartDashboard.getNumber("lFF", lFF);
+
                 SmartDashboard.putNumber("echo: feederSpeed", feederSpeed);
                 SmartDashboard.putNumber("echo: upperShooterSpeed", upperShooterSpeed);
                 SmartDashboard.putNumber("echo: lowerShooterSpeed", lowerShooterSpeed);
                 SmartDashboard.putNumber("echo: shooterWarmupTime", shooterWarmupTime);
                 SmartDashboard.putNumber("echo: upperShooterReverseSpeed", upperShooterReverseSpeed);
                 SmartDashboard.putNumber("echo: lowerShooterReverseSpeed", lowerShooterReverseSpeed);
+
+                SmartDashboard.putNumber("echo: uP", uP);
+                SmartDashboard.putNumber("echo: uI", uI);
+                SmartDashboard.putNumber("echo: uFF", uFF);
+
+                SmartDashboard.putNumber("echo: lP", lP);
+                SmartDashboard.putNumber("echo: lI", lI);
+                SmartDashboard.putNumber("echo: lFF", lFF);
 
             }
 
@@ -123,6 +147,14 @@ public class Parameters {
             public static double shooterWarmupTime = Robot2024Constants.ShooterConstants.kShooterWarmupTime;
             public static double upperShooterReverseSpeed = Robot2024Constants.ShooterConstants.kUpperShooterReverseSpeed;
             public static double lowerShooterReverseSpeed = Robot2024Constants.ShooterConstants.kLowerShooterReverseSpeed;
+
+            public static double uP = Robot2024Constants.ShooterConstants.kUP;
+            public static double uI = Robot2024Constants.ShooterConstants.kUI;
+            public static double uFF = Robot2024Constants.ShooterConstants.kUFF;
+
+            public static double lP = Robot2024Constants.ShooterConstants.kLP;
+            public static double lI = Robot2024Constants.ShooterConstants.kLI;
+            public static double lFF = Robot2024Constants.ShooterConstants.kLFF;
         }
     }
 }

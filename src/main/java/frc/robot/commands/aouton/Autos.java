@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 public final class Autos {
 
     public static Command shoot(Shooter shooter, Intake intake) {
-        return new Shoot(shooter, intake);
+        return new ShootClosedLoop(shooter, intake);
     }
 
     public static Command driveXMeters(Drive drive, double meters) {
