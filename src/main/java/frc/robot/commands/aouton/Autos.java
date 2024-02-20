@@ -15,10 +15,6 @@ import edu.wpi.first.wpilibj2.command.Commands;
 
 public final class Autos {
 
-    public static Command driveAMeter(Drive drive) {
-        return new DriveAMeter(drive);
-    }
-
     public static Command shoot(Shooter shooter, Intake intake) {
         return new Shoot(shooter, intake);
     }
