@@ -6,7 +6,6 @@ package frc.robot.subsystems.robot2024;
 
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkPIDController;
 import com.revrobotics.CANSparkBase.ControlType;
 
@@ -27,9 +26,6 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
     private final CANSparkMax upperShooterMotor = new CANSparkMax(
             ShooterConstants.kUpperShooterId,
             MotorType.kBrushless);
-
-    private final RelativeEncoder upperShooterEncoder = upperShooterMotor.getEncoder();
-    private final RelativeEncoder lowerShooterEncoder = lowerShooterMotor.getEncoder();
 
     private final SparkPIDController upperPID = upperShooterMotor.getPIDController();
     private final SparkPIDController lowerPID = lowerShooterMotor.getPIDController();
