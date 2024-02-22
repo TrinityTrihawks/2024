@@ -16,7 +16,15 @@ import edu.wpi.first.wpilibj2.command.Commands;
 public final class Autos {
 
     public static Command shoot(Shooter shooter, Intake intake) {
-        return new ShootClosedLoop(shooter, intake);
+        return new Shoot(shooter, intake);
+    }
+
+    public static Command shootCL(Shooter shooter, Intake intake) {
+        return new ShootCL(shooter, intake);
+    }
+
+    public static Command shootCLAmp(Shooter shooter, Intake intake) {
+        return new ShootCLAmp(shooter, intake);
     }
 
     public static Command driveXMeters(Drive drive, double meters) {
@@ -41,7 +49,7 @@ public final class Autos {
                 spkr1Leave(shooter, intake, drive),
                 Autos.driveXMeters(drive, -AutonConstants.kLEAVEDistance),
                 Commands.deadline(
-                        Autos.shoot(shooter, intake),
+                        Autos.shootCL(shooter, intake),
                         Commands.runEnd(
                                 () -> drive.drive(-.5, 0),
                                 () -> drive.stop(),
@@ -53,7 +61,7 @@ public final class Autos {
                 Commands.deadline(
                         new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
                         Commands.run(() -> drive.drive(0, 0), drive)),
-                Autos.shoot(shooter, intake),
+                Autos.shootCL(shooter, intake),
                 Commands.deadline(
                         Autos.driveXMeters(drive, AutonConstants.kLEAVEDistance),
                         Autos.intake(intake)));

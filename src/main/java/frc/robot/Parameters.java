@@ -94,6 +94,8 @@ public class Parameters {
                 SmartDashboard.putNumber("shooterWarmupTime", shooterWarmupTime);
                 SmartDashboard.putNumber("upperShooterReverseSpeed", upperShooterReverseSpeed);
                 SmartDashboard.putNumber("lowerShooterReverseSpeed", lowerShooterReverseSpeed);
+                SmartDashboard.putNumber("upperAmpSpeed", upperAmpSpeed);
+                SmartDashboard.putNumber("lowerAmpSpeed", lowerAmpSpeed);
 
                 SmartDashboard.putNumber("uP", uP);
                 SmartDashboard.putNumber("uI", uI);
@@ -115,6 +117,8 @@ public class Parameters {
                         upperShooterReverseSpeed);
                 lowerShooterReverseSpeed = SmartDashboard.getNumber("lowerShooterReverseSpeed",
                         lowerShooterReverseSpeed);
+                upperAmpSpeed = SmartDashboard.getNumber("upperAmpSpeed", upperAmpSpeed);
+                lowerAmpSpeed = SmartDashboard.getNumber("lowerAmpSpeed", lowerAmpSpeed);
 
                 uP = SmartDashboard.getNumber("uP", uP);
                 uI = SmartDashboard.getNumber("uI", uI);
@@ -130,6 +134,8 @@ public class Parameters {
                 SmartDashboard.putNumber("echo: shooterWarmupTime", shooterWarmupTime);
                 SmartDashboard.putNumber("echo: upperShooterReverseSpeed", upperShooterReverseSpeed);
                 SmartDashboard.putNumber("echo: lowerShooterReverseSpeed", lowerShooterReverseSpeed);
+                SmartDashboard.putNumber("echo: upperAmpSpeed", upperAmpSpeed);
+                SmartDashboard.putNumber("echo: lowerAmpSpeed", lowerAmpSpeed);
 
                 SmartDashboard.putNumber("echo: uP", uP);
                 SmartDashboard.putNumber("echo: uI", uI);
@@ -147,6 +153,8 @@ public class Parameters {
             public static double shooterWarmupTime = Robot2024Constants.ShooterConstants.kShooterWarmupTime;
             public static double upperShooterReverseSpeed = Robot2024Constants.ShooterConstants.kUpperShooterReverseSpeed;
             public static double lowerShooterReverseSpeed = Robot2024Constants.ShooterConstants.kLowerShooterReverseSpeed;
+            public static double upperAmpSpeed = Robot2024Constants.ShooterConstants.kUpperAmpSpeed;
+            public static double lowerAmpSpeed = Robot2024Constants.ShooterConstants.kLowerAmpSpeed;
 
             public static double uP = Robot2024Constants.ShooterConstants.kUP;
             public static double uI = Robot2024Constants.ShooterConstants.kUI;

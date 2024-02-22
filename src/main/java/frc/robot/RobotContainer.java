@@ -78,7 +78,8 @@ public class RobotContainer {
         drive.setDefaultCommand(
                 Teleop.arcadeDrive(drive, driverController::getLeftY, driverController::getLeftX));
 
-        subsysController.x().onTrue(Teleop.pushToShoot(shooter, intake));
+        subsysController.x().onTrue(Teleop.pushToShootCL(shooter, intake));
+        subsysController.y().onTrue(Teleop.pushToShootCLAmp(shooter, intake));
         subsysController.a().whileTrue(Teleop.runIntake(intake));
         subsysController.b().whileTrue(Teleop.runReverseIntakeAndShooter(intake, shooter));
     }

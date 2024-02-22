@@ -10,12 +10,13 @@ import frc.robot.Constants.Robot2024Constants.ShooterConstants;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 
-public class ShootClosedLoop extends Command {
+public class ShootCLAmp extends Command {
+
     private final Shooter shooter;
     private final Intake intake;
     private final Timer feedTimer = new Timer();
 
-    public ShootClosedLoop(Shooter s, Intake i) {
+    public ShootCLAmp(Shooter s, Intake i) {
         addRequirements(shooter = s);
         addRequirements(intake = i);
     }
@@ -33,7 +34,7 @@ public class ShootClosedLoop extends Command {
             shooter.feed();
             intake.run();
         }
-        shooter.runClosedLoop();
+        shooter.runCLAmp();
     }
 
     // Called once the command ends or is interrupted.

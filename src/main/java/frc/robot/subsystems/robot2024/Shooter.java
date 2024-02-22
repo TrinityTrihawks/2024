@@ -83,11 +83,17 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
     }
 
     @Override
-    public void runClosedLoop() {
+    public void runCL() {
         upperPID.setReference(ShooterParameters.upperShooterSpeed * ShooterConstants.kShooterWheelMaxRPM,
                 ControlType.kVelocity);
         lowerPID.setReference(ShooterParameters.lowerShooterSpeed * ShooterConstants.kShooterWheelMaxRPM,
                 ControlType.kVelocity);
+    }
+
+    @Override
+    public void runCLAmp() {
+        upperShooterMotor.set(ShooterParameters.upperAmpSpeed);
+        lowerShooterMotor.set(ShooterParameters.lowerAmpSpeed);
     }
 
 }

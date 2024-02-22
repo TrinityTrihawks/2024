@@ -6,7 +6,9 @@ public interface Shooter extends Subsystem {
 
     public void run();
 
-    public void runClosedLoop();
+    public void runCL();
+
+    public void runCLAmp();
 
     public void feed();
 

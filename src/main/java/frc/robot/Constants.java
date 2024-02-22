@@ -91,9 +91,11 @@ public final class Constants {
             public static final double kFeederSpeed = .5;
             public static final double kUpperShooterSpeed = .9;
             public static final double kLowerShooterSpeed = .9;
-            public static final double kShooterWarmupTime = .5; // seconds
+            public static final double kShooterWarmupTime = .3; // seconds
             public static final double kUpperShooterReverseSpeed = .4;
             public static final double kLowerShooterReverseSpeed = .4;
+            public static final double kUpperAmpSpeed = .3;
+            public static final double kLowerAmpSpeed = .25;
 
             public static final double kShooterWheelMaxRPM = 5500;
 
