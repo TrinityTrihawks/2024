@@ -30,6 +30,12 @@ public final class Autos {
     public static Command driveXMeters(Drive drive, double meters) {
         return new DriveXMeters(drive, meters);
     }
+    public static Command turnForATimeR(Drive drive, double time) {
+        return new TurnForATimeR(drive, time);
+    }
+    public static Command turnForATimeL(Drive drive, double time) {
+        return new TurnForATimeL(drive, time);
+    }
 
     public static Command driveTime(Drive drive, double seconds) {
         return Commands.deadline(
@@ -74,6 +80,28 @@ public final class Autos {
                         Commands.run(() -> drive.drive(0, 0), drive)),
                 Autos.driveXMeters(drive, AutonConstants.kLEAVEDistance));
     }
+    
+    public static Command R1(Shooter shooter, Intake intake, Drive drive) {
+        return Commands.sequence(
+                Commands.deadline(
+                        new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
+                        Commands.run(() -> drive.drive(0, 0), drive)),
+                        Autos.shoot(shooter, intake),
+                        Commands.parallel(
+                        turnForATimeR( drive , AutonConstants.kTurnTime),
+                        Autos.driveXMeters(drive, AutonConstants.kLEAVEDistance)));
+    }
+    public static Command L1(Shooter shooter, Intake intake, Drive drive) {
+        return Commands.sequence(
+                Commands.deadline(
+                        new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
+                        Commands.run(() -> drive.drive(0, 0), drive)),
+                        Autos.shoot(shooter, intake),
+                        Commands.parallel(
+                        turnForATimeL( drive , AutonConstants.kTurnTime),
+                        Autos.driveXMeters(drive, AutonConstants.kLEAVEDistance)));
+    }
+
 
     public static Command intake(Intake intake) {
         return Commands.startEnd(() -> intake.run(), () -> intake.stop(), intake);
