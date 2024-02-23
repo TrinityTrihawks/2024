@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.aouton.Autos;
+import frc.robot.commands.aouton.TurnXMeters;
 import frc.robot.commands.teleop.Teleop;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
@@ -103,6 +104,7 @@ public class RobotContainer {
          */
         public Command getAutonomousCommand() {
 
-                return autonSwitch.getSelected();
+                //return autonSwitch.getSelected();
+                return new TurnXMeters(drive, 90);
         }
 }

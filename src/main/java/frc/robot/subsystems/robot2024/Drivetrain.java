@@ -97,7 +97,7 @@ public class Drivetrain extends SubsystemBase implements Drive {
 
     @Override
     public double getGyroZ() {
-        return gyro.getAngle(IMUAxis.kZ);
+        return -gyro.getAngle(IMUAxis.kZ)*48;
     }
 
     @Override
