@@ -90,21 +90,20 @@ public class RobotContainer {
                 Autos.leave(drive));
 
         autonSwitch.addOption(
-                "(7 pts) leave and score a note",
-                Autos.spkr1Leave(shooter, intake, drive));
+                "(7 pts) leave center and score a note",
+                Autos.c1(shooter, intake, drive));
         autonSwitch.addOption(
-                "(12 pts) leave and score 2 notes",
-                Autos.spkr2Leave(shooter, intake, drive));
+                "(12 pts) leave center and score 2 notes",
+                Autos.c2(shooter, intake, drive));
         autonSwitch.addOption(
-                "R1",
-                Autos.R1(shooter, intake, drive));
+                "(7 pts) leave right and score a note",
+                Autos.r1(shooter, intake, drive));
         autonSwitch.addOption(
-                "L1",
-                Autos.L1(shooter, intake, drive));        
+                "(7 pts) leave left and score a note",
+                Autos.l1(shooter, intake, drive));
         SmartDashboard.putData("Autonomoi", autonSwitch);
         SmartDashboard.putNumber(Constants.AutonConstants.kAutonStartDelayKey, 0.0);
 
-        
     }
 
     /**

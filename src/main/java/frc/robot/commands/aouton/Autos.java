@@ -7,6 +7,8 @@ package frc.robot.commands.aouton;
 import frc.robot.Constants;
 import frc.robot.Constants.AutonConstants;
 import frc.robot.commands.test.PrintEnc;
+import frc.robot.commands.test.LeaveLeft;
+import frc.robot.commands.test.LeaveRight;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
@@ -30,12 +32,6 @@ public final class Autos {
     public static Command driveXMeters(Drive drive, double meters) {
         return new DriveXMeters(drive, meters);
     }
-    public static Command turnForATimeR(Drive drive, double time) {
-        return new TurnForATimeR(drive, time);
-    }
-    public static Command turnForATimeL(Drive drive, double time) {
-        return new TurnForATimeL(drive, time);
-    }
 
     public static Command driveTime(Drive drive, double seconds) {
         return Commands.deadline(
@@ -50,27 +46,27 @@ public final class Autos {
         return new PrintEnc(drive);
     }
 
-    public static Command spkr2Leave(Shooter shooter, Intake intake, Drive drive) {
+    public static Command c2(Shooter shooter, Intake intake, Drive drive) {
         return Commands.sequence(
-                spkr1Leave(shooter, intake, drive),
-                Autos.driveXMeters(drive, -AutonConstants.kLEAVEDistance),
+                c1(shooter, intake, drive),
+                driveXMeters(drive, -AutonConstants.kLEAVEDistance),
                 Commands.deadline(
-                        Autos.shootCL(shooter, intake),
+                        shootCL(shooter, intake),
                         Commands.runEnd(
                                 () -> drive.drive(-.5, 0),
                                 () -> drive.stop(),
                                 drive)));
     }
 
-    public static Command spkr1Leave(Shooter shooter, Intake intake, Drive drive) {
+    public static Command c1(Shooter shooter, Intake intake, Drive drive) {
         return Commands.sequence(
                 Commands.deadline(
                         new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
                         Commands.run(() -> drive.drive(0, 0), drive)),
-                Autos.shootCL(shooter, intake),
+                shootCL(shooter, intake),
                 Commands.deadline(
-                        Autos.driveXMeters(drive, AutonConstants.kLEAVEDistance),
-                        Autos.intake(intake)));
+                        driveXMeters(drive, AutonConstants.kLEAVEDistance),
+                        intake(intake)));
     }
 
     public static Command leave(Drive drive) {
@@ -78,33 +74,37 @@ public final class Autos {
                 Commands.deadline(
                         new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
                         Commands.run(() -> drive.drive(0, 0), drive)),
-                Autos.driveXMeters(drive, AutonConstants.kLEAVEDistance));
-    }
-    
-    public static Command R1(Shooter shooter, Intake intake, Drive drive) {
-        return Commands.sequence(
-                Commands.deadline(
-                        new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
-                        Commands.run(() -> drive.drive(0, 0), drive)),
-                        Autos.shoot(shooter, intake),
-                        Commands.parallel(
-                        turnForATimeR( drive , AutonConstants.kTurnTime),
-                        Autos.driveXMeters(drive, AutonConstants.kLEAVEDistance)));
-    }
-    public static Command L1(Shooter shooter, Intake intake, Drive drive) {
-        return Commands.sequence(
-                Commands.deadline(
-                        new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
-                        Commands.run(() -> drive.drive(0, 0), drive)),
-                        Autos.shoot(shooter, intake),
-                        Commands.parallel(
-                        turnForATimeL( drive , AutonConstants.kTurnTime),
-                        Autos.driveXMeters(drive, AutonConstants.kLEAVEDistance)));
+                driveXMeters(drive, AutonConstants.kLEAVEDistance));
     }
 
+    public static Command r1(Shooter shooter, Intake intake, Drive drive) {
+        return Commands.sequence(
+                Commands.deadline(
+                        new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
+                        Commands.run(() -> drive.drive(0, 0), drive)),
+                shootCL(shooter, intake),
+                driveOutRightTimed(drive, AutonConstants.kAngledLEAVETime));
+    }
+
+    public static Command l1(Shooter shooter, Intake intake, Drive drive) {
+        return Commands.sequence(
+                Commands.deadline(
+                        new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
+                        Commands.run(() -> drive.drive(0, 0), drive)),
+                shootCL(shooter, intake),
+                driveOutLeftTimed(drive, AutonConstants.kAngledLEAVETime));
+    }
 
     public static Command intake(Intake intake) {
         return Commands.startEnd(() -> intake.run(), () -> intake.stop(), intake);
+    }
+
+    private static Command driveOutRightTimed(Drive drive, double time) {
+        return new LeaveRight(drive, time);
+    }
+
+    private static Command driveOutLeftTimed(Drive drive, double time) {
+        return new LeaveLeft(drive, time);
     }
 
     private Autos() {
