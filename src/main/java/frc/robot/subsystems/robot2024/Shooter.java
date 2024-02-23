@@ -31,7 +31,7 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
 
     private Shooter() {
         upperShooterMotor.setInverted(false);
-        lowerShooterMotor.setInverted(true);
+        lowerShooterMotor.setInverted(false);
         feederMotor.setInverted(true);
     }
 
