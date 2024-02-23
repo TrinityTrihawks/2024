@@ -88,11 +88,8 @@ public class Parameters {
 
             private static void init() {
 
-                SmartDashboard.putNumber("feederSpeed", feederSpeed);
                 SmartDashboard.putNumber("upperShooterSpeed", upperShooterSpeed);
                 SmartDashboard.putNumber("lowerShooterSpeed", lowerShooterSpeed);
-                SmartDashboard.putNumber("upperShooterReverseSpeed", upperShooterReverseSpeed);
-                SmartDashboard.putNumber("lowerShooterReverseSpeed", lowerShooterReverseSpeed);
                 SmartDashboard.putNumber("upperAmpSpeed", upperAmpSpeed);
                 SmartDashboard.putNumber("lowerAmpSpeed", lowerAmpSpeed);
 
@@ -100,31 +97,20 @@ public class Parameters {
 
             private static void update() {
 
-                feederSpeed = SmartDashboard.getNumber("feederSpeed", feederSpeed);
                 upperShooterSpeed = SmartDashboard.getNumber("upperShooterSpeed", upperShooterSpeed);
                 lowerShooterSpeed = SmartDashboard.getNumber("lowerShooterSpeed", lowerShooterSpeed);
-                upperShooterReverseSpeed = SmartDashboard.getNumber("upperShooterReverseSpeed",
-                        upperShooterReverseSpeed);
-                lowerShooterReverseSpeed = SmartDashboard.getNumber("lowerShooterReverseSpeed",
-                        lowerShooterReverseSpeed);
                 upperAmpSpeed = SmartDashboard.getNumber("upperAmpSpeed", upperAmpSpeed);
                 lowerAmpSpeed = SmartDashboard.getNumber("lowerAmpSpeed", lowerAmpSpeed);
 
-                SmartDashboard.putNumber("echo: feederSpeed", feederSpeed);
                 SmartDashboard.putNumber("echo: upperShooterSpeed", upperShooterSpeed);
                 SmartDashboard.putNumber("echo: lowerShooterSpeed", lowerShooterSpeed);
-                SmartDashboard.putNumber("echo: upperShooterReverseSpeed", upperShooterReverseSpeed);
-                SmartDashboard.putNumber("echo: lowerShooterReverseSpeed", lowerShooterReverseSpeed);
                 SmartDashboard.putNumber("echo: upperAmpSpeed", upperAmpSpeed);
                 SmartDashboard.putNumber("echo: lowerAmpSpeed", lowerAmpSpeed);
 
             }
 
-            public static double feederSpeed = Robot2024Constants.ShooterConstants.kFeederSpeed;
             public static double upperShooterSpeed = Robot2024Constants.ShooterConstants.kUpperShooterSpeed;
             public static double lowerShooterSpeed = Robot2024Constants.ShooterConstants.kLowerShooterSpeed;
-            public static double upperShooterReverseSpeed = Robot2024Constants.ShooterConstants.kUpperShooterReverseSpeed;
-            public static double lowerShooterReverseSpeed = Robot2024Constants.ShooterConstants.kLowerShooterReverseSpeed;
             public static double upperAmpSpeed = Robot2024Constants.ShooterConstants.kUpperAmpSpeed;
             public static double lowerAmpSpeed = Robot2024Constants.ShooterConstants.kLowerAmpSpeed;
         }

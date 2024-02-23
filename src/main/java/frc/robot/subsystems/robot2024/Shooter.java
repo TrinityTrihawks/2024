@@ -68,14 +68,14 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
     }
 
     public void feed() {
-        feederMotor.set(ShooterParameters.feederSpeed);
+        feederMotor.set(ShooterConstants.kFeederSpeed);
     }
 
     @Override
     public void reverse() {
-        feederMotor.set(-ShooterParameters.feederSpeed);
-        upperShooterMotor.set(-ShooterParameters.upperShooterReverseSpeed);
-        lowerShooterMotor.set(-ShooterParameters.lowerShooterReverseSpeed);
+        feederMotor.set(-ShooterConstants.kFeederSpeed);
+        upperShooterMotor.set(-ShooterConstants.kUpperShooterReverseSpeed);
+        lowerShooterMotor.set(-ShooterConstants.kLowerShooterReverseSpeed);
     }
 
     @Override
