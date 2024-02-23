@@ -6,11 +6,9 @@ package frc.robot.subsystems.robot2024;
 
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkPIDController;
 import com.revrobotics.CANSparkBase.ControlType;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.Robot2024Constants.ShooterConstants;
 import frc.robot.Parameters.Robot2024Parameters.ShooterParameters;
@@ -29,9 +27,6 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
             ShooterConstants.kUpperShooterId,
             MotorType.kBrushless);
 
-    private final RelativeEncoder upperEncoder = upperShooterMotor.getEncoder();
-    private final RelativeEncoder lowerEncoder = lowerShooterMotor.getEncoder();
-
     private final SparkPIDController upperPID = upperShooterMotor.getPIDController();
     private final SparkPIDController lowerPID = lowerShooterMotor.getPIDController();
 
@@ -40,9 +35,17 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
     }
 
     private Shooter() {
+
         upperShooterMotor.setInverted(false);
         lowerShooterMotor.setInverted(false);
+
         feederMotor.setInverted(true);
+        upperPID.setP(ShooterConstants.kUP);
+        upperPID.setI(ShooterConstants.kUI);
+        upperPID.setFF(ShooterConstants.kUFF);
+        lowerPID.setP(ShooterConstants.kLP);
+        lowerPID.setI(ShooterConstants.kLI);
+        lowerPID.setFF(ShooterConstants.kLFF);
         upperPID.setOutputRange(-ShooterConstants.kShooterWheelMaxRPM, ShooterConstants.kShooterWheelMaxRPM);
         lowerPID.setOutputRange(-ShooterConstants.kShooterWheelMaxRPM, ShooterConstants.kShooterWheelMaxRPM);
     }
@@ -51,16 +54,6 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
     public void periodic() {
         // This method will be called once per scheduler run
 
-        upperPID.setP(ShooterParameters.uP);
-        upperPID.setI(ShooterParameters.uI);
-        upperPID.setFF(ShooterParameters.uFF);
-
-        lowerPID.setP(ShooterParameters.lP);
-        lowerPID.setI(ShooterParameters.lI);
-        lowerPID.setFF(ShooterParameters.lFF);
-
-        SmartDashboard.putNumber("us RPM", upperEncoder.getVelocity());
-        SmartDashboard.putNumber("ls RPM", lowerEncoder.getVelocity());
     }
 
     public void run() {
