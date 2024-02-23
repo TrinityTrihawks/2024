@@ -6,9 +6,11 @@ package frc.robot.subsystems.robot2024;
 
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkPIDController;
 import com.revrobotics.CANSparkBase.ControlType;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.Robot2024Constants.ShooterConstants;
 import frc.robot.Parameters.Robot2024Parameters.ShooterParameters;
@@ -27,6 +29,9 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
             ShooterConstants.kUpperShooterId,
             MotorType.kBrushless);
 
+    private final RelativeEncoder upperEncoder = upperShooterMotor.getEncoder();
+    private final RelativeEncoder lowerEncoder = lowerShooterMotor.getEncoder();
+
     private final SparkPIDController upperPID = upperShooterMotor.getPIDController();
     private final SparkPIDController lowerPID = lowerShooterMotor.getPIDController();
 
@@ -36,8 +41,10 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
 
     private Shooter() {
         upperShooterMotor.setInverted(false);
-        lowerShooterMotor.setInverted(true);
+        lowerShooterMotor.setInverted(false);
         feederMotor.setInverted(true);
+        upperPID.setOutputRange(-ShooterConstants.kShooterWheelMaxRPM, ShooterConstants.kShooterWheelMaxRPM);
+        lowerPID.setOutputRange(-ShooterConstants.kShooterWheelMaxRPM, ShooterConstants.kShooterWheelMaxRPM);
     }
 
     @Override
@@ -47,13 +54,13 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
         upperPID.setP(ShooterParameters.uP);
         upperPID.setI(ShooterParameters.uI);
         upperPID.setFF(ShooterParameters.uFF);
-        upperPID.setOutputRange(-1, 1);
 
         lowerPID.setP(ShooterParameters.lP);
         lowerPID.setI(ShooterParameters.lI);
         lowerPID.setFF(ShooterParameters.lFF);
-        lowerPID.setOutputRange(-1, 1);
 
+        SmartDashboard.putNumber("us RPM", upperEncoder.getVelocity());
+        SmartDashboard.putNumber("ls RPM", lowerEncoder.getVelocity());
     }
 
     public void run() {
