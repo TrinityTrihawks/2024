@@ -20,6 +20,7 @@ public class Drivetrain extends SubsystemBase implements Drive {
     private static final double kCountsPerRevolution = 1440.0;
     // DO NOT KILL THIS LINE (below) if we need inches we might want it... ;)
     private static final double kWheelDiameterInch = 2.75591; // 70 mm
+    @SuppressWarnings(value = { "unused" })
     private static final double kWheelDiameterMeters = .070; // 70 mm
 
     // The Romi has the left and right motors set to

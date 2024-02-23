@@ -75,6 +75,16 @@ class DummyShooter implements frc.robot.subsystems.Shooter {
         System.out.println("dummy shooter reversing...");
     }
 
+    @Override
+    public void runCL() {
+        System.out.println("dummy shooter running closed loop...");
+    }
+
+    @Override
+    public void runCLAmp() {
+        System.out.println("dummy shooter running closed loop (amp)...");
+    }
+
 }
 
 class DummyIntake implements frc.robot.subsystems.Intake {

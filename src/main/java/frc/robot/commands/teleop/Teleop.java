@@ -5,6 +5,7 @@ import java.util.function.DoubleSupplier;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.StartEndCommand;
+import frc.robot.commands.aouton.Autos;
 import frc.robot.commands.aouton.Shoot;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
@@ -16,11 +17,19 @@ public class Teleop {
         return new ArcadeDrive(drive, forward, twist);
     }
 
-    /**
-     * porcelain command to run the basic shoot sequence
-     */
     public static Command pushToShoot(Shooter shooter, Intake intake) {
         return Commands.deferredProxy(() -> new Shoot(shooter, intake));
+    }
+
+    /**
+     * porcelain command to run the shoot sequence
+     */
+    public static Command pushToShootCL(Shooter shooter, Intake intake) {
+        return Commands.deferredProxy(() -> Autos.shootCL(shooter, intake));
+    }
+
+    public static Command pushToShootCLAmp(Shooter shooter, Intake intake) {
+        return Commands.deferredProxy(() -> Autos.shootCLAmp(shooter, intake));
     }
 
     /**
