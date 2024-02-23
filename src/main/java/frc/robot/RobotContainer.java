@@ -94,8 +94,16 @@ public class RobotContainer {
         autonSwitch.addOption(
                 "(12 pts) leave and score 2 notes",
                 Autos.spkr2Leave(shooter, intake, drive));
+        autonSwitch.addOption(
+                "R1",
+                Autos.R1(shooter, intake, drive));
+        autonSwitch.addOption(
+                "L1",
+                Autos.L1(shooter, intake, drive));        
         SmartDashboard.putData("Autonomoi", autonSwitch);
         SmartDashboard.putNumber(Constants.AutonConstants.kAutonStartDelayKey, 0.0);
+
+        
     }
 
     /**
