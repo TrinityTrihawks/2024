@@ -83,7 +83,7 @@ public final class Autos {
                         new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
                         Commands.run(() -> drive.drive(0, 0), drive)),
                 shootCL(shooter, intake),
-                Commands.parallel(
+                Commands.deadline(
                         driveOutRightTimed(drive, AutonConstants.kAngledLEAVETime),
                         intake(intake)));
     }
@@ -94,7 +94,7 @@ public final class Autos {
                         new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
                         Commands.run(() -> drive.drive(0, 0), drive)),
                 shootCL(shooter, intake),
-                Commands.parallel(
+                Commands.deadline(
                         driveOutLeftTimed(drive, AutonConstants.kAngledLEAVETime),
                         intake(intake)));
     }

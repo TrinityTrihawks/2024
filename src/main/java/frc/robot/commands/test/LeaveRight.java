@@ -29,7 +29,7 @@ public class LeaveRight extends Command {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        drive.drive(-.5, 0.5);
+        drive.drive(.5, 0.25);
     }
 
     // Called once the command ends or is interrupted.
