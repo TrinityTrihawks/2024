@@ -8,7 +8,9 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.aouton.Autos;
 import frc.robot.commands.teleop.Teleop;
 import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.RobotSubsystem;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shooter;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -26,20 +28,24 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 public class RobotContainer {
     // The robot's subsystems and commands are defined here...
     private final Drive drive;
-    private final RobotSubsystem subsys;
+    private final Shooter shooter;
+    private final Intake intake;
 
     // Replace with CommandPS4Controller or CommandJoystick if needed
     private final CommandXboxController driverController = new CommandXboxController(
             OperatorConstants.kDriverControllerPort);
     private final CommandXboxController subsysController = new CommandXboxController(
             OperatorConstants.kSubsysControllerPort);
+    private final SendableChooser<Command> autonSwitch = new SendableChooser<>();
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
     public RobotContainer() {
         drive = BotSwitcher.getDrive();
-        subsys = BotSwitcher.getSubsystem();
+        shooter = BotSwitcher.getShooter();
+        intake = BotSwitcher.getIntake();
+        configureAutonomoi();
         // Configure the trigger bindings
         configureBindings();
     }
@@ -69,12 +75,35 @@ public class RobotContainer {
         // m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
 
         // subsys.setDefaultCommand(new IntakeInBackground(subsys));
-        drive.setDefaultCommand(Teleop.arcadeDrive(drive, driverController::getLeftY, driverController::getLeftX));
+        drive.setDefaultCommand(
+                Teleop.arcadeDrive(drive, driverController::getLeftY, driverController::getLeftX));
 
-        subsysController.x().onTrue(Teleop.pushToShoot(subsys));
-        subsysController.leftBumper().whileTrue(Teleop.warmShooter(subsys));
-        subsysController.y().whileTrue(Teleop.shoot(subsys));
-        subsysController.a().whileTrue(Teleop.runIntake(subsys));
+        subsysController.x().onTrue(Teleop.pushToShootCL(shooter, intake));
+        subsysController.y().onTrue(Teleop.pushToShootCLAmp(shooter, intake));
+        subsysController.a().whileTrue(Teleop.runIntake(intake));
+        subsysController.b().whileTrue(Teleop.runReverseIntakeAndShooter(intake, shooter));
+    }
+
+    private void configureAutonomoi() {
+        autonSwitch.setDefaultOption(
+                "(2 pts) basic leave command",
+                Autos.leave(drive));
+
+        autonSwitch.addOption(
+                "(7 pts) leave center and score a note",
+                Autos.c1(shooter, intake, drive));
+        autonSwitch.addOption(
+                "(12 pts) leave center and score 2 notes",
+                Autos.c2(shooter, intake, drive));
+        autonSwitch.addOption(
+                "(7 pts) leave right and score a note",
+                Autos.r1(shooter, intake, drive));
+        autonSwitch.addOption(
+                "(7 pts) leave left and score a note",
+                Autos.l1(shooter, intake, drive));
+        SmartDashboard.putData("Autonomoi", autonSwitch);
+        SmartDashboard.putNumber(Constants.AutonConstants.kAutonStartDelayKey, 0.0);
+
     }
 
     /**
@@ -83,10 +112,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        // An example command will be run in autonomous
-        //return Autos.driveXMeters(drive, 2);
-        RobotSubsystem subsys;
-        return Autos.Limelight(drive , subsys);
-        
+
+        return autonSwitch.getSelected();
     }
 }

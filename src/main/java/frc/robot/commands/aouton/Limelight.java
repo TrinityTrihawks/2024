@@ -16,53 +16,50 @@ import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.RobotSubsystem;
 
 public class Limelight extends Command {
-  
-  private final Drive drive;
-  double area;
-  boolean hasTarget;
-  RobotSubsystem subsys;
 
-  DigitalInput input = new DigitalInput(0);
+    private final Drive drive;
+    private double area;
+    private boolean hasTarget;
+    private RobotSubsystem subsys;
 
-  Debouncer debouncer = new Debouncer(0.1, DebounceType.kBoth);
-  /** Creates a new Limelight. */
-  public Limelight(Drive drive , RobotSubsystem subsys) {
-    this.drive = drive;
-    this.subsys = subsys;
-    addRequirements(drive);
-  }
+    DigitalInput input = new DigitalInput(0);
 
+    Debouncer debouncer = new Debouncer(0.1, DebounceType.kBoth);
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(1);
-  }
+    /** Creates a new Limelight. */
+    public Limelight(Drive drive, RobotSubsystem subsys) {
+        this.drive = drive;
+        this.subsys = subsys;
+        addRequirements(drive);
+    }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(1);
+    }
+
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
         NetworkTableEntry tx = table.getEntry("tx");
         NetworkTableEntry ty = table.getEntry("ty");
         NetworkTableEntry ta = table.getEntry("ta");
         NetworkTableEntry tv = table.getEntry("tv");
         NetworkTableEntry tid = table.getEntry("tid");
-        
 
-        
         double x = tx.getDouble(0.0);
         double y = ty.getDouble(0.0);
         area = ta.getDouble(0.0);
         double id = tid.getDouble(0.0);
-        
-      if (area != 0){
-        hasTarget = true;
-      } else {
-        hasTarget = false;
-      } 
-      debouncer.calculate(hasTarget);
-    
+
+        if (area != 0) {
+            hasTarget = true;
+        } else {
+            hasTarget = false;
+        }
+        debouncer.calculate(hasTarget);
 
         SmartDashboard.putNumber("LimelightX", x);
         SmartDashboard.putNumber("LimelightY", y);
@@ -70,28 +67,28 @@ public class Limelight extends Command {
         SmartDashboard.putNumber("id", id);
         SmartDashboard.putBoolean("has target", hasTarget);
 
-        //double fwdSpeed = (10 - area) / 21;
+        // double fwdSpeed = (10 - area) / 21;
         double rotSpeed = x / 70;
         SmartDashboard.putNumber("rotSpeed", rotSpeed);
-        //SmartDashboard.putNumber("fwdSpeed", fwdSpeed);
+        // SmartDashboard.putNumber("fwdSpeed", fwdSpeed);
 
-        
-        //if(area > 1){}
+        // if(area > 1){}
         if ((rotSpeed < -0.1) || (rotSpeed > 0.1)) {
-          drive.drive(0 , rotSpeed);
-        }else{
-          drive.drive(0.3, 0);
-          subsys.intake();
+            drive.drive(0, rotSpeed);
+        } else {
+            drive.drive(0.3, 0);
+            subsys.intake();
         }
-  }
+    }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+    }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return hasTarget;
-  }
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return hasTarget;
+    }
 }
