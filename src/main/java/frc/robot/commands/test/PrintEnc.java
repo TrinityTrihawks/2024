@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Drive;
 
 public class PrintEnc extends Command {
+
     private final Drive drive;
 
     /** Creates a new PrintEnc. */
@@ -20,6 +21,7 @@ public class PrintEnc extends Command {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        drive.getEncoderDistanceLeft();
     }
 
     // Called every time the scheduler runs while the command is scheduled.

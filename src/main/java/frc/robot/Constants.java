@@ -78,8 +78,7 @@ public final class Constants {
             public static final double kGearBoxRatio = 1.0 / 12.75;
             public static final double kWheelDiameterInches = 8; // TODO ish
             public static final double kMetersPerInch = 1.0 / 100.0 * 2.54;
-            public static final double kMotorRotationsToMeters = kGearBoxRatio * Math.PI * kWheelDiameterInches
-                    * kMetersPerInch;
+            public static final double kMotorRotationsToMeters = kGearBoxRatio * .584 * 1.609;
             public static final double kMotorRPMToMetersPerSecond = kMotorRotationsToMeters / 60.0;
 
         }
