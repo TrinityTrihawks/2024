@@ -63,7 +63,9 @@ public final class Autos {
                 Commands.deadline(
                         new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
                         Commands.run(() -> drive.drive(0, 0), drive)),
-                shootCL(shooter, intake),
+                Commands.deadline(
+                        shootCL(shooter, intake),
+                        Commands.run(() -> drive.drive(0, 0), drive)),
                 Commands.deadline(
                         driveXMeters(drive, AutonConstants.kLEAVEDistance),
                         intake(intake)));
@@ -82,7 +84,9 @@ public final class Autos {
                 Commands.deadline(
                         new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
                         Commands.run(() -> drive.drive(0, 0), drive)),
-                shootCL(shooter, intake),
+                Commands.deadline(
+                        shootCL(shooter, intake),
+                        Commands.run(() -> drive.drive(0, 0), drive)),
                 Commands.deadline(
                         driveOutRightTimed(drive, AutonConstants.kAngledLEAVETime),
                         intake(intake)));
@@ -93,7 +97,9 @@ public final class Autos {
                 Commands.deadline(
                         new LiveDelay(Constants.AutonConstants.kAutonStartDelayKey),
                         Commands.run(() -> drive.drive(0, 0), drive)),
-                shootCL(shooter, intake),
+                Commands.deadline(
+                        shootCL(shooter, intake),
+                        Commands.run(() -> drive.drive(0, 0), drive)),
                 Commands.deadline(
                         driveOutLeftTimed(drive, AutonConstants.kAngledLEAVETime),
                         intake(intake)));
