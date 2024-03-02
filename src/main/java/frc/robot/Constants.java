@@ -34,7 +34,8 @@ public final class Constants {
     public static class AutonConstants {
         public static final double kLEAVEDistance = 1.7;
         public static final String kAutonStartDelayKey = "Auton Start Delay";
-        public static final double kAngledLEAVETime = 1.3;
+        public static final double kAngledLEAVETimeRight = 1.3;
+        public static final double kAngledLEAVETimeLeft = 2.6;
     }
 
     public static class RomiConstants {

@@ -88,7 +88,7 @@ public final class Autos {
                         shootCL(shooter, intake),
                         Commands.run(() -> drive.drive(0, 0), drive)),
                 Commands.deadline(
-                        driveOutRightTimed(drive, AutonConstants.kAngledLEAVETime),
+                        driveOutRightTimed(drive, AutonConstants.kAngledLEAVETimeRight),
                         intake(intake)));
     }
 
@@ -101,7 +101,7 @@ public final class Autos {
                         shootCL(shooter, intake),
                         Commands.run(() -> drive.drive(0, 0), drive)),
                 Commands.deadline(
-                        driveOutLeftTimed(drive, AutonConstants.kAngledLEAVETime),
+                        driveOutLeftTimed(drive, AutonConstants.kAngledLEAVETimeLeft),
                         intake(intake)));
     }
 
