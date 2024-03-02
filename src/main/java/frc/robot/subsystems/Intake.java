@@ -12,4 +12,14 @@ public interface Intake extends Subsystem {
 
     public boolean hasNote();
 
+    public Limelight getLimelight();
+
+    public interface Limelight {
+
+        public boolean hasTarget();
+
+        public double getOffAngle();
+
+    }
+
 }

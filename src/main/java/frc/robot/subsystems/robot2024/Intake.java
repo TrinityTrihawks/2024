@@ -26,6 +26,7 @@ public class Intake extends SubsystemBase implements frc.robot.subsystems.Intake
     private final Debouncer debouncer = new Debouncer(0.4, DebounceType.kBoth);
     private boolean hasNote = false;
 
+    private final Limelight limelight;
     private static Intake instance;
 
     public static Intake getInstance() {
@@ -33,6 +34,7 @@ public class Intake extends SubsystemBase implements frc.robot.subsystems.Intake
     }
 
     private Intake() {
+        limelight = Intake.Limelight.getInstance();
     }
 
     @Override
@@ -61,6 +63,33 @@ public class Intake extends SubsystemBase implements frc.robot.subsystems.Intake
     @Override
     public boolean hasNote() {
         return hasNote;
+    }
+
+    @Override
+    public frc.robot.subsystems.Intake.Limelight getLimelight() {
+        return limelight;
+    }
+
+    private static class Limelight implements frc.robot.subsystems.Intake.Limelight {
+
+        private static Limelight instance;
+
+        public static Limelight getInstance() {
+            return instance == null ? instance = new Limelight() : instance;
+        }
+
+        @Override
+        public boolean hasTarget() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'hasTarget'");
+        }
+
+        @Override
+        public double getOffAngle() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getOffAngle'");
+        }
+
     }
 
 }
