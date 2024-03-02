@@ -22,9 +22,9 @@ public class Limelight extends Command {
     private boolean hasTarget;
     private Intake intake;
 
-    DigitalInput input = new DigitalInput(0);
+    private DigitalInput input = new DigitalInput(0);
 
-    Debouncer debouncer = new Debouncer(0.1, DebounceType.kBoth);
+    private Debouncer debouncer = new Debouncer(0.1, DebounceType.kBoth);
 
     /** Creates a new Limelight. */
     public Limelight(Drive drive, Intake intake) {
