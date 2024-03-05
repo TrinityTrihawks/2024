@@ -63,7 +63,8 @@ public class Drivetrain extends SubsystemBase implements Drive {
         leftEncoder.setVelocityConversionFactor(DriveConstants.kMotorRPMToMetersPerSecond);
         rightEncoder.setVelocityConversionFactor(DriveConstants.kMotorRPMToMetersPerSecond);
 
-        drive = new DifferentialDrive(leftLeader, rightLeader);
+        drive = new DifferentialDrive(leftLeader::setVoltage, rightLeader::setVoltage);
+        drive.setMaxOutput(DriveConstants.kMaxDriveVoltage);
 
         resetEncoders();
     }
@@ -75,7 +76,9 @@ public class Drivetrain extends SubsystemBase implements Drive {
 
     @Override
     public void drive(double x, double z) {
-        drive.arcadeDrive(speedLimiter.calculate(x), -twistLimiter.calculate(z));
+        drive.arcadeDrive(
+                speedLimiter.calculate(x) * DriveConstants.kMaxDriveVoltage,
+                -twistLimiter.calculate(z) * DriveConstants.kMaxDriveVoltage);
     }
 
     @Override

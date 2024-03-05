@@ -80,6 +80,7 @@ public final class Constants {
             public static final double kFudgeFactor = 1.609;
             public static final double kMotorRotationsToMeters = kGearBoxRatio * kWheelRotationsToMeters * kFudgeFactor;
             public static final double kMotorRPMToMetersPerSecond = kMotorRotationsToMeters / 60.0;
+            public static final double kMaxDriveVoltage = 10;
 
         }
 
