@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.aouton.Autos;
 import frc.robot.commands.teleop.Teleop;
+import frc.robot.commands.test.PrintHasNote;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
@@ -113,6 +114,6 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
 
-        return autonSwitch.getSelected();
+        return new PrintHasNote(intake);
     }
 }
