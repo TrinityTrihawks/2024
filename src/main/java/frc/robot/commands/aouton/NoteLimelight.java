@@ -39,7 +39,7 @@ public class NoteLimelight extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(1);
+    NetworkTableInstance.getDefault().getTable("limelight").getEntry("intake_vision").setNumber(1);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -80,12 +80,12 @@ public class NoteLimelight extends Command {
 
         
         //if(area > 1){}
-        if ((rotSpeed < -0.1) || (rotSpeed > 0.1)) {
+       /**   if ((rotSpeed < -0.1) || (rotSpeed > 0.1)) {
           drive.drive(0 , rotSpeed);
         }else{
           drive.drive(0.3, 0);
           intake.run();
-        }
+        }*/
   }
 
   // Called once the command ends or is interrupted.
@@ -95,6 +95,6 @@ public class NoteLimelight extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return hasTarget;
+    return !hasTarget;
   }
 }
