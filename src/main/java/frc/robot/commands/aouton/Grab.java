@@ -54,7 +54,7 @@ class Grab extends Command {
         hasFoundTarget = hasFoundTarget || eyeball.hasTarget();
         currentAngle = drive.getGyroZ();
 
-        turnSpeed = currentAngle - initialAngle;
+        turnSpeed = eyeball.getOffAngle();
         turnSpeed /= LimelightConstants.kWidestDetectableNoteAngle;
         turnSpeed = Math.max(-1, Math.min(1, turnSpeed)) * turnSpeedCap;
 
