@@ -70,6 +70,9 @@ public final class Autos {
     public static Command intake(Intake intake) {
         return Commands.startEnd(() -> intake.run(), () -> intake.stop(), intake);
     }
+    public static Command limelight (Intake intake, Drive drive){
+        return new NoteLimelight(drive , intake);
+    }
 
     private Autos() {
         throw new UnsupportedOperationException("This is a utility class!");
