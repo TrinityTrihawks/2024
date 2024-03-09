@@ -94,4 +94,52 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
                 ControlType.kVelocity);
     }
 
+    @Override
+    public Limelight getLimelight() {
+        return Limelight.getInstance();
+    }
+
+    private static class Limelight implements frc.robot.subsystems.Shooter.Limelight {
+
+        private static Limelight instance;
+
+        public static Limelight getInstance() {
+            return instance == null ? instance = new Limelight() : instance;
+        }
+
+        private Limelight() {
+        }
+
+        @Override
+        public double getXOffset() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getXOffset'");
+        }
+
+        @Override
+        public double getYOffset() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getYOffset'");
+        }
+
+        @Override
+        public double getArea() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getArea'");
+        }
+
+        @Override
+        public int getTagID() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'getTagID'");
+        }
+
+        @Override
+        public boolean hasTag() {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'hasTag'");
+        }
+
+    }
+
 }

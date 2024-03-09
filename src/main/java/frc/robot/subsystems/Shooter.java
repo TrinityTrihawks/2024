@@ -16,4 +16,19 @@ public interface Shooter extends Subsystem {
 
     public void reverse();
 
+    public Limelight getLimelight();
+
+    public interface Limelight {
+
+        public double getXOffset();
+
+        public double getYOffset();
+
+        public double getArea();
+
+        public int getTagID();
+
+        public boolean hasTag();
+
+    }
 }

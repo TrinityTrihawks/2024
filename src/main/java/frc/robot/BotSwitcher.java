@@ -85,6 +85,12 @@ class DummyShooter implements frc.robot.subsystems.Shooter {
         System.out.println("dummy shooter running closed loop (amp)...");
     }
 
+    @Override
+    public Limelight getLimelight() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getLimelight'");
+    }
+
 }
 
 class DummyIntake implements frc.robot.subsystems.Intake {
