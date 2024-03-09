@@ -88,8 +88,10 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
 
     @Override
     public void runCLAmp() {
-        upperShooterMotor.set(ShooterParameters.upperAmpSpeed);
-        lowerShooterMotor.set(ShooterParameters.lowerAmpSpeed);
+        upperPID.setReference(ShooterParameters.upperAmpSpeed * ShooterConstants.kShooterWheelMaxRPM,
+                ControlType.kVelocity);
+        lowerPID.setReference(ShooterParameters.lowerAmpSpeed * ShooterConstants.kShooterWheelMaxRPM,
+                ControlType.kVelocity);
     }
 
 }
