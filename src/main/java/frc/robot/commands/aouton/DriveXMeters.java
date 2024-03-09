@@ -9,8 +9,8 @@ import frc.robot.subsystems.Drive;
 
 class DriveXMeters extends Command {
 
-    private double startDistance;
     private Drive drive;
+    private double startDistance;
     private double meters;
 
     public DriveXMeters(Drive drive, double meters) {
