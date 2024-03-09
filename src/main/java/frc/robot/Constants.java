@@ -27,7 +27,7 @@ public final class Constants {
         public static final boolean kSquareForwardInput = false;
         public static final boolean kSquareTwistInput = false;
 
-        public static final double kForwardThrottle = .6;
+        public static final double kForwardThrottle = .7;
         public static final double kTwistThrottle = .5;
     }
 
@@ -92,7 +92,7 @@ public final class Constants {
             public static final double kFeederSpeed = .5;
             public static final double kUpperShooterSpeed = 1;
             public static final double kLowerShooterSpeed = 1;
-            public static final double kShooterWarmupTime = .5; // seconds
+            public static final double kShooterWarmupTime = .55; // seconds
             public static final double kUpperShooterReverseSpeed = .4;
             public static final double kLowerShooterReverseSpeed = .4;
             public static final double kUpperAmpSpeed = .3;
@@ -102,11 +102,11 @@ public final class Constants {
 
             public static final double kUP = 2e-5;
             public static final double kUI = 0;
-            public static final double kUFF = 1.89e-4;
+            public static final double kUFF = 1.92e-4;
 
             public static final double kLP = 2e-5;
             public static final double kLI = 0;
-            public static final double kLFF = 1.89e-4;
+            public static final double kLFF = 1.92e-4;
 
         }
 
