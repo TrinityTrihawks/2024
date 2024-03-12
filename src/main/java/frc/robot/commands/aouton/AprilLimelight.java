@@ -12,6 +12,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.Robot2024Constants.ShooterConstants;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
 
@@ -37,13 +38,14 @@ public class AprilLimelight extends Command {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        NetworkTableInstance.getDefault().getTable("limelight").getEntry("AprilTags").setNumber(0);
+        NetworkTableInstance.getDefault().getTable(ShooterConstants.kLimelightNostname).getEntry("AprilTags")
+                .setNumber(0);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+        NetworkTable table = NetworkTableInstance.getDefault().getTable(ShooterConstants.kLimelightNostname);
         NetworkTableEntry tx = table.getEntry("tx");
         NetworkTableEntry ty = table.getEntry("ty");
         NetworkTableEntry ta = table.getEntry("ta");
