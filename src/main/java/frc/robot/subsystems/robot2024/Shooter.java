@@ -7,10 +7,17 @@ package frc.robot.subsystems.robot2024;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkPIDController;
+
+import java.util.NoSuchElementException;
+
 import com.revrobotics.CANSparkBase.ControlType;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.LimelightHelpers;
 import frc.robot.Constants.Robot2024Constants.ShooterConstants;
+import frc.robot.LimelightHelpers.LimelightTarget_Fiducial;
 import frc.robot.Parameters.Robot2024Parameters.ShooterParameters;
 
 public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shooter {
@@ -53,7 +60,7 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-
+        getLimelight().periodic();
     }
 
     public void run() {
@@ -107,37 +114,83 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
             return instance == null ? instance = new Limelight() : instance;
         }
 
+        private LimelightTarget_Fiducial curTarget = null;
+
+        public void periodic() {
+            updateTargeting();
+        }
+
+        private void updateTargeting() {
+            LimelightTarget_Fiducial[] targets = LimelightHelpers
+                    .getLatestResults(ShooterConstants.kLimelightNostname).targetingResults.targets_Fiducials;
+
+            for (LimelightTarget_Fiducial target : targets) {
+
+                curTarget = target;
+                if (hasTarget()) {
+                    return;
+                }
+            }
+
+            curTarget = null;
+
+        }
+
         private Limelight() {
         }
 
         @Override
         public double getXOffset() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getXOffset'");
+            if (curTarget == null) {
+                DriverStation.reportWarning("shooter vision target x queried, but no target is present", false);
+                return 0;
+            }
+
+            return curTarget.tx;
         }
 
         @Override
         public double getYOffset() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getYOffset'");
+            if (curTarget == null) {
+                DriverStation.reportWarning("shooter vision target y queried, but no target is present", false);
+                return 0;
+            }
+            return curTarget.ty;
         }
 
         @Override
         public double getArea() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getArea'");
+            if (curTarget == null) {
+                DriverStation.reportWarning("shooter vision target area queried, but no target is present", false);
+                return 0;
+            }
+            return curTarget.ta;
         }
 
         @Override
-        public int getTagID() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getTagID'");
-        }
+        public boolean hasTarget() {
 
-        @Override
-        public boolean hasTag() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'hasTag'");
+            if (curTarget == null) {
+                return false;
+            }
+
+            Alliance alliance;
+            try {
+                alliance = DriverStation.getAlliance().get();
+            } catch (NoSuchElementException nsee) {
+                DriverStation.reportError(nsee.toString(), true);
+                return false;
+            }
+            switch (alliance) {
+                case Blue:
+                    return curTarget.fiducialID == ShooterConstants.kBlueTargetID;
+                case Red:
+                    return curTarget.fiducialID == ShooterConstants.kRedTargetID;
+
+                default:
+                    DriverStation.reportError("bad alliance color", true);
+                    return false;
+            }
         }
 
     }

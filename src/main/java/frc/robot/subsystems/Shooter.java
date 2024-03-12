@@ -26,9 +26,7 @@ public interface Shooter extends Subsystem {
 
         public double getArea();
 
-        public int getTagID();
-
-        public boolean hasTag();
+        public boolean hasTarget();
 
     }
 }

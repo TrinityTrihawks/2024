@@ -4,23 +4,17 @@
 
 package frc.robot.commands.aouton;
 
-import java.util.NoSuchElementException;
-
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Shooter;
 
-public class AimForSpkr extends Command {
+class AimForSpkr extends Command {
 
     private final Drive drive;
     private final Shooter.Limelight eye;
-    private final double forwardSpeedCap = .5;
-    private final double turnSpeedCap = .5;
+    private final double forwardSpeedCap = .3;
+    private final double turnSpeedCap = .4;
     private final double targetArea = 20;
-    private final int redTag = 4;
-    private final int blueTag = 7;
 
     /** Creates a new AimForSpkr. */
     public AimForSpkr(Drive d, Shooter.Limelight l) {
@@ -37,7 +31,7 @@ public class AimForSpkr extends Command {
     @Override
     public void execute() {
 
-        if (hasCorrectTag()) {
+        if (eye.hasTarget()) {
             driveAtTarget();
 
         } else {
@@ -46,40 +40,19 @@ public class AimForSpkr extends Command {
 
     }
 
-    private boolean hasCorrectTag() {
-        return eye.hasTag() && tagMatchesDS();
-    }
-
-    private boolean tagMatchesDS() {
-        Alliance alliance;
-        try {
-            alliance = DriverStation.getAlliance().get();
-        } catch (NoSuchElementException nsee) {
-            DriverStation.reportError(nsee.toString(), true);
-            return false;
-        }
-        switch (alliance) {
-            case Blue:
-                return eye.getTagID() == blueTag;
-            case Red:
-                return eye.getTagID() == redTag;
-
-            default:
-                DriverStation.reportError("bad alliance color", true);
-                return false;
-        }
-
-    }
-
     private void driveAtTarget() {
 
-        double turnSpeed = eye.getXOffset();
+        double turnSpeed = eye.getXOffset() / 15;
         turnSpeed *= turnSpeedCap;
 
-        double forwardSpeed = Math.max(targetArea - eye.getArea(), .2);
-        forwardSpeed *= -1 * forwardSpeedCap;
+        double forwardSpeed = Math.max(
+                // normalize area difference
+                (targetArea - eye.getArea()) / targetArea
+                        * forwardSpeedCap,
+                .2);
+        forwardSpeed *= -1;
 
-        drive.drive(forwardSpeed, turnSpeed);
+        drive.drive(forwardSpeedCap, turnSpeed);
     }
 
     // Called once the command ends or is interrupted.

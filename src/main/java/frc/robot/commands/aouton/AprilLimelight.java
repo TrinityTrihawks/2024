@@ -6,9 +6,6 @@ package frc.robot.commands.aouton;
 
 import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.math.filter.Debouncer.DebounceType;
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -21,7 +18,6 @@ import frc.robot.subsystems.Intake;
 public class AprilLimelight extends Command {
 
     private Drive drive;
-    private double area;
     private boolean hasTarget;
     private final Intake intake;
 

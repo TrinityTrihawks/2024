@@ -114,6 +114,6 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
 
         // return autonSwitch.getSelected();
-        return Autos.followApriltag(intake, drive);
+        return Autos.shootCLVision(frc.robot.subsystems.robot2024.Shooter.getInstance(), intake, drive);
     }
 }

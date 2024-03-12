@@ -103,6 +103,12 @@ public final class Autos {
         return Commands.startEnd(() -> intake.run(), () -> intake.stop(), intake);
     }
 
+    public static Command shootCLVision(Shooter shooter, Intake intake, Drive drive) {
+        return Commands.deadline(
+                shootCL(shooter, intake),
+                new AimForSpkr(drive, shooter.getLimelight()));
+    }
+
     public static Command followApriltag(Intake intake, Drive drive) {
         return new AprilLimelight(drive, intake);
     }
