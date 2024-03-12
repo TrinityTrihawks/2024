@@ -95,6 +95,8 @@ public final class Constants {
             public static final double kUpperShooterReverseSpeed = .4;
             public static final double kLowerShooterReverseSpeed = .4;
 
+            public static final String kLimelightNostname = "limelight-shooter";
+
         }
 
         public static class IntakeConstants {
@@ -107,6 +109,5 @@ public final class Constants {
             public static final int kLowerIntakeReverseSpeed = 1;
 
         }
-
     }
 }
