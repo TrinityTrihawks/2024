@@ -102,8 +102,9 @@ public final class Autos {
     public static Command intake(Intake intake) {
         return Commands.startEnd(() -> intake.run(), () -> intake.stop(), intake);
     }
-    public static Command limelight (Intake intake, Drive drive){
-        return new NoteLimelight(drive , intake);
+
+    public static Command followApriltag(Intake intake, Drive drive) {
+        return new AprilLimelight(drive, intake);
     }
 
     private static Command driveOutRightTimed(Drive drive, double time) {
