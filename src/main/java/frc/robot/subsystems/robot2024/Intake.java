@@ -10,6 +10,9 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Relay.Direction;
+import edu.wpi.first.wpilibj.Relay.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.Robot2024Constants.IntakeConstants;
 
@@ -24,6 +27,7 @@ public class Intake extends SubsystemBase implements frc.robot.subsystems.Intake
 
     private final DigitalInput noteSwitch = new DigitalInput(IntakeConstants.kNoteSwitchID);
     private final Debouncer debouncer = new Debouncer(0.2, DebounceType.kBoth);
+    private final Relay leds = new Relay(0, Direction.kForward);
     private boolean hasNote = false;
 
     private static Intake instance;
@@ -38,6 +42,11 @@ public class Intake extends SubsystemBase implements frc.robot.subsystems.Intake
     @Override
     public void periodic() {
         hasNote = !debouncer.calculate(noteSwitch.get());
+        if (hasNote) {
+            leds.set(Value.kForward);
+        } else {
+            leds.set(Value.kOff);
+        }
     }
 
     @Override
