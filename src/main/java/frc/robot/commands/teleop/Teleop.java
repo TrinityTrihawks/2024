@@ -2,7 +2,6 @@ package frc.robot.commands.teleop;
 
 import java.util.function.DoubleSupplier;
 
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -61,19 +60,22 @@ public class Teleop {
         return Commands.runOnce(() -> shooter.run(), shooter);
     }
 
-    public static Command runIntake(Intake intake, CommandXboxController ctlr) {
+    public static Command runIntake(Intake intake, CommandXboxController subsysctlr, CommandXboxController drivectlr) {
         return new FunctionalCommand(
                 () -> intake.run(),
                 () -> {
                     if (intake.hasNote()) {
-                        ctlr.getHID().setRumble(RumbleType.kBothRumble, 1);
+                        subsysctlr.getHID().setRumble(RumbleType.kBothRumble, 1);
+                        drivectlr.getHID().setRumble(RumbleType.kBothRumble, 1);
                     } else {
-                        ctlr.getHID().setRumble(RumbleType.kBothRumble, 0);
+                        subsysctlr.getHID().setRumble(RumbleType.kBothRumble, 0);
+                        drivectlr.getHID().setRumble(RumbleType.kBothRumble, 0);
                     }
                 },
                 (b) -> {
                     intake.stop();
-                    ctlr.getHID().setRumble(RumbleType.kBothRumble, 0);
+                    subsysctlr.getHID().setRumble(RumbleType.kBothRumble, 0);
+                    drivectlr.getHID().setRumble(RumbleType.kBothRumble, 0);
                 },
                 () -> false,
                 intake);
