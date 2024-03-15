@@ -37,7 +37,7 @@ public class Intake extends SubsystemBase implements frc.robot.subsystems.Intake
 
     @Override
     public void periodic() {
-        hasNote = debouncer.calculate(noteSwitch.get());
+        hasNote = !debouncer.calculate(noteSwitch.get());
     }
 
     @Override
