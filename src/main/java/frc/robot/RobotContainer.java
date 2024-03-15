@@ -114,6 +114,6 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
 
-        return new PrintHasNote(intake);
+        return new PrintHasNote(frc.robot.subsystems.robot2024.Intake.getInstance());
     }
 }

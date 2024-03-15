@@ -23,7 +23,7 @@ public class Intake extends SubsystemBase implements frc.robot.subsystems.Intake
             MotorType.kBrushless);
 
     private final DigitalInput noteSwitch = new DigitalInput(IntakeConstants.kNoteSwitchID);
-    private final Debouncer debouncer = new Debouncer(0.4, DebounceType.kBoth);
+    private final Debouncer debouncer = new Debouncer(0.2, DebounceType.kBoth);
     private boolean hasNote = false;
 
     private static Intake instance;
