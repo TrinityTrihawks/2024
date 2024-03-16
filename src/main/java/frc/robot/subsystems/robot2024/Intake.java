@@ -27,7 +27,7 @@ public class Intake extends SubsystemBase implements frc.robot.subsystems.Intake
 
     private final DigitalInput noteSwitch = new DigitalInput(IntakeConstants.kNoteSwitchID);
     private final Debouncer debouncer = new Debouncer(0.2, DebounceType.kBoth);
-    private final Relay leds = new Relay(0, Direction.kForward);
+    private final Relay leds = new Relay(3, Direction.kForward);
     private boolean hasNote = false;
 
     private static Intake instance;
