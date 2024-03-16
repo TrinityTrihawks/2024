@@ -1,6 +1,8 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Intake.Limelight;
 
 public final class BotSwitcher {
 
@@ -108,6 +110,33 @@ class DummyIntake implements frc.robot.subsystems.Intake {
     @Override
     public void reverse() {
         System.out.println("dummy intake reversing...");
+    }
+
+    @Override
+    public boolean hasNote() {
+        DriverStation.reportWarning("dummy intake says it doesnt have a note!", false);
+        return false;
+    }
+
+    @Override
+    public Limelight getLimelight() {
+        return new DummyLimelight();
+    }
+
+}
+
+class DummyLimelight implements Limelight {
+
+    @Override
+    public boolean hasTarget() {
+        DriverStation.reportWarning("dummy intake limelight says it can't see a note!", false);
+        return false;
+    }
+
+    @Override
+    public double getOffAngle() {
+        DriverStation.reportWarning("dummy intake limelight reports 0 off angle!", false);
+        return 0;
     }
 
 }

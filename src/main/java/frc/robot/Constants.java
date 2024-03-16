@@ -121,7 +121,12 @@ public final class Constants {
             public static final double kLowerIntakeSpeed = 1;
             public static final int kUpperIntakeReverseSpeed = 1;
             public static final int kLowerIntakeReverseSpeed = 1;
+            public static final int kNoteSwitchID = 0;
 
+            public static class LimelightConstants {
+
+                public static final double kWidestDetectableNoteAngle = 35;
+            }
         }
     }
 }
