@@ -4,33 +4,31 @@
 
 package frc.robot.commands.aouton;
 
+import java.util.NoSuchElementException;
+
 import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.math.filter.Debouncer.DebounceType;
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.LimelightHelpers;
 import frc.robot.Constants.Robot2024Constants.ShooterConstants;
 import frc.robot.LimelightHelpers.LimelightTarget_Fiducial;
 import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.Intake;
 
-public class AprilLimelight extends Command {
+class AprilLimelight extends Command {
 
     private Drive drive;
     private boolean hasTarget;
-    private final Intake intake;
-
-    DigitalInput input = new DigitalInput(0);
+    private LimelightTarget_Fiducial curTarget;
 
     Debouncer debouncer = new Debouncer(0.1, DebounceType.kBoth);
 
     /** Creates a new Limelight. */
-    public AprilLimelight(Drive drive, Intake intake) {
+    public AprilLimelight(Drive drive) {
         this.drive = drive;
-        this.intake = intake;
         addRequirements(drive);
-        addRequirements(intake);
     }
 
     // Called when the command is initially scheduled.
@@ -44,34 +42,26 @@ public class AprilLimelight extends Command {
     @Override
     public void execute() {
 
-        double x, y, area;
-        x = y = area = Double.NaN;
+        double x, area;
+        x = area = Double.NaN;
         int id = -1;
         boolean rawHasTarget = false;
 
-        LimelightTarget_Fiducial[] tags = LimelightHelpers
-                .getLatestResults(ShooterConstants.kLimelightNostname).targetingResults.targets_Fiducials;
+        updateTargeting();
 
-        for (LimelightTarget_Fiducial tag : tags) {
-            if (tag.fiducialID == 5) {
-                x = tag.tx;
-                y = tag.ty;
-                area = tag.ta;
-                id = (int) tag.fiducialID;
-                rawHasTarget = true;
-            } else {
-                x = y = area = Double.NaN;
-                id = -1;
-                rawHasTarget = false;
-            }
+        if (curTarget != null) {
+            x = curTarget.tx;
+            area = curTarget.ta;
+            id = (int) curTarget.fiducialID;
+            rawHasTarget = true;
         }
         hasTarget = debouncer.calculate(rawHasTarget);
 
         SmartDashboard.putNumber("LimelightX", x);
-        SmartDashboard.putNumber("LimelightY", y);
         SmartDashboard.putNumber("LimelightArea", area);
         SmartDashboard.putNumber("id", id);
         SmartDashboard.putBoolean("has target", hasTarget);
+        SmartDashboard.putString("ls json", LimelightHelpers.getJSONDump("limelight-shooter"));
 
         // double fwdSpeed = (10 - area) / 21;
         double rotSpeed = x / 50;
@@ -79,18 +69,60 @@ public class AprilLimelight extends Command {
         SmartDashboard.putNumber("rotSpeed", rotSpeed);
         // SmartDashboard.putNumber("fwdSpeed", fwdSpeed);
 
-        if (hasTarget) {
+        if (targetIsCorrect()) {
+
             if ((rotSpeed < -0.1) || (rotSpeed > 0.1)) {
                 // lower limit
                 rotSpeed = Math.signum(rotSpeed) * Math.max(0.3, Math.abs(rotSpeed));
                 drive.drive(0, rotSpeed);
             } else {
-                drive.drive(0.5, 0);
-                intake.run();
+                drive.drive(0.3, 0);
             }
         } else {
-            drive.drive(0, 0);
+            drive.drive(0.3, 0);
         }
+    }
+
+    private boolean targetIsCorrect() {
+
+        if (curTarget == null) {
+            return false;
+        }
+
+        Alliance alliance;
+        try {
+            alliance = DriverStation.getAlliance().get();
+        } catch (NoSuchElementException nsee) {
+            DriverStation.reportError(nsee.toString(), true);
+            return false;
+        }
+        switch (alliance) {
+            case Blue:
+                return curTarget.fiducialID == ShooterConstants.kBlueTargetID;
+            case Red:
+                return curTarget.fiducialID == ShooterConstants.kRedTargetID;
+
+            default:
+                DriverStation.reportError("bad alliance color " + alliance, true);
+                return false;
+        }
+    }
+
+    private void updateTargeting() {
+
+        LimelightTarget_Fiducial[] targets = LimelightHelpers
+                .getLatestResults(ShooterConstants.kLimelightNostname).targetingResults.targets_Fiducials;
+
+        for (LimelightTarget_Fiducial target : targets) {
+
+            curTarget = target;
+            if (targetIsCorrect()) {
+                return;
+            }
+        }
+
+        curTarget = null;
+
     }
 
     // Called once the command ends or is interrupted.

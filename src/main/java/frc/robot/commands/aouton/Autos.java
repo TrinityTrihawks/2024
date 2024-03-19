@@ -106,11 +106,15 @@ public final class Autos {
     public static Command shootCLVision(Shooter shooter, Intake intake, Drive drive) {
         return Commands.deadline(
                 shootCL(shooter, intake),
-                new AimForSpkr(drive, shooter.getLimelight()));
+                followApriltag(drive));
     }
 
-    public static Command followApriltag(Intake intake, Drive drive) {
-        return new AprilLimelight(drive, intake);
+    public static Command followApriltag(Drive drive) {
+        return new AprilLimelight(drive);
+    }
+
+    public static Command followNote(Drive drive) {
+        return new NoteLimelight(drive);
     }
 
     private static Command driveOutRightTimed(Drive drive, double time) {
