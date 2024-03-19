@@ -103,10 +103,22 @@ public final class Autos {
         return Commands.startEnd(() -> intake.run(), () -> intake.stop(), intake);
     }
 
+    public static Command intakeOne(Intake intake) {
+        return Commands.deadline(
+                Commands.waitUntil(intake::hasNote),
+                intake(intake));
+    }
+
     public static Command shootCLVision(Shooter shooter, Intake intake, Drive drive) {
         return Commands.deadline(
                 shootCL(shooter, intake),
                 followApriltag(drive));
+    }
+
+    public static Command grabNote(Drive drive, Intake intake) {
+        return Commands.deadline(
+                intakeOne(intake),
+                followNote(drive));
     }
 
     public static Command followApriltag(Drive drive) {
