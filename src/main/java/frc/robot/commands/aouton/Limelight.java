@@ -36,13 +36,13 @@ public class Limelight extends Command {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        NetworkTableInstance.getDefault().getTable("limelight").getEntry("pipeline").setNumber(1);
+        NetworkTableInstance.getDefault().getTable("limelight-intake").getEntry("pipeline").setNumber(0);
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+        NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-intake");
         NetworkTableEntry tx = table.getEntry("tx");
         NetworkTableEntry ty = table.getEntry("ty");
         NetworkTableEntry ta = table.getEntry("ta");
@@ -53,13 +53,13 @@ public class Limelight extends Command {
         double y = ty.getDouble(0.0);
         area = ta.getDouble(0.0);
         double id = tid.getDouble(0.0);
-
+        boolean rawHasTarget;
         if (area != 0) {
-            hasTarget = true;
+            rawHasTarget = true;
         } else {
-            hasTarget = false;
+            rawHasTarget = false;
         }
-        debouncer.calculate(hasTarget);
+        hasTarget = debouncer.calculate(rawHasTarget);
 
         SmartDashboard.putNumber("LimelightX", x);
         SmartDashboard.putNumber("LimelightY", y);
@@ -77,7 +77,6 @@ public class Limelight extends Command {
             drive.drive(0, rotSpeed);
         } else {
             drive.drive(0.3, 0);
-            intake.run();
         }
     }
 
