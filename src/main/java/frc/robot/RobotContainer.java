@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.aouton.Autos;
+import frc.robot.commands.aouton.Limelight;
 import frc.robot.commands.teleop.Teleop;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
@@ -114,6 +115,6 @@ public class RobotContainer {
     public Command getAutonomousCommand() {
 
         // return autonSwitch.getSelected();
-        return Autos.shootCLVision(frc.robot.subsystems.robot2024.Shooter.getInstance(), intake, drive);
+        return new Limelight(drive, intake);
     }
 }

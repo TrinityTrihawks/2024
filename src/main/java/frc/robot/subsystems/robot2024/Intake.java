@@ -85,7 +85,7 @@ public class Intake extends SubsystemBase implements frc.robot.subsystems.Intake
         }
 
         @Override
-        public double getOffAngle() {
+        public double getXOffset() {
             // TODO Auto-generated method stub
             throw new UnsupportedOperationException("Unimplemented method 'getOffAngle'");
         }

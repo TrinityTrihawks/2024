@@ -18,7 +18,7 @@ public interface Intake extends Subsystem {
 
         public boolean hasTarget();
 
-        public double getOffAngle();
+        public double getXOffset();
 
     }
 

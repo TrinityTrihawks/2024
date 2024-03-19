@@ -134,7 +134,7 @@ class DummyLimelight implements Limelight {
     }
 
     @Override
-    public double getOffAngle() {
+    public double getXOffset() {
         DriverStation.reportWarning("dummy intake limelight reports 0 off angle!", false);
         return 0;
     }
