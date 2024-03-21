@@ -80,7 +80,9 @@ public class RobotContainer {
 
         subsysController.x().onTrue(Teleop.pushToShootCL(shooter, intake));
         subsysController.y().onTrue(Teleop.pushToShootCLAmp(shooter, intake));
-        subsysController.a().whileTrue(Teleop.runIntake(intake));
+        subsysController.a()
+                .whileTrue(Teleop.runIntake(frc.robot.subsystems.robot2024.Intake.getInstance(), subsysController,
+                        driverController));
         subsysController.b().whileTrue(Teleop.runReverseIntakeAndShooter(intake, shooter));
     }
 
@@ -113,7 +115,6 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
 
-        // return autonSwitch.getSelected();
-        return Autos.followNote(drive);
+        return autonSwitch.getSelected();
     }
 }
