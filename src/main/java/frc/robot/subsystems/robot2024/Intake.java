@@ -7,6 +7,9 @@ package frc.robot.subsystems.robot2024;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.math.filter.Debouncer;
+import edu.wpi.first.math.filter.Debouncer.DebounceType;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.Robot2024Constants.IntakeConstants;
 
@@ -19,6 +22,10 @@ public class Intake extends SubsystemBase implements frc.robot.subsystems.Intake
             IntakeConstants.kLowerIntakeId,
             MotorType.kBrushless);
 
+    private final DigitalInput noteSwitch = new DigitalInput(IntakeConstants.kNoteSwitchID);
+    private final Debouncer debouncer = new Debouncer(0.4, DebounceType.kBoth);
+    private boolean hasNote = false;
+
     private static Intake instance;
 
     public static Intake getInstance() {
@@ -30,14 +37,16 @@ public class Intake extends SubsystemBase implements frc.robot.subsystems.Intake
 
     @Override
     public void periodic() {
-        // This method will be called once per scheduler run
+        hasNote = debouncer.calculate(noteSwitch.get());
     }
 
+    @Override
     public void run() {
         upperIntakeMotor.set(IntakeConstants.kUpperIntakeSpeed);
         lowerIntakeMotor.set(IntakeConstants.kLowerIntakeSpeed);
     }
 
+    @Override
     public void stop() {
         upperIntakeMotor.set(0);
         lowerIntakeMotor.set(0);
@@ -47,6 +56,11 @@ public class Intake extends SubsystemBase implements frc.robot.subsystems.Intake
     public void reverse() {
         upperIntakeMotor.set(-IntakeConstants.kUpperIntakeReverseSpeed);
         lowerIntakeMotor.set(-IntakeConstants.kLowerIntakeReverseSpeed);
+    }
+
+    @Override
+    public boolean hasNote() {
+        return hasNote;
     }
 
 }

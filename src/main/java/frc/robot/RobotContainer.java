@@ -113,6 +113,7 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
 
-        return autonSwitch.getSelected();
+        // return autonSwitch.getSelected();
+        return Autos.followNote(drive);
     }
 }

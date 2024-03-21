@@ -10,4 +10,6 @@ public interface Intake extends Subsystem {
 
     public void reverse();
 
+    public boolean hasNote();
+
 }

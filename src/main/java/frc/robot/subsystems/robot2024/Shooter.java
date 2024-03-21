@@ -7,6 +7,7 @@ package frc.robot.subsystems.robot2024;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkPIDController;
+
 import com.revrobotics.CANSparkBase.ControlType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -53,7 +54,6 @@ public class Shooter extends SubsystemBase implements frc.robot.subsystems.Shoot
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-
     }
 
     public void run() {

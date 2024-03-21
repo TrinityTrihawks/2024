@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import frc.robot.subsystems.Drive;
 
 public final class BotSwitcher {
@@ -102,6 +103,12 @@ class DummyIntake implements frc.robot.subsystems.Intake {
     @Override
     public void reverse() {
         System.out.println("dummy intake reversing...");
+    }
+
+    @Override
+    public boolean hasNote() {
+        DriverStation.reportWarning("dummy intake says it doesnt have a note!", false);
+        return false;
     }
 
 }
