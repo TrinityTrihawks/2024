@@ -16,6 +16,8 @@ class ArcadeDrive extends Command {
     private final DoubleSupplier x;
     private final DoubleSupplier z;
 
+    private double twistRange;
+
     public ArcadeDrive(Drive d, DoubleSupplier forward, DoubleSupplier twist) {
         addRequirements(drive = d);
         x = OperatorParameters.squareForwardInput ? () -> {
@@ -36,9 +38,11 @@ class ArcadeDrive extends Command {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        drive.drive(
-                x.getAsDouble() * OperatorParameters.forwardThrottle,
-                z.getAsDouble() * OperatorParameters.twistThrottle);
+        twistRange = OperatorParameters.staticTwistThrottle - OperatorParameters.twistThrottle;
+        double xspeed = x.getAsDouble() * OperatorParameters.forwardThrottle;
+        double zspeed = z.getAsDouble()
+                * (OperatorParameters.staticTwistThrottle - xspeed / OperatorParameters.forwardThrottle * twistRange);
+        drive.drive(xspeed, zspeed);
     }
 
     // Called once the command ends or is interrupted.

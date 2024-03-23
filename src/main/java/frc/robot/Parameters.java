@@ -28,6 +28,7 @@ public class Parameters {
             SmartDashboard.putBoolean("squareTwistInput", squareTwistInput);
             SmartDashboard.putNumber("forwardThrottle", forwardThrottle);
             SmartDashboard.putNumber("twistThrottle", twistThrottle);
+            SmartDashboard.putNumber("staticTwistThrottle", staticTwistThrottle);
 
         }
 
@@ -37,17 +38,20 @@ public class Parameters {
             squareTwistInput = SmartDashboard.getBoolean("squareTwistInput", squareTwistInput);
             forwardThrottle = SmartDashboard.getNumber("forwardThrottle", forwardThrottle);
             twistThrottle = SmartDashboard.getNumber("twistThrottle", twistThrottle);
+            staticTwistThrottle = SmartDashboard.getNumber("staticTwistThrottle", staticTwistThrottle);
 
             SmartDashboard.putBoolean("echo: squareForwardInput", squareForwardInput);
             SmartDashboard.putBoolean("echo: squareTwistInput", squareTwistInput);
             SmartDashboard.putNumber("echo: forwardThrottle", forwardThrottle);
             SmartDashboard.putNumber("echo: twistThrottle", twistThrottle);
+            SmartDashboard.putNumber("echo: staticTwistThrottle", staticTwistThrottle);
         }
 
         public static boolean squareForwardInput = OperatorConstants.kSquareForwardInput;
         public static boolean squareTwistInput = OperatorConstants.kSquareTwistInput;
 
         public static double forwardThrottle = OperatorConstants.kForwardThrottle;
+        public static double staticTwistThrottle = OperatorConstants.kStaticTwistThrottle;
         public static double twistThrottle = OperatorConstants.kTwistThrottle;
     }
 

@@ -29,6 +29,7 @@ public final class Constants {
 
         public static final double kForwardThrottle = .7;
         public static final double kTwistThrottle = .5;
+        public static final double kStaticTwistThrottle = .7;
     }
 
     public static class AutonConstants {
