@@ -85,7 +85,8 @@ public final class Autos {
                 shootCL(shooter, intake),
                 Commands.deadline(
                         driveOutRightTimed(drive, AutonConstants.kAngledLEAVETime),
-                        intake(intake)));
+                        intake(intake)),
+                grabNote(drive, intake));
     }
 
     public static Command l1(Shooter shooter, Intake intake, Drive drive) {
@@ -96,7 +97,8 @@ public final class Autos {
                 shootCL(shooter, intake),
                 Commands.deadline(
                         driveOutLeftTimed(drive, AutonConstants.kAngledLEAVETime),
-                        intake(intake)));
+                        intake(intake)),
+                grabNote(drive, intake));
     }
 
     public static Command intake(Intake intake) {

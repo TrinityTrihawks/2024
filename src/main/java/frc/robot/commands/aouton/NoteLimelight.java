@@ -70,9 +70,9 @@ class NoteLimelight extends Command {
 
         // if(area > 1){}
         if ((rotSpeed < -0.1) || (rotSpeed > 0.1)) {
-            drive.drive(0.3, rotSpeed);
+            drive.drive(0.5, rotSpeed);
         } else {
-            drive.drive(0.3, 0);
+            drive.drive(0.5, 0);
         }
     }
 
