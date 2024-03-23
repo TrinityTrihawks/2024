@@ -28,8 +28,8 @@ public final class Constants {
         public static final boolean kSquareTwistInput = false;
 
         public static final double kForwardThrottle = .7;
-        public static final double kTwistThrottle = .5;
-        public static final double kStaticTwistThrottle = .7;
+        public static final double kTwistThrottle = .4;
+        public static final double kStaticTwistThrottle = .6;
     }
 
     public static class AutonConstants {
