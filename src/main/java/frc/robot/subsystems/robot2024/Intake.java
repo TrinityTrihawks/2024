@@ -37,6 +37,8 @@ public class Intake extends SubsystemBase implements frc.robot.subsystems.Intake
     }
 
     private Intake() {
+        lowerIntakeMotor.setInverted(false);
+        upperIntakeMotor.setInverted(true);
     }
 
     @Override
