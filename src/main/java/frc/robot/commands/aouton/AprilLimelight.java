@@ -69,10 +69,10 @@ class AprilLimelight extends Command {
         SmartDashboard.putNumber("rotSpeed", rotSpeed);
         // SmartDashboard.putNumber("fwdSpeed", fwdSpeed);
 
-        if ((rotSpeed < -0.1) || (rotSpeed > 0.1) && hasTarget) {
+        if (hasTarget) {
             // lower limit
             rotSpeed = Math.signum(rotSpeed) * Math.max(0.3, Math.abs(rotSpeed));
-            drive.drive(0, rotSpeed);
+            drive.drive(0.3, rotSpeed);
         } else {
             drive.drive(-0.3, 0);
         }
