@@ -43,11 +43,6 @@ class NoteLimelight extends Command {
         double x = tx.getDouble(0.0);
         area = ta.getDouble(0.0);
 
-        var targetarr = LimelightHelpers.getLatestResults("limelight-intake").targetingResults.targets_Detector;
-        if (targetarr.length > 0) {
-            x = targetarr[0].tx;
-        }
-
         boolean rawHasTarget;
         if ((int) area != 0) {
             rawHasTarget = true;
@@ -69,7 +64,7 @@ class NoteLimelight extends Command {
         // SmartDashboard.putNumber("fwdSpeed", fwdSpeed);
 
         // if(area > 1){}
-        if ((rotSpeed < -0.1) || (rotSpeed > 0.1)) {
+        if (hasTarget) {
             drive.drive(0.3, rotSpeed);
         } else {
             drive.drive(0.3, 0);
