@@ -69,7 +69,7 @@ class NoteLimelight extends Command {
         // SmartDashboard.putNumber("fwdSpeed", fwdSpeed);
 
         // if(area > 1){}
-        if ((rotSpeed < -0.1) || (rotSpeed > 0.1)) {
+        if (hasTarget) {
             drive.drive(0.5, rotSpeed);
         } else {
             drive.drive(0.5, 0);
