@@ -116,6 +116,6 @@ public class RobotContainer {
      */
     public Command getAutonomousCommand() {
 
-        return Autos.grabNote(drive, intake);
+        return autonSwitch.getSelected();
     }
 }

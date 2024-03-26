@@ -43,11 +43,6 @@ class NoteLimelight extends Command {
         double x = tx.getDouble(0.0);
         area = ta.getDouble(0.0);
 
-        var targetarr = LimelightHelpers.getLatestResults("limelight-intake").targetingResults.targets_Detector;
-        if (targetarr.length > 0) {
-            x = targetarr[0].tx;
-        }
-
         boolean rawHasTarget;
         if ((int) area != 0) {
             rawHasTarget = true;
@@ -74,6 +69,7 @@ class NoteLimelight extends Command {
         } else {
             drive.drive(0.5, 0);
         }
+
     }
 
     // Called once the command ends or is interrupted.
