@@ -52,6 +52,19 @@ public final class BotSwitcher {
         }
     }
 
+    /**
+     * Returns a climber for the current robot. Returns a no-op dummy
+     * if the current robot is not Tritone
+     */
+    public static frc.robot.subsystems.Climber getClimber() {
+        switch (Robot.getRuntimeType()) {
+            case kRoboRIO2:
+                return frc.robot.subsystems.robot2024.Climber.getInstance();
+
+            default:
+                return new DummyClimber();
+        }
+    }
 }
 
 class DummyShooter implements frc.robot.subsystems.Shooter {
@@ -111,4 +124,25 @@ class DummyIntake implements frc.robot.subsystems.Intake {
         return false;
     }
 
+}
+
+/**
+ * DummyClimber
+ */
+class DummyClimber implements frc.robot.subsystems.Climber {
+
+    @Override
+    public void extend() {
+        System.out.println("dummy climber extending");
+    }
+
+    @Override
+    public void retract() {
+        System.out.println("dummy climber retracting");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("dummy climber stopping");
+    }
 }
