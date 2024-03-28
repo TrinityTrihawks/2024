@@ -104,6 +104,7 @@ public class RobotContainer {
         autonSwitch.addOption(
                 "(7 pts) leave left and score a note",
                 Autos.l1(shooter, intake, drive));
+        autonSwitch.addOption("(TEST ONLY) shootCLVision", Autos.shootCLVision(shooter, intake, drive));
         SmartDashboard.putData("Autonomoi", autonSwitch);
         SmartDashboard.putNumber(Constants.AutonConstants.kAutonStartDelayKey, 0.0);
 
