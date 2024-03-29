@@ -3,6 +3,7 @@ package frc.robot.commands.teleop;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
@@ -63,7 +64,12 @@ public class Teleop {
 
     public static Command runIntake(Intake intake, CommandXboxController subsysctlr, CommandXboxController drivectlr) {
         return new FunctionalCommand(
-                () -> intake.run(),
+                () -> {
+                    if (intake.hasNote() && SmartDashboard.getBoolean("smart intake", true)){
+                        intake.stop();
+                    }else {
+                        intake.run();
+                    }},
                 () -> {
                     if (intake.hasNote()) {
                         subsysctlr.getHID().setRumble(RumbleType.kBothRumble, 1);

@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.Robot2024Constants.ClimberConstants;
@@ -69,6 +70,8 @@ public class Climber extends SubsystemBase implements frc.robot.subsystems.Climb
     private void updateCurrent() {
         double leftCurrent = left.getOutputCurrent();
         double rightCurrent = right.getOutputCurrent();
+        SmartDashboard.putNumber("left current", leftCurrent);
+        SmartDashboard.putNumber("right current", rightCurrent);
 
         boolean curTooHigh = (leftCurrent + rightCurrent) / 2.0 > ClimberConstants.kStoppingCurrent;
         // never need to come down

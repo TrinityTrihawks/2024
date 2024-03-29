@@ -79,15 +79,18 @@ public class RobotContainer {
 
         // subsys.setDefaultCommand(new IntakeInBackground(subsys));
         drive.setDefaultCommand(
-                Teleop.arcadeDrive(drive, driverController::getLeftY, driverController::getLeftX));
-
+                Teleop.arcadeDrive(drive, driverController::getLeftY, driverController::getLeftX)
+        );
+        SmartDashboard.putBoolean("smart intake", true);
         subsysController.x().onTrue(Teleop.pushToShootCL(shooter, intake));
         subsysController.y().onTrue(Teleop.pushToShootCLAmp(shooter, intake));
         subsysController.a()
                 .whileTrue(Teleop.runIntake(frc.robot.subsystems.robot2024.Intake.getInstance(), subsysController,
                         driverController));
         subsysController.b().whileTrue(Teleop.runReverseIntakeAndShooter(intake, shooter));
-
+        subsysController.a()
+                .whileTrue (Teleop.runIntake(frc.robot.subsystems.robot2024.Intake.getInstance(), subsysController,
+                        driverController));
         subsysController.povUp()
                 .or(subsysController.povUpLeft())
                 .or(subsysController.povUpRight())
@@ -96,7 +99,7 @@ public class RobotContainer {
                 .or(subsysController.povDownLeft())
                 .or(subsysController.povDownRight())
                 .whileTrue(Teleop.retractClimber(climber));
-    }
+    }   
 
     private void configureAutonomoi() {
         autonSwitch.setDefaultOption(
