@@ -31,6 +31,7 @@ public class Climber extends SubsystemBase implements frc.robot.subsystems.Climb
     private final Debouncer leftDebouncer;
     private final Debouncer rightDebouncer;
     private boolean mustStop = false;
+    private double speed;
 
     private static Climber instance;
 
@@ -59,7 +60,8 @@ public class Climber extends SubsystemBase implements frc.robot.subsystems.Climb
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-
+        SmartDashboard.putNumber("speed", 0.2);
+        speed = SmartDashboard.getNumber("speed", 0.2);
         leftLimTriggered = leftDebouncer.calculate(leftLim.get());
         rightLimTriggered = rightDebouncer.calculate(rightLim.get());
         updateCurrent();
@@ -80,23 +82,29 @@ public class Climber extends SubsystemBase implements frc.robot.subsystems.Climb
 
     private void calcShouldStop() {
         mustStop = mustStop || currentAtStopping;
-
+        
         // logic for limsw
     }
 
     @Override
     public void extend() {
-        left.set(1);
-        right.set(1);
+        left.set(speed);
+        right.set(speed);
     }
 
     @Override
     public void retract() {
+        double leftSpeed = -speed;
+        double rightSpeed = -speed;
         if (mustStop) {
             stop();
         } else {
-            left.set(-1);
-            right.set(-1);
+            if(leftLim.get()){
+            leftSpeed = 0;}
+            if(rightLim.get()){
+            rightSpeed = 0;}
+            right.set(rightSpeed);
+            left.set(leftSpeed);
         }
 
     }

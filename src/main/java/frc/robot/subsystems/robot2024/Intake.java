@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Relay.Direction;
 import edu.wpi.first.wpilibj.Relay.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.Robot2024Constants.IntakeConstants;
 
@@ -44,6 +45,7 @@ public class Intake extends SubsystemBase implements frc.robot.subsystems.Intake
     @Override
     public void periodic() {
         hasNote = !debouncer.calculate(noteSwitch.get());
+        SmartDashboard.putBoolean("has note", hasNote);
         if (hasNote) {
             leds.set(Value.kForward);
         } else {
