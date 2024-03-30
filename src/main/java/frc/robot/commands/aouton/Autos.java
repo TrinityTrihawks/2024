@@ -53,7 +53,7 @@ public final class Autos {
                 Commands.deadline(
                         shootCL(shooter, intake),
                         Commands.runEnd(
-                                () -> drive.drive(-.5, 0),
+                                () -> drive.drive(-.2, 0),
                                 () -> drive.stop(),
                                 drive)));
     }

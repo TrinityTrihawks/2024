@@ -35,7 +35,7 @@ public final class Constants {
     public static class AutonConstants {
         public static final double kLEAVEDistance = 1.7;
         public static final String kAutonStartDelayKey = "Auton Start Delay";
-        public static final double kAngledLEAVETime = 2.0;
+        public static final double kAngledLEAVETime = 2.5;
     }
 
     public static class RomiConstants {
@@ -95,8 +95,8 @@ public final class Constants {
             public static final double kShooterWarmupTime = .55; // seconds
             public static final double kUpperShooterReverseSpeed = .4;
             public static final double kLowerShooterReverseSpeed = .4;
-            public static final double kUpperAmpSpeed = .3;
-            public static final double kLowerAmpSpeed = .25;
+            public static final double kUpperAmpSpeed = .109;
+            public static final double kLowerAmpSpeed = .227;
 
             public static final double kShooterWheelMaxRPM = 5500;
 

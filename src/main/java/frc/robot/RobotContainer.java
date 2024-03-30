@@ -90,7 +90,6 @@ public class RobotContainer {
         autonSwitch.setDefaultOption(
                 "(2 pts) basic leave command",
                 Autos.leave(drive));
-
         autonSwitch.addOption(
                 "(7 pts) leave center and score a note",
                 Autos.c1(shooter, intake, drive));
@@ -105,6 +104,7 @@ public class RobotContainer {
                 Autos.l1(shooter, intake, drive));
         SmartDashboard.putData("Autonomoi", autonSwitch);
         SmartDashboard.putNumber(Constants.AutonConstants.kAutonStartDelayKey, 0.0);
+        SmartDashboard.putString("selected", autonSwitch.getSelected().toString());
 
     }
 

@@ -23,6 +23,7 @@ public class ShootCL extends Command {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        feedTimer.reset();
         feedTimer.start();
     }
 
@@ -41,6 +42,7 @@ public class ShootCL extends Command {
     public void end(boolean interrupted) {
         shooter.stop();
         intake.stop();
+        feedTimer.reset();
     }
 
     // Returns true when the command should end.

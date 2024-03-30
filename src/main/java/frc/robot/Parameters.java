@@ -110,8 +110,9 @@ public class Parameters {
                 SmartDashboard.putNumber("echo: lowerShooterSpeed", lowerShooterSpeed);
                 SmartDashboard.putNumber("echo: upperAmpSpeed", upperAmpSpeed);
                 SmartDashboard.putNumber("echo: lowerAmpSpeed", lowerAmpSpeed);
-
+                
             }
+               
 
             public static double upperShooterSpeed = Robot2024Constants.ShooterConstants.kUpperShooterSpeed;
             public static double lowerShooterSpeed = Robot2024Constants.ShooterConstants.kLowerShooterSpeed;
