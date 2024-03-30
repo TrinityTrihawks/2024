@@ -74,6 +74,8 @@ public class Teleop {
                     if (intake.hasNote()) {
                         subsysctlr.getHID().setRumble(RumbleType.kBothRumble, 1);
                         drivectlr.getHID().setRumble(RumbleType.kBothRumble, 1);
+                        if(SmartDashboard.getBoolean("smart intake", true)){
+                        intake.stop();}
                     } else {
                         subsysctlr.getHID().setRumble(RumbleType.kBothRumble, 0);
                         drivectlr.getHID().setRumble(RumbleType.kBothRumble, 0);
