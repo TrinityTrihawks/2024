@@ -7,6 +7,7 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.aouton.Autos;
 import frc.robot.commands.teleop.Teleop;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
@@ -30,6 +31,7 @@ public class RobotContainer {
     private final Drive drive;
     private final Shooter shooter;
     private final Intake intake;
+    private final Climber climber;
 
     // Replace with CommandPS4Controller or CommandJoystick if needed
     private final CommandXboxController driverController = new CommandXboxController(
@@ -45,6 +47,7 @@ public class RobotContainer {
         drive = BotSwitcher.getDrive();
         shooter = BotSwitcher.getShooter();
         intake = BotSwitcher.getIntake();
+        climber = BotSwitcher.getClimber();
         configureAutonomoi();
         // Configure the trigger bindings
         configureBindings();
@@ -76,8 +79,9 @@ public class RobotContainer {
 
         // subsys.setDefaultCommand(new IntakeInBackground(subsys));
         drive.setDefaultCommand(
-                Teleop.arcadeDrive(drive, driverController::getLeftY, driverController::getLeftX));
-
+                Teleop.arcadeDrive(drive, driverController::getLeftY, driverController::getLeftX)
+        );
+        SmartDashboard.putBoolean("smart intake", true);
         subsysController.x().onTrue(Teleop.pushToShootCL(shooter, intake));
         subsysController.y().onTrue(Teleop.pushToShootCLAmp(shooter, intake));
         subsysController.a()
@@ -85,7 +89,18 @@ public class RobotContainer {
                         subsysController,
                         driverController));
         subsysController.b().whileTrue(Teleop.runReverseIntakeAndShooter(intake, shooter));
-    }
+        subsysController.a()
+                .whileTrue (Teleop.runIntake(frc.robot.subsystems.robot2024.Intake.getInstance(), subsysController,
+                        driverController));
+        subsysController.povUp()
+                .or(subsysController.povUpLeft())
+                .or(subsysController.povUpRight())
+                .whileTrue(Teleop.extendClimber(climber));
+        subsysController.povDown()
+                .or(subsysController.povDownLeft())
+                .or(subsysController.povDownRight())
+                .whileTrue(Teleop.retractClimber(climber));
+    }   
 
     private void configureAutonomoi() {
         autonSwitch.setDefaultOption(

@@ -3,6 +3,7 @@ package frc.robot.commands.teleop;
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
@@ -10,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.aouton.Autos;
 import frc.robot.commands.aouton.Shoot;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
@@ -62,7 +64,12 @@ public class Teleop {
 
     public static Command runIntake(Intake intake, CommandXboxController subsysctlr, CommandXboxController drivectlr) {
         return new FunctionalCommand(
-                () -> intake.run(),
+                () -> {
+                    if (intake.hasNote() && SmartDashboard.getBoolean("smart intake", true)){
+                        intake.stop();
+                    }else {
+                        intake.run();
+                    }},
                 () -> {
                     if (intake.hasNote()) {
                         subsysctlr.getHID().setRumble(RumbleType.kBothRumble, 1);
@@ -77,7 +84,7 @@ public class Teleop {
                     subsysctlr.getHID().setRumble(RumbleType.kBothRumble, 0);
                     drivectlr.getHID().setRumble(RumbleType.kBothRumble, 0);
                 },
-                () -> false,
+                () -> intake.hasNote() && SmartDashboard.getBoolean("smart intake", true),
                 intake);
     }
 
@@ -92,6 +99,20 @@ public class Teleop {
                     shooter.stop();
                 },
                 intake, shooter);
+    }
+
+    public static Command extendClimber(Climber climber) {
+        return new StartEndCommand(
+                climber::extend,
+                climber::stop,
+                climber);
+    }
+
+    public static Command retractClimber(Climber climber) {
+        return new StartEndCommand(
+                climber::retract,
+                climber::stop,
+                climber);
     }
 
     private Teleop() {

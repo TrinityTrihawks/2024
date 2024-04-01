@@ -129,5 +129,15 @@ public final class Constants {
                 public static final double kWidestDetectableNoteAngle = 35;
             }
         }
+
+        public static class ClimberConstants {
+
+            // TODO: get empirical value for hard stop current: will need Phoenix Tuner...
+            public static final double kStoppingCurrent = 50.0;
+            public static final int kLeftMotorID = 21;
+            public static final int kRightMotorID = 20;
+            public static final int kLeftLimPort = 2;
+            public static final int kRightLimPort = 3;
+        }
     }
 }
