@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj2.command.StartEndCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.aouton.Autos;
 import frc.robot.commands.aouton.Shoot;
-import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
@@ -99,20 +98,6 @@ public class Teleop {
                     shooter.stop();
                 },
                 intake, shooter);
-    }
-
-    public static Command extendClimber(Climber climber) {
-        return new StartEndCommand(
-                climber::extend,
-                climber::stop,
-                climber);
-    }
-
-    public static Command retractClimber(Climber climber) {
-        return new StartEndCommand(
-                climber::retract,
-                climber::stop,
-                climber);
     }
 
     private Teleop() {
