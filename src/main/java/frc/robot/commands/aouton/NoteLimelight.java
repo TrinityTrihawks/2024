@@ -65,10 +65,11 @@ class NoteLimelight extends Command {
 
         // if(area > 1){}
         if (hasTarget) {
-            drive.drive(0.3, rotSpeed);
+            drive.drive(0.5, rotSpeed);
         } else {
-            drive.drive(0.3, 0);
+            drive.drive(0.5, 0);
         }
+
     }
 
     // Called once the command ends or is interrupted.

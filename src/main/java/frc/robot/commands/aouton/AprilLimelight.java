@@ -69,17 +69,12 @@ class AprilLimelight extends Command {
         SmartDashboard.putNumber("rotSpeed", rotSpeed);
         // SmartDashboard.putNumber("fwdSpeed", fwdSpeed);
 
-        if (targetIsCorrect()) {
-
-            if ((rotSpeed < -0.1) || (rotSpeed > 0.1)) {
-                // lower limit
-                rotSpeed = Math.signum(rotSpeed) * Math.max(0.3, Math.abs(rotSpeed));
-                drive.drive(0, rotSpeed);
-            } else {
-                drive.drive(0.3, 0);
-            }
+        if (hasTarget) {
+            // lower limit
+            rotSpeed = Math.signum(rotSpeed) * Math.max(0.3, Math.abs(rotSpeed));
+            drive.drive(0.3, rotSpeed);
         } else {
-            drive.drive(0.3, 0);
+            drive.drive(-0.3, 0);
         }
     }
 
@@ -98,9 +93,9 @@ class AprilLimelight extends Command {
         }
         switch (alliance) {
             case Blue:
-                return curTarget.fiducialID == ShooterConstants.kBlueTargetID;
+                return ((int) curTarget.fiducialID) == ShooterConstants.kBlueTargetID;
             case Red:
-                return curTarget.fiducialID == ShooterConstants.kRedTargetID;
+                return ((int) curTarget.fiducialID) == ShooterConstants.kRedTargetID;
 
             default:
                 DriverStation.reportError("bad alliance color " + alliance, true);

@@ -35,7 +35,7 @@ public final class Constants {
     public static class AutonConstants {
         public static final double kLEAVEDistance = 1.7;
         public static final String kAutonStartDelayKey = "Auton Start Delay";
-        public static final double kAngledLEAVETime = 2.5;
+        public static final double kAngledLEAVETime = 1.5;
     }
 
     public static class RomiConstants {
@@ -110,7 +110,7 @@ public final class Constants {
 
             public static final String kLimelightNostname = "limelight-shooter";
             public static final int kRedTargetID = 5;
-            public static final int kBlueTargetID = 0;
+            public static final int kBlueTargetID = 7;
 
         }
 
