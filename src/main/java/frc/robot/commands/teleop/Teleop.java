@@ -64,15 +64,21 @@ public class Teleop {
     public static Command runIntake(Intake intake, CommandXboxController subsysctlr, CommandXboxController drivectlr) {
         return new FunctionalCommand(
                 () -> {
-                    if (intake.hasNote() && SmartDashboard.getBoolean("smart intake", true)){
+                    if (intake.hasNote() && SmartDashboard.getBoolean("smart intake", true)) {
                         intake.stop();
-                    }else {
+                    } else {
                         intake.run();
-                    }},
+                    }
+                },
                 () -> {
                     if (intake.hasNote()) {
                         subsysctlr.getHID().setRumble(RumbleType.kBothRumble, 1);
                         drivectlr.getHID().setRumble(RumbleType.kBothRumble, 1);
+                        if (SmartDashboard.getBoolean("smart intake", true)) {
+                            intake.stop();
+                        } else {
+                            intake.run();
+                        }
                     } else {
                         subsysctlr.getHID().setRumble(RumbleType.kBothRumble, 0);
                         drivectlr.getHID().setRumble(RumbleType.kBothRumble, 0);
@@ -83,7 +89,7 @@ public class Teleop {
                     subsysctlr.getHID().setRumble(RumbleType.kBothRumble, 0);
                     drivectlr.getHID().setRumble(RumbleType.kBothRumble, 0);
                 },
-                () -> intake.hasNote() && SmartDashboard.getBoolean("smart intake", true),
+                () -> false,
                 intake);
     }
 

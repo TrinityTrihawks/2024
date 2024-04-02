@@ -73,7 +73,7 @@ public class Intake extends SubsystemBase implements frc.robot.subsystems.Intake
 
     @Override
     public boolean hasNote() {
-        return false;// hasNote;
+        return hasNote;
     }
 
 }
