@@ -89,6 +89,15 @@ public final class Autos {
                 grabNote(drive, intake));
     }
 
+    public static Command r2(Shooter shooter, Intake intake, Drive drive) {
+        return Commands.sequence(
+                r1(shooter, intake, drive),
+                Commands.runEnd(
+                        () -> drive.drive(-.5, -.37),
+                        () -> drive.stop(), drive).withTimeout(AutonConstants.kAngledLEAVETime),
+                shootCLVision(shooter, intake, drive));
+    }
+
     public static Command l1(Shooter shooter, Intake intake, Drive drive) {
         return Commands.sequence(
                 Commands.deadline(
@@ -99,6 +108,15 @@ public final class Autos {
                         driveOutLeftTimed(drive, AutonConstants.kAngledLEAVETime),
                         intake(intake)),
                 grabNote(drive, intake));
+    }
+
+    public static Command l2(Shooter shooter, Intake intake, Drive drive) {
+        return Commands.sequence(
+                l1(shooter, intake, drive),
+                Commands.runEnd(
+                        () -> drive.drive(-.5, .37),
+                        () -> drive.stop(), drive).withTimeout(AutonConstants.kAngledLEAVETime),
+                shootCLVision(shooter, intake, drive));
     }
 
     public static Command intake(Intake intake) {
