@@ -84,23 +84,9 @@ class AprilLimelight extends Command {
             return false;
         }
 
-        Alliance alliance;
-        try {
-            alliance = DriverStation.getAlliance().get();
-        } catch (NoSuchElementException nsee) {
-            DriverStation.reportError(nsee.toString(), true);
-            return false;
-        }
-        switch (alliance) {
-            case Blue:
-                return ((int) curTarget.fiducialID) == ShooterConstants.kBlueTargetID;
-            case Red:
-                return ((int) curTarget.fiducialID) == ShooterConstants.kRedTargetID;
+        return ((int) curTarget.fiducialID) == ShooterConstants.kBlueTargetID
+                || ((int) curTarget.fiducialID) == ShooterConstants.kRedTargetID;
 
-            default:
-                DriverStation.reportError("bad alliance color " + alliance, true);
-                return false;
-        }
     }
 
     private void updateTargeting() {
