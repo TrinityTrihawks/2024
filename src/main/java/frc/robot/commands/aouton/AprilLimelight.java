@@ -72,9 +72,9 @@ class AprilLimelight extends Command {
         if (hasTarget) {
             // lower limit
             rotSpeed = Math.signum(rotSpeed) * Math.max(0.3, Math.abs(rotSpeed));
-            drive.drive(0.3, rotSpeed);
+            drive.drive(0, rotSpeed);
         } else {
-            drive.drive(-0.3, 0);
+            drive.drive(0, 0);
         }
     }
 

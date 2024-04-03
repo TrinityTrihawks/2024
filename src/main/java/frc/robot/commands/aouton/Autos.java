@@ -111,12 +111,6 @@ public final class Autos {
                 intake(intake));
     }
 
-    public static Command shootCLVision(Shooter shooter, Intake intake, Drive drive) {
-        return Commands.deadline(
-                shootCL(shooter, intake),
-                followApriltag(drive));
-    }
-
     public static Command grabNote(Drive drive, Intake intake) {
         return Commands.deadline(
                 intakeOne(intake),
