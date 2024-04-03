@@ -76,8 +76,7 @@ public class RobotContainer {
 
         // subsys.setDefaultCommand(new IntakeInBackground(subsys));
         drive.setDefaultCommand(
-                Teleop.arcadeDrive(drive, driverController::getLeftY, driverController::getLeftX)
-        );
+                Teleop.arcadeDrive(drive, driverController::getLeftY, driverController::getLeftX));
         SmartDashboard.putBoolean("smart intake", true);
         subsysController.x().onTrue(Teleop.pushToShootCL(shooter, intake));
         subsysController.y().onTrue(Teleop.pushToShootCLAmp(shooter, intake));
@@ -87,10 +86,11 @@ public class RobotContainer {
                         driverController));
         subsysController.b().whileTrue(Teleop.runReverseIntakeAndShooter(intake, shooter));
         subsysController.a()
-                .whileTrue (Teleop.runIntake(frc.robot.subsystems.robot2024.Intake.getInstance(), subsysController,
+                .whileTrue(Teleop.runIntake(frc.robot.subsystems.robot2024.Intake.getInstance(),
+                        subsysController,
                         driverController));
-        
-    }   
+
+    }
 
     private void configureAutonomoi() {
         autonSwitch.setDefaultOption(
@@ -108,7 +108,6 @@ public class RobotContainer {
         autonSwitch.addOption(
                 "(7 pts) leave left and score a note",
                 Autos.l1(shooter, intake, drive));
-        autonSwitch.addOption("(TEST ONLY) shootCLVision", Autos.shootCLVision(shooter, intake, drive));
         SmartDashboard.putData("Autonomoi", autonSwitch);
         SmartDashboard.putNumber(Constants.AutonConstants.kAutonStartDelayKey, 0.0);
         SmartDashboard.putString("selected", autonSwitch.getSelected().toString());
