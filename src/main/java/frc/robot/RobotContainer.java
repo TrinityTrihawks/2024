@@ -86,7 +86,8 @@ public class RobotContainer {
                         driverController));
         subsysController.b().whileTrue(Teleop.runReverseIntakeAndShooter(intake, shooter));
         subsysController.a()
-                .whileTrue(Teleop.runIntake(frc.robot.subsystems.robot2024.Intake.getInstance(), subsysController,
+                .whileTrue(Teleop.runIntake(frc.robot.subsystems.robot2024.Intake.getInstance(),
+                        subsysController,
                         driverController));
 
     }
@@ -113,7 +114,6 @@ public class RobotContainer {
         autonSwitch.addOption(
                 "(12 pts) leave left and score 2 notes",
                 Autos.l2(shooter, intake, drive));
-        autonSwitch.addOption("(TEST ONLY) shootCLVision", Autos.shootCLVision(shooter, intake, drive));
         SmartDashboard.putData("Autonomoi", autonSwitch);
         SmartDashboard.putNumber(Constants.AutonConstants.kAutonStartDelayKey, 0.0);
         SmartDashboard.putString("selected", autonSwitch.getSelected().toString());
