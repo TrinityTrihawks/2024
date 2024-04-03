@@ -54,7 +54,8 @@ class NoteLimelight extends Command {
         SmartDashboard.putNumber("LiX", x);
         SmartDashboard.putNumber("LiArea", area);
         SmartDashboard.putBoolean("li has target", hasTarget);
-        SmartDashboard.putString("li json", LimelightHelpers.getJSONDump("limelight-intake"));
+        SmartDashboard.putString("li json",
+                NetworkTableInstance.getDefault().getTable("limelight-intake").getEntry("json").getString("ERROR"));
 
         x /= 50;
         // double fwdSpeed = (10 - area) / 21;
