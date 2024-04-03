@@ -7,8 +7,6 @@ package frc.robot.commands.aouton;
 import frc.robot.Constants;
 import frc.robot.Constants.AutonConstants;
 import frc.robot.commands.test.PrintEnc;
-import frc.robot.commands.test.LeaveLeft;
-import frc.robot.commands.test.LeaveRight;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
@@ -84,7 +82,7 @@ public final class Autos {
                         Commands.run(() -> drive.drive(0, 0), drive)),
                 shootCL(shooter, intake),
                 Commands.deadline(
-                        driveOutRightTimed(drive, AutonConstants.kAngledLEAVETime),
+                        driveOutRightTimed(drive),
                         intake(intake)),
                 grabNote(drive, intake));
     }
@@ -96,7 +94,7 @@ public final class Autos {
                         Commands.run(() -> drive.drive(0, 0), drive)),
                 shootCL(shooter, intake),
                 Commands.deadline(
-                        driveOutLeftTimed(drive, AutonConstants.kAngledLEAVETime),
+                        driveOutLeftTimed(drive),
                         intake(intake)),
                 grabNote(drive, intake));
     }
@@ -125,12 +123,28 @@ public final class Autos {
         return new NoteLimelight(drive);
     }
 
-    private static Command driveOutRightTimed(Drive drive, double time) {
-        return new LeaveRight(drive, time);
+    private static Command driveOutRightTimed(Drive drive) {
+        return Commands.sequence(
+                Commands.runEnd(
+                        () -> drive.drive(.5, 0),
+                        () -> drive.stop(),
+                        drive).withTimeout(.7),
+                Commands.runEnd(
+                        () -> drive.drive(0, .5),
+                        () -> drive.stop(),
+                        drive).withTimeout(1));
     }
 
-    private static Command driveOutLeftTimed(Drive drive, double time) {
-        return new LeaveLeft(drive, time);
+    private static Command driveOutLeftTimed(Drive drive) {
+        return Commands.sequence(
+                Commands.runEnd(
+                        () -> drive.drive(.5, 0),
+                        () -> drive.stop(),
+                        drive).withTimeout(.7),
+                Commands.runEnd(
+                        () -> drive.drive(0, -.5),
+                        () -> drive.stop(),
+                        drive).withTimeout(1));
     }
 
     private Autos() {
