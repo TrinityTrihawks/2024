@@ -90,9 +90,14 @@ public final class Autos {
     public static Command r2(Shooter shooter, Intake intake, Drive drive) {
         return Commands.sequence(
                 r1(shooter, intake, drive),
-                Commands.runEnd(
-                        () -> drive.drive(-.5, -.37),
-                        () -> drive.stop(), drive).withTimeout(AutonConstants.kAngledLEAVETime));
+                alignToApriltag(drive),
+                Commands.run(() -> drive.drive(-.6, 0), drive),
+                Commands.deadline(
+                        shootCL(shooter, intake),
+                        Commands.runEnd(
+                                () -> drive.drive(-.3, 0),
+                                () -> drive.stop(),
+                                drive)));
     }
 
     public static Command l1(Shooter shooter, Intake intake, Drive drive) {
@@ -110,9 +115,14 @@ public final class Autos {
     public static Command l2(Shooter shooter, Intake intake, Drive drive) {
         return Commands.sequence(
                 l1(shooter, intake, drive),
-                Commands.runEnd(
-                        () -> drive.drive(-.5, .37),
-                        () -> drive.stop(), drive).withTimeout(AutonConstants.kAngledLEAVETime));
+                alignToApriltag(drive),
+                Commands.run(() -> drive.drive(-.6, 0), drive),
+                Commands.deadline(
+                        shootCL(shooter, intake),
+                        Commands.runEnd(
+                                () -> drive.drive(-.3, 0),
+                                () -> drive.stop(),
+                                drive)));
     }
 
     public static Command intake(Intake intake) {
@@ -131,7 +141,7 @@ public final class Autos {
                 followNote(drive));
     }
 
-    public static Command followApriltag(Drive drive) {
+    public static Command alignToApriltag(Drive drive) {
         return new AprilLimelight(drive);
     }
 
