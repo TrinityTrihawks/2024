@@ -114,6 +114,7 @@ public class RobotContainer {
         autonSwitch.addOption(
                 "(12 pts) leave left and score 2 notes",
                 Autos.l2(shooter, intake, drive));
+        autonSwitch.addOption("(TEST ONLY) alignToApriltag", Autos.alignToApriltag(drive));
         SmartDashboard.putData("Autonomoi", autonSwitch);
         SmartDashboard.putNumber(Constants.AutonConstants.kAutonStartDelayKey, 0.0);
         SmartDashboard.putString("selected", autonSwitch.getSelected().toString());

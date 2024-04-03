@@ -90,6 +90,10 @@ public final class Autos {
     public static Command r2(Shooter shooter, Intake intake, Drive drive) {
         return Commands.sequence(
                 r1(shooter, intake, drive),
+                Commands.runEnd(
+                        () -> drive.drive(-.6, -.4),
+                        () -> drive.stop(),
+                        drive).withTimeout(1.4),
                 alignToApriltag(drive),
                 Commands.run(() -> drive.drive(-.6, 0), drive),
                 Commands.deadline(
@@ -115,8 +119,12 @@ public final class Autos {
     public static Command l2(Shooter shooter, Intake intake, Drive drive) {
         return Commands.sequence(
                 l1(shooter, intake, drive),
+                Commands.runEnd(
+                        () -> drive.drive(-.6, .4),
+                        () -> drive.stop(),
+                        drive).withTimeout(1.4),
                 alignToApriltag(drive),
-                Commands.run(() -> drive.drive(-.6, 0), drive),
+                Commands.run(() -> drive.drive(-.6, 0), drive).withTimeout(.7),
                 Commands.deadline(
                         shootCL(shooter, intake),
                         Commands.runEnd(
