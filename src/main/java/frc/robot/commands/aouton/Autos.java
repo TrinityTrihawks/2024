@@ -120,11 +120,11 @@ public final class Autos {
         return Commands.sequence(
                 l1(shooter, intake, drive),
                 Commands.runEnd(
-                        () -> drive.drive(-.6, .4),
+                        () -> drive.drive(-.6, .2),
                         () -> drive.stop(),
-                        drive).withTimeout(1.4),
+                        drive).withTimeout(2),
                 alignToApriltag(drive),
-                Commands.run(() -> drive.drive(-.6, 0), drive).withTimeout(.7),
+                Commands.run(() -> drive.drive(-.4, 0), drive).withTimeout(.7),
                 Commands.deadline(
                         shootCL(shooter, intake),
                         Commands.runEnd(
