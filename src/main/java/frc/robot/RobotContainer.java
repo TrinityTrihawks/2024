@@ -13,6 +13,7 @@ import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -114,7 +115,8 @@ public class RobotContainer {
         autonSwitch.addOption(
                 "(12 pts) leave left and score 2 notes",
                 Autos.l2(shooter, intake, drive));
-        autonSwitch.addOption("(TEST ONLY) alignToApriltag", Autos.alignToApriltag(drive));
+        autonSwitch.addOption("(TEST ONLY) alignToApriltag",
+                Commands.sequence(Autos.alignToApriltag(drive), Commands.print("DONE")));
         SmartDashboard.putData("Autonomoi", autonSwitch);
         SmartDashboard.putNumber(Constants.AutonConstants.kAutonStartDelayKey, 0.0);
         SmartDashboard.putString("selected", autonSwitch.getSelected().toString());

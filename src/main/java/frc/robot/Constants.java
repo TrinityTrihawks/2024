@@ -109,7 +109,7 @@ public final class Constants {
             public static final double kLFF = 1.92e-4;
 
             public static final String kLimelightNostname = "limelight-shooter";
-            public static final int kRedTargetID = 5;
+            public static final int kRedTargetID = 4;
             public static final int kBlueTargetID = 7;
 
         }

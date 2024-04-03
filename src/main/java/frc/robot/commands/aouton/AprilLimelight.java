@@ -4,12 +4,8 @@
 
 package frc.robot.commands.aouton;
 
-import java.util.NoSuchElementException;
-
 import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.math.filter.Debouncer.DebounceType;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.LimelightHelpers;
@@ -64,14 +60,14 @@ class AprilLimelight extends Command {
         SmartDashboard.putString("ls json", LimelightHelpers.getJSONDump("limelight-shooter"));
 
         // double fwdSpeed = (10 - area) / 21;
-        double rotSpeed = x / 50;
+        double rotSpeed = x / 40;
 
         SmartDashboard.putNumber("rotSpeed", rotSpeed);
         // SmartDashboard.putNumber("fwdSpeed", fwdSpeed);
 
         if (hasTarget) {
             // lower limit
-            rotSpeed = Math.signum(rotSpeed) * Math.max(0.3, Math.abs(rotSpeed));
+            rotSpeed = Math.signum(rotSpeed) * Math.max(0.45, Math.abs(rotSpeed));
             drive.drive(0, rotSpeed);
         } else {
             drive.drive(0, 0);
@@ -115,6 +111,6 @@ class AprilLimelight extends Command {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return curTarget != null && Math.abs(curTarget.tx) < 5;
+        return curTarget != null && Math.abs(curTarget.tx) < 3;
     }
 }
