@@ -27,8 +27,8 @@ public final class Constants {
         public static final boolean kSquareForwardInput = false;
         public static final boolean kSquareTwistInput = false;
 
-        public static final double kForwardThrottle = .7;
-        public static final double kTwistThrottle = .4;
+        public static final double kForwardThrottle = .85;
+        public static final double kTwistThrottle = .3;
         public static final double kStaticTwistThrottle = .6;
     }
 
